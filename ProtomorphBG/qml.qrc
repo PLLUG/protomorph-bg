@@ -1,5 +1,11 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
+        <file alias="main.qml">qml/main.qml</file>
+    </qresource>
+    <qresource prefix="/prototype_project">
+        <file>ProjectsView.qml</file>
+    </qresource>
+    <qresource prefix="/custom_controls">
+        <file>TestCardRealSize.qml</file>
     </qresource>
 </RCC>
