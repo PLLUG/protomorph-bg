@@ -3,26 +3,24 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.5
 
-ApplicationWindow {
-    visible: true
-    width: 640
-    height: 480
+import "components"
+import "screens"
 
-    background: Rectangle {
-        gradient: Gradient {
-            GradientStop {
-                position: 0.00;
-                color: "#434343";
-            }
-            GradientStop {
-                position: 1.00;
-                color: "#000000";
-            }
-        }
-    }
+ApplicationWindow {
+    title: qsTr("Protomorph BG")
+
+    visible: true
+    width: 1024
+    height: 768
 
     Material.theme: Material.Dark
     Material.accent: Material.Grey
 
-    title: qsTr("Protomorph BG")
+    menuBar: MainMenuBar {
+        id: mainToolBar
+    }
+
+    ComponentEditorScreen {
+        anchors.fill: parent
+    }
 }

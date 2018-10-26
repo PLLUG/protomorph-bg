@@ -5,13 +5,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 HEADERS += \
     CardSizesConstants.hpp \
-    SizesListModel.hpp \
-    models/PrototypeProjectsModel.hpp \
-    dataobjects/Project.hpp
+    SizesListModel.hpp
 
 SOURCES += \
         main.cpp \
-    SizesListModel.cpp \
-    models/PrototypeProjectsModel.cpp
+    SizesListModel.cpp
 
 RESOURCES += qml.qrc

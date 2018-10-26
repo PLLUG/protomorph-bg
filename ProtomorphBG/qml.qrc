@@ -2,10 +2,14 @@
     <qresource prefix="/">
         <file alias="main.qml">qml/main.qml</file>
     </qresource>
-    <qresource prefix="/prototype_project">
-        <file>ProjectsView.qml</file>
-    </qresource>
     <qresource prefix="/custom_controls">
-        <file>TestCardRealSize.qml</file>
+        <file alias="ComponentEasel.qml">qml/ComponentEasel.qml</file>
+        <file alias="SidePanel.qml">qml/SidePanel.qml</file>
+    </qresource>
+    <qresource prefix="/screens">
+        <file alias="ComponentEditorScreen.qml">qml/ComponentEditorScreen.qml</file>
+    </qresource>
+    <qresource prefix="/components">
+        <file alias="MainMenuBar.qml">qml/MainMenuBar.qml</file>
     </qresource>
 </RCC>
