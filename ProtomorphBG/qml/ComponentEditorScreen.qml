@@ -24,8 +24,8 @@ Page {
                 }
                 onCurrentIndexChanged: {
                     var cardSize = sizesListModel.sizeByIndex(currentIndex);
-                    card.width = cardSize.width
-                    card.height = cardSize.height
+                    easel.component.width = cardSize.width
+                    easel.component.height = cardSize.height
                 }
             }
         }
@@ -38,24 +38,20 @@ Page {
             id: instrumentsPanel
             Layout.fillHeight: true
             Layout.preferredWidth: internal.sidePanelInitialWidth
+            visible: false
         }
 
         ComponentEasel {
+            id: easel
             Layout.fillHeight: true
             Layout.fillWidth: true
-
-            Rectangle {
-                anchors.centerIn: parent
-                id: card
-                color: "purple"
-                radius: 20
-            }
         }
 
         SidePanel {
             id: templatesPanel
             Layout.fillHeight: true
             Layout.preferredWidth: internal.sidePanelInitialWidth
+            visible: false
         }
     }
 

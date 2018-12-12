@@ -4,11 +4,11 @@ CONFIG += c++17
 DEFINES += QT_DEPRECATED_WARNINGS
 
 HEADERS += \
-    CardSizesConstants.hpp \
-    SizesListModel.hpp
+    src\constants\CardSizesConstants.hpp \
+    src\models\SizesListModel.hpp
 
 SOURCES += \
-        main.cpp \
-    SizesListModel.cpp
+        src\main.cpp \
+    src\models\SizesListModel.cpp
 
 RESOURCES += qml.qrc
