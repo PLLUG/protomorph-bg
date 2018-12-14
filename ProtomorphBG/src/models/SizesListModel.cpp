@@ -1,9 +1,8 @@
 #include "SizesListModel.hpp"
 
-#include "CardSizesConstants.hpp"
+#include "src/constants/CardSizesConstants.hpp"
+#include "src/helpers/MeasurementConverters.hpp"
 
-#include <QGuiApplication>
-#include <QScreen>
 #include <QSizeF>
 
 SizesListModel::SizesListModel(QObject *parent)
@@ -45,9 +44,7 @@ QHash<int, QByteArray> SizesListModel::roleNames() const
 
 QVariant SizesListModel::sizeByIndex(int index)
 {
-    auto desctop = qGuiApp->screens().at(0);
     auto cardSize = sizes.at(static_cast<size_t>(index));
-    auto logDotsPerInc = std::ceil(desctop->logicalDotsPerInch()  / 25.4);
-    return QVariant::fromValue(QSizeF(std::round(logDotsPerInc * cardSize.width),
-                                      std::round(logDotsPerInc * cardSize.height)));
+    return QVariant::fromValue(QSizeF{Helper::fromMMToPixelsOnScreen(cardSize.width),
+                                      Helper::fromMMToPixelsOnScreen(cardSize.height)});
 }

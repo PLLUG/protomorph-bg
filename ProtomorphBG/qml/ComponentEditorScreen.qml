@@ -4,7 +4,6 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.4
 import QtQuick.Window 2.12
 
-import protomorph.sizelistmodel 1.0
 
 import "../custom_controls"
 
@@ -12,22 +11,12 @@ Page {
     id: root
 
     header: ToolBar {
-        RowLayout
-        {
-            ComboBox {
-                id: cardSizes
-                width: 110
-                height: 40
-                textRole: "sizeAsString"
-                model: SizesListModel {
-                    id: sizesListModel
-                }
-                onCurrentIndexChanged: {
-                    var cardSize = sizesListModel.sizeByIndex(currentIndex);
-                    easel.component.width = cardSize.width
-                    easel.component.height = cardSize.height
-                }
-            }
+        ComponentSizePanel {
+            id: sizePanel
+            anchors.fill: parent
+
+            onComponentHeightChanged: easel.component.height = sizePanel.componentHeight
+            onComponentWidthChanged: easel.component.width = sizePanel.componentWidth
         }
     }
 

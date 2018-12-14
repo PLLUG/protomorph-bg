@@ -3,7 +3,7 @@
 
 #include <QAbstractListModel>
 
-class SizesListModel : public QAbstractListModel
+class SizesListModel: public QAbstractListModel
 {
     Q_OBJECT
 
