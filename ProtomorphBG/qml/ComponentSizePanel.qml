@@ -5,8 +5,7 @@ import QtQuick.Layouts 1.4
 
 import protomorph.sizelistmodel 1.0
 
-RowLayout
-{
+RowLayout {
     id: root
 
     readonly property alias componentHeight: heightSpinbox.value
@@ -26,7 +25,7 @@ RowLayout
         }
 
         onCurrentIndexChanged: {
-            var cardSize = sizesListModel.sizeByIndex(currentIndex)
+            var cardSize = sizesListModel.sizeByIndex(cardSizes.currentIndex)
             widthSpinbox.value = cardSize.width
             heightSpinbox.value = cardSize.height
         }

@@ -4,6 +4,7 @@
 #include <QSizeF>
 
 namespace Helper {
+double roundToNDecimalPlaces(double value, int nofDecimalPlaces = 1);
 double fromMMToPixelsOnScreen(double value);
 double fromPixelsOnScreenToMM(double value);
 }

@@ -24,3 +24,8 @@ double QmlHelper::fromPixelsOnScreenToMM(double value)
 {
     return Helper::fromPixelsOnScreenToMM(value);
 }
+
+double QmlHelper::roundToNDecimalPlaces(double value, int nofDecimalPlaces)
+{
+    return Helper::roundToNDecimalPlaces(value, nofDecimalPlaces);
+}

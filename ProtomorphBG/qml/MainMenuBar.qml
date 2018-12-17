@@ -5,11 +5,16 @@ import QtQuick.Controls 2.5
 MenuBar {
     Menu {
         title: qsTr("&File")
-        MenuSeparator { }
-        Action { text: qsTr("&Quit") }
+        MenuSeparator {
+        }
+        Action {
+            text: qsTr("&Quit")
+        }
     }
     Menu {
         title: qsTr("&Help")
-        Action { text: qsTr("&About") }
+        Action {
+            text: qsTr("&About")
+        }
     }
 }

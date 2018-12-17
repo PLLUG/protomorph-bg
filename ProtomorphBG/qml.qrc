@@ -7,6 +7,7 @@
         <file alias="SidePanel.qml">qml/SidePanel.qml</file>
         <file alias="ComponentSizePanel.qml">qml/ComponentSizePanel.qml</file>
         <file alias="SizeSpinBox.qml">qml/SizeSpinBox.qml</file>
+        <file alias="ZoomArea.qml">qml/ZoomArea.qml</file>
     </qresource>
     <qresource prefix="/screens">
         <file alias="ComponentEditorScreen.qml">qml/ComponentEditorScreen.qml</file>

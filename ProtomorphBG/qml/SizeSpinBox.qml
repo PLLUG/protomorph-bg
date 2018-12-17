@@ -18,10 +18,10 @@ SpinBox {
     stepSize: internal.singleStep
     from: internal.minComponentSizeValue
     to: internal.maxComponentSizeValue
-    valueFromText: function(mm) {
+    valueFromText: function (mm) {
         return QmlHelper.fromMMToPixelsOnScreen(mm)
     }
-    textFromValue: function(pixels) {
+    textFromValue: function (pixels) {
         return QmlHelper.fromPixelsOnScreenToMM(pixels)
     }
 }

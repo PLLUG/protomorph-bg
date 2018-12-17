@@ -14,6 +14,7 @@ public:
 public slots:
     double fromMMToPixelsOnScreen(double value);
     double fromPixelsOnScreenToMM(double value);
+    double roundToNDecimalPlaces(double value, int nofDecimalPlaces = 1);
 
 private:
     explicit QmlHelper(QObject *parent = nullptr);
