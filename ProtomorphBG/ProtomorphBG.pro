@@ -3,6 +3,13 @@ CONFIG += c++17
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
+FONTAWESOMEPATH = D:\protomorph-bg\ProtomorphBG\submodules\fontawesome.pri\fontawesome.pri
+
+include($${FONTAWESOMEPATH})
+!include($${FONTAWESOMEPATH}) {
+    message("Please, get fontawesome.pri submodule correctly")
+}
+
 HEADERS += \
     src\constants\CardSizesConstants.hpp \
     src\models\SizesListModel.hpp \

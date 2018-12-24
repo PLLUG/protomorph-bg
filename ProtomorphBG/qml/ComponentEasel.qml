@@ -14,7 +14,4 @@ ZoomArea {
         anchors.centerIn: parent
         scale: root.currentScale
     }
-
-    onCurrentScaleChanged: {
-    }
 }

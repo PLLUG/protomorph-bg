@@ -5,6 +5,8 @@ import protomorph.qmlhelper 1.0
 MouseArea {
     id: root
 
+    readonly property int currentScaleInPercent: 100 * root.currentScale
+
     property real currentScale: 1.0
     property real minScale: 1.0
     property real maxScale: 2.0

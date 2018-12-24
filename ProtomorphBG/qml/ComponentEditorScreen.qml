@@ -10,12 +10,22 @@ Page {
     id: root
 
     header: ToolBar {
-        ComponentSizePanel {
-            id: sizePanel
+        RowLayout {
             anchors.fill: parent
 
-            onComponentHeightChanged: easel.component.height = sizePanel.componentHeight
-            onComponentWidthChanged: easel.component.width = sizePanel.componentWidth
+            ComponentSizePanel {
+                id: sizePanel
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                onComponentHeightChanged: easel.component.height = sizePanel.componentHeight
+                onComponentWidthChanged: easel.component.width = sizePanel.componentWidth
+            }
+
+            ZoomLabel {
+                id: zoomLabel
+                Layout.fillHeight: true
+                zoomValue: easel.currentScaleInPercent
+            }
         }
     }
 
