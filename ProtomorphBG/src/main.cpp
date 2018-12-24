@@ -17,8 +17,12 @@ int main(int argc, char *argv[])
     QQuickStyle::setStyle(QLatin1String("Material"));
 
     //Load and set application font
-    QFontDatabase::addApplicationFont(QLatin1String(":/font/font/roboto-android/Roboto-Regular.ttf"));
-    app.setFont(QFont(QLatin1String("Roboto")));
+    if (const auto id = QFontDatabase::addApplicationFont(QLatin1String(":/Roboto-Regular.ttf")); id != -1)
+    {
+        auto familiesList = QFontDatabase::applicationFontFamilies(id);
+        Q_ASSERT(!familiesList.empty());
+        app.setFont(QFont(familiesList.at(0)));
+    }
 
 
     //Register models
