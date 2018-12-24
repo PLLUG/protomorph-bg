@@ -11,7 +11,11 @@ Page {
 
     header: ToolBar {
         RowLayout {
-            anchors.fill: parent
+            anchors{
+                fill: parent
+                leftMargin: 10
+                rightMargin: 10
+            }
 
             ComponentSizePanel {
                 id: sizePanel
@@ -20,6 +24,8 @@ Page {
                 onComponentHeightChanged: easel.component.height = sizePanel.componentHeight
                 onComponentWidthChanged: easel.component.width = sizePanel.componentWidth
             }
+
+            ToolSeparator {}
 
             ZoomLabel {
                 id: zoomLabel

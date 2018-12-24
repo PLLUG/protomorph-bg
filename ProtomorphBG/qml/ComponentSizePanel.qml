@@ -31,10 +31,14 @@ RowLayout {
         }
     }
 
+    ToolSeparator {}
+
     SizeSpinBox {
         id: widthSpinbox
         Layout.fillHeight: true
     }
+
+    ToolSeparator {}
 
     SizeSpinBox {
         id: heightSpinbox
