@@ -2,7 +2,6 @@ import QtQuick 2.12
 
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.4
-import QtQuick.Window 2.12
 
 import "qrc:/custom_controls"
 
@@ -42,7 +41,7 @@ Page {
             id: instrumentsPanel
             Layout.fillHeight: true
             Layout.preferredWidth: internal.sidePanelInitialWidth
-            visible: false
+//            visible: false
         }
 
         ComponentEasel {
@@ -55,13 +54,13 @@ Page {
             id: templatesPanel
             Layout.fillHeight: true
             Layout.preferredWidth: internal.sidePanelInitialWidth
-            visible: false
+//            visible: false
         }
     }
 
     QtObject {
         id: internal
         readonly property int sidePanelInitialWidth: Math.round(
-                                                         Screen.width * 0.2)
+                                                         parent.width * 0.2)
     }
 }
