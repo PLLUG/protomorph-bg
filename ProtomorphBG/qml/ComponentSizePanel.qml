@@ -5,6 +5,8 @@ import QtQuick.Layouts 1.4
 
 import protomorph.sizelistmodel 1.0
 
+import "qrc:/custom_controls"
+
 RowLayout {
     id: root
 

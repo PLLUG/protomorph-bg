@@ -4,9 +4,7 @@
         <file alias="qtquickcontrols2.conf">qml/qtquickcontrols2.conf</file>
     </qresource>
     <qresource prefix="/custom_controls">
-        <file alias="ComponentEasel.qml">qml/ComponentEasel.qml</file>
         <file alias="SidePanel.qml">qml/SidePanel.qml</file>
-        <file alias="ComponentSizePanel.qml">qml/ComponentSizePanel.qml</file>
         <file alias="SizeSpinBox.qml">qml/SizeSpinBox.qml</file>
         <file alias="ZoomArea.qml">qml/ZoomArea.qml</file>
         <file alias="ZoomLabel.qml">qml/ZoomLabel.qml</file>
@@ -15,6 +13,8 @@
         <file alias="ComponentEditorScreen.qml">qml/ComponentEditorScreen.qml</file>
     </qresource>
     <qresource prefix="/components">
+        <file alias="ComponentEasel.qml">qml/ComponentEasel.qml</file>
+        <file alias="ComponentSizePanel.qml">qml/ComponentSizePanel.qml</file>
         <file alias="MainMenuBar.qml">qml/MainMenuBar.qml</file>
     </qresource>
 </RCC>

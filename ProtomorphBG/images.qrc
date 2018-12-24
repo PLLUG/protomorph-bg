@@ -1,3 +1,6 @@
 <RCC>
-    <qresource prefix="/"/>
+    <qresource prefix="/icons">
+        <file alias="protomorph-bg.ico">resources/icons/protomorph-bg.ico</file>
+    </qresource>
+    <qresource prefix="/images"/>
 </RCC>

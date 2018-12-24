@@ -3,6 +3,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.4
 
+import "qrc:/components"
 import "qrc:/custom_controls"
 
 Page {
@@ -41,20 +42,21 @@ Page {
             id: instrumentsPanel
             Layout.fillHeight: true
             Layout.preferredWidth: internal.sidePanelInitialWidth
-//            visible: false
+            z: 1
         }
 
         ComponentEasel {
             id: easel
             Layout.fillHeight: true
             Layout.fillWidth: true
+            z: 0
         }
 
         SidePanel {
             id: templatesPanel
             Layout.fillHeight: true
             Layout.preferredWidth: internal.sidePanelInitialWidth
-//            visible: false
+            z: 1
         }
     }
 

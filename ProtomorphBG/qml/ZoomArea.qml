@@ -8,7 +8,7 @@ MouseArea {
     readonly property int currentScaleInPercent: 100 * root.currentScale
 
     property real currentScale: 1.0
-    property real minScale: 1.0
+    property real minScale: 0.1
     property real maxScale: 2.0
     property real scaleStep: 0.1
 

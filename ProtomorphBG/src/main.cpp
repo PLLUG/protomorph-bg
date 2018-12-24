@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQuickStyle>
 #include <QFontDatabase>
+#include <QIcon>
 
 #include "src/models/SizesListModel.hpp"
 #include "src/helpers/QmlHelper.hpp"
@@ -24,6 +25,7 @@ int main(int argc, char *argv[])
         app.setFont(QFont(familiesList.at(0)));
     }
 
+    app.setWindowIcon(QIcon{QLatin1String{":/icons/protomorph-bg.ico"}});
 
     //Register models
     qmlRegisterType<SizesListModel>("protomorph.sizelistmodel", 1, 0, "SizesListModel");
