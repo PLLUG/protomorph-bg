@@ -7,14 +7,11 @@ import "qrc:/components"
 import "qrc:/screens"
 
 ApplicationWindow {
-    title: qsTr("Protomorph BG")
+    title: Qt.application.name
 
     visible: true
     width: 1024
     height: 768
-
-    Material.theme: Material.Dark
-    Material.accent: Material.Grey
 
     menuBar: MainMenuBar {
         id: mainToolBar

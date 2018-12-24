@@ -1,5 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQuickStyle>
+#include <QFontDatabase>
 
 #include "src/models/SizesListModel.hpp"
 #include "src/helpers/QmlHelper.hpp"
@@ -7,8 +9,17 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setApplicationName(QLatin1String("Protomorph BG"));
 
     QGuiApplication app(argc, argv);
+
+    //Set application style to material
+    QQuickStyle::setStyle(QLatin1String("Material"));
+
+    //Load and set application font
+    QFontDatabase::addApplicationFont(QLatin1String(":/font/font/roboto-android/Roboto-Regular.ttf"));
+    app.setFont(QFont(QLatin1String("Roboto")));
+
 
     //Register models
     qmlRegisterType<SizesListModel>("protomorph.sizelistmodel", 1, 0, "SizesListModel");
@@ -21,8 +32,8 @@ int main(int argc, char *argv[])
     });
 
     QQmlApplicationEngine engine;
-    engine.addImportPath("qrc:///"); //Add "qrc://" to QML import path
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    engine.addImportPath(QLatin1String("qrc:///")); //Add "qrc://" to QML import path
+    engine.load(QUrl(QLatin1String("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
 
