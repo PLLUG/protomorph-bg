@@ -3,8 +3,8 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.5
 
-import "components"
-import "screens"
+import "qrc:/components"
+import "qrc:/screens"
 
 ApplicationWindow {
     title: qsTr("Protomorph BG")

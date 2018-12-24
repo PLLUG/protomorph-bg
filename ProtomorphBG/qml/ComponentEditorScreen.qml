@@ -4,7 +4,7 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.4
 import QtQuick.Window 2.12
 
-import "../custom_controls"
+import "qrc:/custom_controls"
 
 Page {
     id: root

@@ -1,0 +1,6 @@
+[submodule "ProtomorphBG/fontawesome.pri"]
+	path = ProtomorphBG/fontawesome.pri
+	url = https://github.com/benlau/fontawesome.pri.git
+[submodule "ProtomorphBG/ProtomorphBG/fontawesome.pri"]
+	path = ProtomorphBG/ProtomorphBG/fontawesome.pri
+	url = https://github.com/benlau/fontawesome.pri.git

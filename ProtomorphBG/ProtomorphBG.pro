@@ -15,4 +15,6 @@ SOURCES += \
     src/helpers/MeasurementConverters.cpp \
     src/helpers/QmlHelper.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += qml.qrc \
+    fonts.qrc \
+    images.qrc
