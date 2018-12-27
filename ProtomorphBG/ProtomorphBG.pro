@@ -3,9 +3,16 @@ CONFIG += c++17
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
-FONTAWESOMEPATH = D:\protomorph-bg\ProtomorphBG\submodules\fontawesome.pri\fontawesome.pri
+#SUBMODULES
+FLUX= submodules\quickflux\quickflux.pri
+FONTAWESOMEPATH = submodules\fontawesome.pri\fontawesome.pri
 
+include($${FLUX})
 include($${FONTAWESOMEPATH})
+
+!include($${FLUX}) {
+    message("Please, get quickflux submodule correctly")
+}
 !include($${FONTAWESOMEPATH}) {
     message("Please, get fontawesome.pri submodule correctly")
 }
