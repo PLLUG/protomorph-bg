@@ -17,4 +17,19 @@
         <file alias="ComponentSizePanel.qml">qml/ComponentSizePanel.qml</file>
         <file alias="MainMenuBar.qml">qml/MainMenuBar.qml</file>
     </qresource>
+    <qresource prefix="/actions">
+        <file alias="ActionTypes.qml">qml/actions/ActionTypes.qml</file>
+        <file alias="ApplicationActions.qml">qml/actions/ApplicationActions.qml</file>
+        <file alias="qmldir">qml/actions/qmldir</file>
+    </qresource>
+    <qresource prefix="/adapters">
+        <file alias="StoreAdapter.qml">qml/adapters/StoreAdapter.qml</file>
+        <file alias="qmldir">qml/adapters/qmldir</file>
+    </qresource>
+    <qresource prefix="/stores"/>
+    <qresource prefix="/storeworkers">
+        <file alias="MainStoreWorker.qml">qml/storeworkers/MainStoreWorker.qml</file>
+        <file alias="StoreWorker.qml">qml/storeworkers/StoreWorker.qml</file>
+        <file alias="qmldir">qml/storeworkers/qmldir</file>
+    </qresource>
 </RCC>

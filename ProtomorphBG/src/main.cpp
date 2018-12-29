@@ -4,11 +4,15 @@
 #include <QFontDatabase>
 #include <QIcon>
 
+#include <QFAppDispatcher>
+
 #include "src/models/SizesListModel.hpp"
 #include "src/helpers/QmlHelper.hpp"
 
 int main(int argc, char *argv[])
 {
+    qputenv("QML_DISABLE_DISK_CACHE", "true");
+
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setApplicationName(QLatin1String("Protomorph BG"));
 
@@ -40,8 +44,12 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     engine.addImportPath(QLatin1String("qrc:///")); //Add "qrc://" to QML import path
     engine.load(QUrl(QLatin1String("qrc:/main.qml")));
+
     if (engine.rootObjects().isEmpty())
         return -1;
+
+    auto dispatcher = QFAppDispatcher::instance(&engine);
+    dispatcher->dispatch(QLatin1String("startApp"));
 
     return app.exec();
 }

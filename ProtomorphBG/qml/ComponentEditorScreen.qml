@@ -2,6 +2,7 @@ import QtQuick 2.12
 
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.4
+import QtQuick.Window 2.12
 
 import "qrc:/components"
 import "qrc:/custom_controls"
@@ -63,6 +64,6 @@ Page {
     QtObject {
         id: internal
         readonly property int sidePanelInitialWidth: Math.round(
-                                                         parent.width * 0.2)
+                                                         Screen.width * 0.2)
     }
 }

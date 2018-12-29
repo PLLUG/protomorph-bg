@@ -3,14 +3,13 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Window 2.12
 
+import "qrc:/adapters"
 import "qrc:/components"
 import "qrc:/screens"
 
 ApplicationWindow {
+    id: mainWindow
     title: Qt.application.name
-
-    visible: true
-    visibility: ApplicationWindow.Maximized
 
     width: Screen.width
     height: Screen.height
@@ -21,5 +20,8 @@ ApplicationWindow {
 
     ComponentEditorScreen {
         anchors.fill: parent
+    }
+
+    StoreAdapter {
     }
 }
