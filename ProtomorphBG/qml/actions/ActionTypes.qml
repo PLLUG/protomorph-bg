@@ -9,4 +9,9 @@ KeyTable {
 
     // Call it to quit the application
     property string quitApp
+
+    //Change component height
+    property string changeComponentHeight
+    //Change component width
+    property string changeComponentWidth
 }

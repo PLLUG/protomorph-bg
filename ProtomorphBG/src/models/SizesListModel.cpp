@@ -28,7 +28,7 @@ QVariant SizesListModel::data(const QModelIndex &index, int role) const
     auto cardSize = sizes.at(static_cast<size_t>(index.row()));
 
     if (role == SizeAsTextRole)
-        return QString("%1 x %2").arg(cardSize.width).arg(cardSize.height);
+        return QString("%1 x %2").arg(cardSize.width()).arg(cardSize.height());
 
 
     return QVariant();
@@ -45,6 +45,6 @@ QHash<int, QByteArray> SizesListModel::roleNames() const
 QVariant SizesListModel::sizeByIndex(int index)
 {
     auto cardSize = sizes.at(static_cast<size_t>(index));
-    return QVariant::fromValue(QSizeF{Helper::fromMMToPixelsOnScreen(cardSize.width),
-                                      Helper::fromMMToPixelsOnScreen(cardSize.height)});
+    return QVariant::fromValue(QSizeF{Helper::fromMMToPixelsOnScreen(cardSize.width()),
+                                      Helper::fromMMToPixelsOnScreen(cardSize.height())});
 }

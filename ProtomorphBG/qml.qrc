@@ -31,5 +31,6 @@
         <file alias="MainStoreWorker.qml">qml/storeworkers/MainStoreWorker.qml</file>
         <file alias="StoreWorker.qml">qml/storeworkers/StoreWorker.qml</file>
         <file alias="qmldir">qml/storeworkers/qmldir</file>
+        <file alias="ComponentEditorWorker.qml">qml/storeworkers/ComponentEditorWorker.qml</file>
     </qresource>
 </RCC>

@@ -23,5 +23,6 @@ ApplicationWindow {
     }
 
     StoreAdapter {
+        id: storeAdapter
     }
 }

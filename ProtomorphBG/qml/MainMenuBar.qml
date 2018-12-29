@@ -2,6 +2,8 @@ import QtQuick 2.12
 
 import QtQuick.Controls 2.5
 
+import "qrc:/actions"
+
 MenuBar {
     Menu {
         title: qsTr("&File")
@@ -9,6 +11,7 @@ MenuBar {
         }
         Action {
             text: qsTr("&Quit")
+            onTriggered:  ApplicationActions.quitApp()
         }
     }
     Menu {

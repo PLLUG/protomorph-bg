@@ -8,12 +8,12 @@ StoreWorker {
     id: worker
 
     Filter {
-        type: ActionTypes.startApp
+        type: ActionTypes.changeComponentHeight
         onDispatched: mainWindow.visibility = ApplicationWindow.Maximized
     }
 
     Filter {
-        type: ActionTypes.quitApp
+        type: ActionTypes.changeComponentWidth
         onDispatched: Qt.quit()
     }
 }
