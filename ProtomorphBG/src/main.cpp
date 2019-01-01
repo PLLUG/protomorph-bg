@@ -5,6 +5,7 @@
 #include <QIcon>
 
 #include <QFAppDispatcher>
+#include <QuickFlux>
 
 #include "src/models/SizesListModel.hpp"
 #include "src/helpers/QmlHelper.hpp"

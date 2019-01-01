@@ -8,8 +8,6 @@ import "qrc:/custom_controls"
 ZoomArea {
     id: root
 
-    property alias component: internalComponent
-
     Rectangle {
         id: internalComponent
         color: "#7a8ad7"

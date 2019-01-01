@@ -22,15 +22,9 @@
         <file alias="ApplicationActions.qml">qml/actions/ApplicationActions.qml</file>
         <file alias="qmldir">qml/actions/qmldir</file>
     </qresource>
-    <qresource prefix="/adapters">
-        <file alias="StoreAdapter.qml">qml/adapters/StoreAdapter.qml</file>
-        <file alias="qmldir">qml/adapters/qmldir</file>
-    </qresource>
-    <qresource prefix="/stores"/>
-    <qresource prefix="/storeworkers">
-        <file alias="MainStoreWorker.qml">qml/storeworkers/MainStoreWorker.qml</file>
-        <file alias="StoreWorker.qml">qml/storeworkers/StoreWorker.qml</file>
-        <file alias="qmldir">qml/storeworkers/qmldir</file>
-        <file alias="ComponentEditorWorker.qml">qml/storeworkers/ComponentEditorWorker.qml</file>
+    <qresource prefix="/stores">
+        <file alias="MainStore.qml">qml/store/MainStore.qml</file>
+        <file alias="qmldir">qml/store/qmldir</file>
+        <file alias="SystemStore.qml">qml/store/SystemStore.qml</file>
     </qresource>
 </RCC>

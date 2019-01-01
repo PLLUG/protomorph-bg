@@ -22,8 +22,6 @@ Page {
                 id: sizePanel
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                onComponentHeightChanged: easel.component.height = sizePanel.componentHeight
-                onComponentWidthChanged: easel.component.width = sizePanel.componentWidth
             }
 
             ToolSeparator {}

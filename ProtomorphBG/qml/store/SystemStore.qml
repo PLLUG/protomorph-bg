@@ -1,19 +1,21 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
-import QuickFlux 1.0
+
+import QuickFlux 1.1
 
 import "qrc:/actions"
 
-StoreWorker {
-    id: worker
+Store {
+    id: root
 
     Filter {
-        type: ActionTypes.changeComponentHeight
+        type: ActionTypes.startApp
         onDispatched: mainWindow.visibility = ApplicationWindow.Maximized
     }
 
     Filter {
-        type: ActionTypes.changeComponentWidth
+        type: ActionTypes.quitApp
         onDispatched: Qt.quit()
     }
 }
+

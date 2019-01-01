@@ -5,13 +5,11 @@ import QtQuick.Layouts 1.4
 
 import protomorph.sizelistmodel 1.0
 
+import "qrc:/actions"
 import "qrc:/custom_controls"
 
 RowLayout {
     id: root
-
-    readonly property alias componentHeight: heightSpinbox.value
-    readonly property alias componentWidth: widthSpinbox.value
 
     ComboBox {
         id: cardSizes
@@ -38,6 +36,7 @@ RowLayout {
     SizeSpinBox {
         id: widthSpinbox
         Layout.fillHeight: true
+        onValueChanged: ApplicationActions.changeComponentWidth(widthSpinbox.value)
     }
 
     ToolSeparator {}
@@ -45,5 +44,6 @@ RowLayout {
     SizeSpinBox {
         id: heightSpinbox
         Layout.fillHeight: true
+        onValueChanged: ApplicationActions.changeComponentHeight(heightSpinbox.value)
     }
 }
