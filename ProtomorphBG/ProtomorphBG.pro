@@ -21,13 +21,15 @@ HEADERS += \
     src\constants\CardSizesConstants.hpp \
     src\models\SizesListModel.hpp \
     src/helpers/MeasurementConverters.hpp \
-    src/helpers/QmlHelper.hpp
+    src/helpers/QmlHelper.hpp \
+    src/store/ComponentEditorStore.hpp
 
 SOURCES += \
         src\main.cpp \
     src\models\SizesListModel.cpp \
     src/helpers/MeasurementConverters.cpp \
-    src/helpers/QmlHelper.cpp
+    src/helpers/QmlHelper.cpp \
+    src/store/ComponentEditorStore.cpp
 
 RESOURCES += qml.qrc \
     fonts.qrc \

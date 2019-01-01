@@ -4,11 +4,11 @@
 #include <QFontDatabase>
 #include <QIcon>
 
-#include <QFAppDispatcher>
 #include <QuickFlux>
 
-#include "src/models/SizesListModel.hpp"
 #include "src/helpers/QmlHelper.hpp"
+#include "src/models/SizesListModel.hpp"
+#include "src/store/ComponentEditorStore.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -34,6 +34,9 @@ int main(int argc, char *argv[])
 
     //Register models
     qmlRegisterType<SizesListModel>("protomorph.sizelistmodel", 1, 0, "SizesListModel");
+
+    //Register stores
+    qmlRegisterType<ComponentEditorStore>("protomorph.componenteditorstoretemplate", 1, 0, "ComponentEditorStoreTemplate");
 
     //Register singletons
     qmlRegisterSingletonType<Helper::QmlHelper>("protomorph.qmlhelper", 1, 0, "QmlHelper", [](auto qmlEngine, auto jsEngine) -> QObject* {

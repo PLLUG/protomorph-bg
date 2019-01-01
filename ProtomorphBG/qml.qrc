@@ -26,5 +26,6 @@
         <file alias="MainStore.qml">qml/store/MainStore.qml</file>
         <file alias="qmldir">qml/store/qmldir</file>
         <file alias="SystemStore.qml">qml/store/SystemStore.qml</file>
+        <file alias="ComponentEditorStore.qml">qml/store/ComponentEditorStore.qml</file>
     </qresource>
 </RCC>
