@@ -1,6 +1,6 @@
 # Protomorph BG
 
-![logoIcon](.\ProtomorphBG\resources\icons\protomorph-bg.ico)
+![logoIcon](ProtomorphBG/resources/icons/protomorph-bg.ico)
 
 **"Protomorph BG"** is a tool, that will help board game designers to prototype games components(cards, tiles, boards etc.) and save them as a project. It will also have layouting mechanizms, to layout componentss for printing on standard paper formats and export entire project to PDF or other formats.
 
