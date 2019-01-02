@@ -5,4 +5,6 @@ import QtQuick.Controls 2.5
 
 Rectangle {
     color: Material.accent
+
+
 }

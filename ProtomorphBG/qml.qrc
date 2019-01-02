@@ -21,6 +21,7 @@
         <file alias="ActionTypes.qml">qml/actions/ActionTypes.qml</file>
         <file alias="ApplicationActions.qml">qml/actions/ApplicationActions.qml</file>
         <file alias="qmldir">qml/actions/qmldir</file>
+        <file alias="ComponentDecorationActions.qml">qml/actions/QtComponentDecorationActions.qml</file>
     </qresource>
     <qresource prefix="/stores">
         <file alias="MainStore.qml">qml/store/MainStore.qml</file>

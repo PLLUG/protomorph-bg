@@ -4,6 +4,9 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.4
 import QtQuick.Window 2.12
 
+import FontAwesome 1.0
+
+import "qrc:/actions"
 import "qrc:/components"
 import "qrc:/custom_controls"
 
@@ -37,8 +40,9 @@ Page {
     RowLayout {
         anchors.fill: parent
 
+
         SidePanel {
-            id: instrumentsPanel
+            id: templatesPanel
             Layout.fillHeight: true
             Layout.preferredWidth: internal.sidePanelInitialWidth
             z: 1
@@ -52,10 +56,23 @@ Page {
         }
 
         SidePanel {
-            id: templatesPanel
+            id: instrumentsPanel
             Layout.fillHeight: true
             Layout.preferredWidth: internal.sidePanelInitialWidth
             z: 1
+
+            ListView {
+                anchors.fill: parent
+                model: ComponentDecorationActions.actions
+
+                delegate: Button {
+                    action: modelData
+                    font.family: FontAwesome.fontFamily
+                    font.pointSize: 20
+                    ToolTip.visible: hovered
+                    ToolTip.text: modelData.tooltipText
+                }
+            }
         }
     }
 

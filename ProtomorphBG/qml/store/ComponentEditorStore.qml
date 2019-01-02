@@ -18,4 +18,24 @@ ComponentEditorStoreTemplate {
         type: ActionTypes.changeComponentWidth
         onDispatched: root.width = message.width
     }
+
+    Filter {
+        type: ActionTypes.addIcon
+        onDispatched: print("addIcon")
+    }
+
+    Filter {
+        type: ActionTypes.addImage
+        onDispatched: print("addImage")
+    }
+
+    Filter {
+        type: ActionTypes.addShape
+        onDispatched: print("addShape")
+    }
+
+    Filter {
+        type: ActionTypes.addText
+        onDispatched: print("addText")
+    }
 }

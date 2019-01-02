@@ -10,4 +10,9 @@ ActionCreator {
     //Component edit screen actions
     signal changeComponentHeight(int height);
     signal changeComponentWidth(int width);
+
+    signal addImage
+    signal addIcon
+    signal addShape
+    signal addText
 }

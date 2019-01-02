@@ -14,4 +14,9 @@ KeyTable {
     property string changeComponentHeight
     //Change component width
     property string changeComponentWidth
+
+    property string addImage
+    property string addIcon
+    property string addShape
+    property string addText
 }

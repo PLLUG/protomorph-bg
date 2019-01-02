@@ -2,6 +2,8 @@
 
 ComponentEditorStore::ComponentEditorStore(QObject *parent)
     : QFStore{parent}
+    , m_height{}
+    , m_width{}
 {
 }
 
