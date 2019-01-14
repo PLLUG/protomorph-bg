@@ -10,7 +10,7 @@ Label {
     property int zoomValue: 100
 
     text: internal.textPattern.arg(root.zoomValue)
-    font.family: FontAwesome.fontFamily
+    font.family: FontAwesome.fontAwesomeFreeSolid
     font.pointSize: 15
     horizontalAlignment: Label.AlignHCenter
     verticalAlignment: Label.AlignVCenter
@@ -18,8 +18,8 @@ Label {
     QtObject {
         id: internal
         readonly property string textPattern: "%1".arg(zoomIcon + " %1%")
-        readonly property var zoomIcon: root.zoomValue == 100 ? FontAwesome.search
-                                                              : root.zoomValue > 100 ? FontAwesome.searchPlus
-                                                                                     : FontAwesome.searchMinus
+        readonly property var zoomIcon: root.zoomValue == 100 ? FontAwesome.icon.search
+                                                              : root.zoomValue > 100 ? FontAwesome.icon.search_plus
+                                                                                     : FontAwesome.icon.search_minus
     }
 }

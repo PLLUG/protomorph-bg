@@ -5,8 +5,6 @@ import QtQuick.Controls.Material 2.5
 import QtQuick.Layouts 1.4
 import QtQuick.Window 2.12
 
-import FontAwesome 1.0
-
 import protomorph.uisizeadapter 1.0
 
 import "qrc:/actions"

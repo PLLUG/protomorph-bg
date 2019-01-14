@@ -10,7 +10,7 @@ ActionGroup {
     Action {
         id: changeBackgroundAction
         onTriggered: ApplicationActions.changeComponentBackground()
-        text: FontAwesome.palette
+        text: FontAwesome.icon.paint_roller
         property string tooltipText: qsTr("Add Image")
     }
 }

@@ -52,7 +52,7 @@ ToolBar {
             ToolButton {
                 action: modelData
                 font {
-                    family: FontAwesome.fontFamily
+                    family: FontAwesome.fontAwesomeFreeSolid
                     pointSize: 20
                 }
                 ToolTip.visible: modelData.tooltipText && hovered

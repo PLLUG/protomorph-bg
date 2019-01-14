@@ -10,28 +10,28 @@ ActionGroup {
     Action {
         id: addImageAction
         onTriggered: ApplicationActions.addImage()
-        text: FontAwesome.image
+        text: FontAwesome.icon.image
         property string tooltipText: qsTr("Add Image")
     }
 
     Action {
         id: addIconAction
         onTriggered: ApplicationActions.addIcon()
-        text: FontAwesome.fileImageO
+        text: FontAwesome.icon.star
         property string tooltipText: qsTr("Add Icon")
     }
 
     Action {
         id: addShapeAction
         onTriggered: ApplicationActions.addShape()
-        text: FontAwesome.cube
+        text: FontAwesome.icon.shapes
         property string tooltipText: qsTr("Add Shape")
     }
 
     Action {
         id: addTextAction
         onTriggered: ApplicationActions.addText()
-        text: FontAwesome.font
+        text: FontAwesome.icon.font
         property string tooltipText: qsTr("Add Text")
     }
 }
