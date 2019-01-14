@@ -7,6 +7,7 @@
 #include <QuickFlux>
 
 #include "src/helpers/QmlHelper.hpp"
+#include "src/helpers/UISizeAdapter.hpp"
 #include "src/models/SizesListModel.hpp"
 #include "src/store/ComponentEditorStore.hpp"
 
@@ -43,6 +44,12 @@ int main(int argc, char *argv[])
         Q_UNUSED(jsEngine)
         qmlEngine->setObjectOwnership(Helper::QmlHelper::instance(), QQmlEngine::CppOwnership);
         return Helper::QmlHelper::instance();
+    });
+
+    qmlRegisterSingletonType<Helper::UISizeAdapter>("protomorph.uisizeadapter", 1, 0, "UISizeAdapter", [](auto qmlEngine, auto jsEngine) -> QObject* {
+        Q_UNUSED(jsEngine)
+        qmlEngine->setObjectOwnership(Helper::UISizeAdapter::instance(), QQmlEngine::CppOwnership);
+        return Helper::UISizeAdapter::instance();
     });
 
     QQmlApplicationEngine engine;

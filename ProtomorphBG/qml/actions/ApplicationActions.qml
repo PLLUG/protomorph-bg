@@ -15,4 +15,7 @@ ActionCreator {
     signal addIcon
     signal addShape
     signal addText
+
+    signal changeComponentBackground
+    signal changeComponentBorders
 }

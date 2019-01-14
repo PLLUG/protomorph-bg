@@ -1,10 +1,13 @@
 import QtQuick 2.12
 
 import QtQuick.Controls 2.5
+import QtQuick.Controls.Material 2.5
 import QtQuick.Layouts 1.4
 import QtQuick.Window 2.12
 
 import FontAwesome 1.0
+
+import protomorph.uisizeadapter 1.0
 
 import "qrc:/actions"
 import "qrc:/components"
@@ -17,17 +20,21 @@ Page {
         RowLayout {
             anchors{
                 fill: parent
-                leftMargin: 10
-                rightMargin: 10
+                leftMargin: UISizeAdapter.calculateSize(10)
+                rightMargin: UISizeAdapter.calculateSize(10)
             }
 
             ComponentSizePanel {
                 id: sizePanel
                 Layout.fillHeight: true
-                Layout.fillWidth: true
             }
 
             ToolSeparator {}
+
+            Item {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
 
             ZoomLabel {
                 id: zoomLabel
@@ -40,6 +47,23 @@ Page {
     RowLayout {
         anchors.fill: parent
 
+        ComponentEasel {
+            id: easel
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            z: 0
+
+            ToolsPanel {
+                id: propertiesPanel
+                actions: ComponentDecorationActions.actions
+                orientation: Qt.Horizontal
+
+                anchors {
+                    horizontalCenter: easel.horizontalCenter
+                    bottom: easel.bottom
+                }
+            }
+        }
 
         SidePanel {
             id: templatesPanel
@@ -47,32 +71,15 @@ Page {
             Layout.preferredWidth: internal.sidePanelInitialWidth
             z: 1
         }
+    }
 
-        ComponentEasel {
-            id: easel
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            z: 0
-        }
-
-        SidePanel {
-            id: instrumentsPanel
-            Layout.fillHeight: true
-            Layout.preferredWidth: internal.sidePanelInitialWidth
-            z: 1
-
-            ListView {
-                anchors.fill: parent
-                model: ComponentDecorationActions.actions
-
-                delegate: Button {
-                    action: modelData
-                    font.family: FontAwesome.fontFamily
-                    font.pointSize: 20
-                    ToolTip.visible: hovered
-                    ToolTip.text: modelData.tooltipText
-                }
-            }
+    ToolsPanel {
+        id: instrumentsPanel
+        actions: ComponentDecorationActions.actions
+        orientation: Qt.Vertical
+        anchors {
+            verticalCenter: parent.verticalCenter
+            left: parent.left
         }
     }
 

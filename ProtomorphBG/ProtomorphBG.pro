@@ -22,14 +22,16 @@ HEADERS += \
     src\models\SizesListModel.hpp \
     src/helpers/MeasurementConverters.hpp \
     src/helpers/QmlHelper.hpp \
-    src/store/ComponentEditorStore.hpp
+    src/store/ComponentEditorStore.hpp \
+    src/helpers/UISizeAdapter.hpp
 
 SOURCES += \
         src\main.cpp \
     src\models\SizesListModel.cpp \
     src/helpers/MeasurementConverters.cpp \
     src/helpers/QmlHelper.cpp \
-    src/store/ComponentEditorStore.cpp
+    src/store/ComponentEditorStore.cpp \
+    src/helpers/UISizeAdapter.cpp
 
 RESOURCES += qml.qrc \
     fonts.qrc \
