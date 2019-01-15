@@ -50,13 +50,27 @@ ToolBar {
             model: actions
 
             ToolButton {
+                id: toolButton
                 action: modelData
                 font {
-                    family: FontAwesome.fontAwesomeFreeSolid
+                    family: modelData.fontFamily
                     pointSize: 20
                 }
-                ToolTip.visible: modelData.tooltipText && hovered
-                ToolTip.text: modelData.tooltipText ? modelData.tooltipText : ""
+
+                ToolTip {
+                    parent: toolButton
+                    anchors.centerIn: parent
+                    bottomMargin: orientation === Qt.Horizontal ? parent.height : 0
+                    leftMargin: orientation === Qt.Vertical ? parent.width : 0
+                    visible: modelData.tooltipText && hovered
+                    text: modelData.tooltipText ? modelData.tooltipText : ""
+
+                    background: Rectangle {
+                        color: Material.background
+                        border.width: 1
+                        border.color: Material.primary
+                    }
+                }
             }
         }
     }

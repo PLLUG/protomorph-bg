@@ -53,7 +53,7 @@ Page {
 
             ToolsPanel {
                 id: propertiesPanel
-                actions: ComponentDecorationActions.actions
+                actions: ComponentPropertyActions.actions
                 orientation: Qt.Horizontal
 
                 anchors {

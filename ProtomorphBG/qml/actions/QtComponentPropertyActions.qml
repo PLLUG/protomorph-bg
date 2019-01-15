@@ -8,9 +8,18 @@ ActionGroup {
     id: root
 
     Action {
-        id: changeBackgroundAction
+        id: changeComponentBackgroundAction
         onTriggered: ApplicationActions.changeComponentBackground()
         text: FontAwesome.icon.paint_roller
-        property string tooltipText: qsTr("Add Image")
+        property string tooltipText: qsTr("Change Background")
+        property string fontFamily: FontAwesome.fontAwesomeFreeSolid
+    }
+
+    Action {
+        id: changeComponentBordersAction
+        onTriggered: ApplicationActions.changeComponentBorders()
+        text: FontAwesome.icon.square
+        property string tooltipText: qsTr("Change Borders")
+        property string fontFamily: FontAwesome.fontAwesomeFreeRegular
     }
 }
