@@ -28,10 +28,10 @@ int main(int argc, char *argv[])
     {
         auto familiesList = QFontDatabase::applicationFontFamilies(id);
         Q_ASSERT(!familiesList.empty());
-        app.setFont(QFont(familiesList.at(0)));
+        qGuiApp->setFont(QFont(familiesList.at(0)));
     }
 
-    app.setWindowIcon(QIcon{QLatin1String{":/icons/protomorph-bg.ico"}});
+    qGuiApp->setWindowIcon(QIcon{QLatin1String{":/icons/protomorph-bg.ico"}});
 
     //Register models
     qmlRegisterType<SizesListModel>("protomorph.sizelistmodel", 1, 0, "SizesListModel");
@@ -62,5 +62,5 @@ int main(int argc, char *argv[])
     auto dispatcher = QFAppDispatcher::instance(&engine);
     dispatcher->dispatch(QLatin1String("startApp"));
 
-    return app.exec();
+    return qGuiApp->exec();
 }
