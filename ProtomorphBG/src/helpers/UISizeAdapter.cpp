@@ -1,6 +1,6 @@
 #include "src/helpers/UISizeAdapter.hpp"
 
-#include <QGuiApplication>
+#include <QApplication>
 #include <QScreen>
 
 using namespace Helper;
@@ -18,7 +18,7 @@ UISizeAdapter::UISizeAdapter(QObject *parent)
     : QObject{parent}
     , m_ratio{1.0}
 {
-    if (auto primaryScreen = QGuiApplication::primaryScreen())
+    if (auto primaryScreen = QApplication::primaryScreen())
     {
         auto screenGeometry = primaryScreen->geometry();
 

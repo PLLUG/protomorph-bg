@@ -9,6 +9,7 @@
         <file alias="ZoomArea.qml">qml/ZoomArea.qml</file>
         <file alias="ZoomLabel.qml">qml/ZoomLabel.qml</file>
         <file alias="ToolsPanel.qml">qml/ToolsPanel.qml</file>
+        <file alias="ColorPickerPanel.qml">qml/ColorPickerPanel.qml</file>
     </qresource>
     <qresource prefix="/screens">
         <file alias="ComponentEditorScreen.qml">qml/ComponentEditorScreen.qml</file>
@@ -31,4 +32,5 @@
         <file alias="SystemStore.qml">qml/store/SystemStore.qml</file>
         <file alias="ComponentEditorStore.qml">qml/store/ComponentEditorStore.qml</file>
     </qresource>
+    <qresource prefix="/panels"/>
 </RCC>

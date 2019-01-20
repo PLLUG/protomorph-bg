@@ -1,4 +1,4 @@
-#include <QGuiApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQuickStyle>
 #include <QFontDatabase>
@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setApplicationName(QLatin1String("Protomorph BG"));
 
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
 
     //Set application style to material
     QQuickStyle::setStyle(QLatin1String("Material"));

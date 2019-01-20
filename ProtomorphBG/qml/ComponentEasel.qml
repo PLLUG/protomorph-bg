@@ -2,6 +2,7 @@ import QtQuick 2.12
 
 import QtQuick.Controls 2.5
 import QtGraphicalEffects 1.12
+import QtQuick.Controls.Material 2.5
 
 import "qrc:/custom_controls"
 import "qrc:/stores"
@@ -11,14 +12,11 @@ ZoomArea {
 
     Rectangle {
         id: internalComponent
-        color: "#7a8ad7"
+        readonly property var componentEditorStore: MainStore.componentEditorStore
+        color: componentEditorStore.backgroundColor
         anchors.centerIn: parent
         scale: root.currentScale
-
-        Connections {
-            target: MainStore.componentEditorStore
-            onHeightChanged: internalComponent.height = height
-            onWidthChanged: internalComponent.width = width
-        }
+        height: componentEditorStore.height
+        width: componentEditorStore.width
     }
 }

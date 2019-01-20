@@ -1,5 +1,5 @@
-QT += qml quick quickcontrols2 svg
-CONFIG += c++17 ordered
+QT += qml quick quickcontrols2 svg widgets
+CONFIG += c++17
 
 DEFINES += QT_DEPRECATED_WARNINGS
 

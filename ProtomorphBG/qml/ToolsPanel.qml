@@ -21,6 +21,7 @@ ToolBar {
 
     contentItem: Loader {
         active: root.visible
+        anchors.fill: parent
         sourceComponent: orientation === Qt.Horizontal ? rowLayoutComponent : columnLayoutComponent
     }
 
@@ -28,7 +29,6 @@ ToolBar {
         id: rowLayoutComponent
         RowLayout {
             id: rowLayout
-            anchors.fill: parent
             Component.onCompleted: iconsListComponent.createObject(rowLayout)
         }
     }
@@ -37,7 +37,6 @@ ToolBar {
         id: columnLayoutComponent
         ColumnLayout {
             id: columnLayout
-            anchors.fill: parent
             Component.onCompleted: iconsListComponent.createObject(columnLayout)
         }
     }
@@ -65,10 +64,13 @@ ToolBar {
                     visible: modelData.tooltipText && hovered
                     text: modelData.tooltipText ? modelData.tooltipText : ""
 
-                    background: Rectangle {
-                        color: Material.background
-                        border.width: 1
-                        border.color: Material.primary
+                    background: Pane {
+                        Material.elevation: 6
+
+                        Rectangle {
+                            anchors.fill: parent
+                            color: Material.background
+                        }
                     }
                 }
             }

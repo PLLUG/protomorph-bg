@@ -16,6 +16,6 @@ ActionCreator {
     signal addShape
     signal addText
 
-    signal changeComponentBackground
+    signal chooseComponentBackground(color backgroundColor)
     signal changeComponentBorders
 }

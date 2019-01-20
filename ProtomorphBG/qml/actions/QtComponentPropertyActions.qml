@@ -8,8 +8,8 @@ ActionGroup {
     id: root
 
     Action {
-        id: changeComponentBackgroundAction
-        onTriggered: ApplicationActions.changeComponentBackground()
+        id: chooseComponentBackgroundAction
+        onTriggered: ApplicationActions.chooseComponentBackground
         text: FontAwesome.icon.paint_roller
         property string tooltipText: qsTr("Change Background")
         property string fontFamily: FontAwesome.fontAwesomeFreeSolid

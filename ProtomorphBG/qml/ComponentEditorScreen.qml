@@ -68,6 +68,11 @@ Page {
             Layout.fillHeight: true
             Layout.preferredWidth: internal.sidePanelInitialWidth
             z: 1
+
+            ColorPickerPanel {
+                anchors.fill: parent
+                onColorValueChanged: ApplicationActions.chooseComponentBackground(colorValue)
+            }
         }
     }
 
@@ -85,5 +90,5 @@ Page {
         id: internal
         readonly property int sidePanelInitialWidth: Math.round(
                                                          Screen.width * 0.2)
-    }
+    } 
 }
