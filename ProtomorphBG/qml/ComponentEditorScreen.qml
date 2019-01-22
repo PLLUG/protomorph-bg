@@ -1,78 +1,54 @@
 import QtQuick 2.12
 
 import QtQuick.Controls 2.5
-import QtQuick.Controls.Material 2.5
+import QtQuick.Controls 1.4 as OldControls
+import QtQuick.Controls.Material 2.4
 import QtQuick.Layouts 1.4
 import QtQuick.Window 2.12
+import QtQml.Models 2.12
 
 import protomorph.uisizeadapter 1.0
+import FontAwesome 1.0
 
 import "qrc:/actions"
 import "qrc:/components"
 import "qrc:/custom_controls"
+import "qrc:/panels"
 
 Page {
     id: root
+    padding: 0
 
-    header: ToolBar {
-        RowLayout {
-            anchors{
-                fill: parent
-                leftMargin: UISizeAdapter.calculateSize(10)
-                rightMargin: UISizeAdapter.calculateSize(10)
-            }
-
-            ComponentSizePanel {
-                id: sizePanel
-                Layout.fillHeight: true
-            }
-
-            ToolSeparator {}
-
-            Item {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-            }
-
-            ZoomLabel {
-                id: zoomLabel
-                Layout.fillHeight: true
-                zoomValue: easel.currentScaleInPercent
-            }
-        }
-    }
-
-    RowLayout {
+    OldControls.SplitView {
         anchors.fill: parent
+        resizing: false
 
+        handleDelegate: ToolSeparator {
+            horizontalPadding: 0
+            verticalPadding: 0
+        }
         ComponentEasel {
             id: easel
             Layout.fillHeight: true
             Layout.fillWidth: true
-            z: 0
-
-            ToolsPanel {
-                id: propertiesPanel
-                actions: ComponentPropertyActions.actions
-                orientation: Qt.Horizontal
-
-                anchors {
-                    horizontalCenter: easel.horizontalCenter
-                    bottom: easel.bottom
-                }
-            }
         }
 
         SidePanel {
             id: templatesPanel
             Layout.fillHeight: true
-            Layout.preferredWidth: internal.sidePanelInitialWidth
-            z: 1
+            Layout.minimumWidth: internal.sidePanelInitialWidth
+            Layout.maximumWidth: internal.sidePanelInitialWidth
+            Layout.alignment: Qt.AlignTop
 
-            ColorPickerPanel {
-                anchors.fill: parent
-                onColorValueChanged: ApplicationActions.chooseComponentBackground(colorValue)
+            Component.onCompleted: { templatesPanel.panelsModel.append({"url":"qrc:/panels/ComponentBasicProperties.qml"
+                                                                           , "fontAwesome": {
+                                                                               "symbol": FontAwesome.icon.cogs,
+                                                                               "family": FontAwesome.fontAwesomeFreeSolid
+                                                                           }
+                                                                           , "toolTipText": qsTr("Component properties")
+                                                                       })
             }
+
         }
     }
 
@@ -90,5 +66,5 @@ Page {
         id: internal
         readonly property int sidePanelInitialWidth: Math.round(
                                                          Screen.width * 0.2)
-    } 
+    }
 }

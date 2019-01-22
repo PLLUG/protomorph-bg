@@ -9,15 +9,16 @@
         <file alias="ZoomArea.qml">qml/ZoomArea.qml</file>
         <file alias="ZoomLabel.qml">qml/ZoomLabel.qml</file>
         <file alias="ToolsPanel.qml">qml/ToolsPanel.qml</file>
-        <file alias="ColorPickerPanel.qml">qml/ColorPickerPanel.qml</file>
+        <file alias="ColorPickerButton.qml">qml/ColorPickerButton.qml</file>
+        <file alias="ImagePicker.qml">qml/ImagePicker.qml</file>
     </qresource>
     <qresource prefix="/screens">
         <file alias="ComponentEditorScreen.qml">qml/ComponentEditorScreen.qml</file>
     </qresource>
     <qresource prefix="/components">
         <file alias="ComponentEasel.qml">qml/ComponentEasel.qml</file>
-        <file alias="ComponentSizePanel.qml">qml/ComponentSizePanel.qml</file>
         <file alias="MainMenuBar.qml">qml/MainMenuBar.qml</file>
+        <file alias="CollapsibleSection.qml">qml/CollapsibleSection.qml</file>
     </qresource>
     <qresource prefix="/actions">
         <file alias="ActionTypes.qml">qml/actions/ActionTypes.qml</file>
@@ -32,5 +33,11 @@
         <file alias="SystemStore.qml">qml/store/SystemStore.qml</file>
         <file alias="ComponentEditorStore.qml">qml/store/ComponentEditorStore.qml</file>
     </qresource>
-    <qresource prefix="/panels"/>
+    <qresource prefix="/panels">
+        <file alias="ComponentBasicProperties.qml">qml/panels/ComponentBasicProperties.qml</file>
+    </qresource>
+    <qresource prefix="/constants">
+        <file alias="BackgroundConstants.qml">qml/constants/BackgroundConstants.qml</file>
+        <file alias="qmldir">qml/constants/qmldir</file>
+    </qresource>
 </RCC>

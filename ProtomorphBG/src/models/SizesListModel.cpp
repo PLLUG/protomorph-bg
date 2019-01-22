@@ -28,7 +28,7 @@ QVariant SizesListModel::data(const QModelIndex &index, int role) const
     auto cardSize = sizes.at(static_cast<size_t>(index.row()));
 
     if (role == SizeAsTextRole)
-        return QString("%1 x %2").arg(cardSize.width()).arg(cardSize.height());
+        return QString{QStringLiteral("%1 x %2")}.arg(cardSize.width()).arg(cardSize.height());
 
 
     return QVariant();

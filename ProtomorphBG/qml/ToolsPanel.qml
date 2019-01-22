@@ -13,11 +13,8 @@ ToolBar {
 
     property var actions: []
     property int orientation: Qt.Horizontal
-
-    background: Rectangle {
-        color: Material.accent
-        opacity: 0.5
-    }
+    property bool enableTooltips: true
+    Material.elevation: 3
 
     contentItem: Loader {
         active: root.visible
@@ -56,20 +53,25 @@ ToolBar {
                     pointSize: 20
                 }
 
-                ToolTip {
-                    parent: toolButton
-                    anchors.centerIn: parent
-                    bottomMargin: orientation === Qt.Horizontal ? parent.height : 0
-                    leftMargin: orientation === Qt.Vertical ? parent.width : 0
-                    visible: modelData.tooltipText && hovered
-                    text: modelData.tooltipText ? modelData.tooltipText : ""
+                Loader {
+                    active: enableTooltips
+                    sourceComponent: ToolTip {
+                        parent: toolButton
+                        anchors.centerIn: parent
+                        bottomMargin: orientation === Qt.Horizontal ? parent.height : 0
+                        leftMargin: orientation === Qt.Vertical ? parent.width : 0
+                        topMargin: orientation === Qt.Horizontal ? parent.height : 0
+                        rightMargin: orientation === Qt.Vertical ? parent.width : 0
+                        visible: modelData.tooltipText && hovered
+                        text: modelData.tooltipText ? modelData.tooltipText : ""
 
-                    background: Pane {
-                        Material.elevation: 6
+                        background: Pane {
+                            Material.elevation: 3
 
-                        Rectangle {
-                            anchors.fill: parent
-                            color: Material.background
+                            Rectangle {
+                                anchors.fill: parent
+                                color: Material.background
+                            }
                         }
                     }
                 }

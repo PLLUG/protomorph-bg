@@ -7,15 +7,26 @@ import "qrc:/actions"
 MenuBar {
     Menu {
         title: qsTr("&File")
-        MenuSeparator {
+
+        Action {
+            text: qsTr("&Open project...")
         }
+
+        Action {
+            text: qsTr("&Export project...")
+        }
+
+        MenuSeparator {}
+
         Action {
             text: qsTr("&Quit")
             onTriggered:  ApplicationActions.quitApp()
         }
     }
+
     Menu {
         title: qsTr("&Help")
+
         Action {
             text: qsTr("&About")
         }

@@ -1,6 +1,7 @@
 import QtQuick 2.12
 
 import QtQuick.Controls 2.5
+import QtQuick.Layouts 1.4
 
 import protomorph.qmlhelper 1.0
 

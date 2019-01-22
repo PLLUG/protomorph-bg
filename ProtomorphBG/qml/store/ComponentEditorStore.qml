@@ -21,9 +21,7 @@ ComponentEditorStoreTemplate {
 
     Filter {
         type: ActionTypes.chooseComponentBackground
-        onDispatched: {
-            root.backgroundColor = message.backgroundColor
-        }
+        onDispatched: root.backgroundColor = message.backgroundColor
     }
 
     Filter {

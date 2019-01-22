@@ -16,22 +16,22 @@ int main(int argc, char *argv[])
     qputenv("QML_DISABLE_DISK_CACHE", "true");
 
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QCoreApplication::setApplicationName(QLatin1String("Protomorph BG"));
+    QCoreApplication::setApplicationName(QStringLiteral("Protomorph BG"));
 
     QApplication app(argc, argv);
 
     //Set application style to material
-    QQuickStyle::setStyle(QLatin1String("Material"));
+    QQuickStyle::setStyle(QStringLiteral("Material"));
 
     //Load and set application font
-    if (const auto id = QFontDatabase::addApplicationFont(QLatin1String(":/Roboto-Regular.ttf")); id != -1)
+    if (const auto id = QFontDatabase::addApplicationFont(QStringLiteral(":/Roboto-Regular.ttf")); id != -1)
     {
         auto familiesList = QFontDatabase::applicationFontFamilies(id);
         Q_ASSERT(!familiesList.empty());
-        qGuiApp->setFont(QFont(familiesList.at(0)));
+        QApplication::setFont(QFont(familiesList.at(0)));
     }
 
-    qGuiApp->setWindowIcon(QIcon{QLatin1String{":/icons/protomorph-bg.ico"}});
+    QApplication::setWindowIcon(QIcon{QStringLiteral(":/icons/protomorph-bg.ico")});
 
     //Register models
     qmlRegisterType<SizesListModel>("protomorph.sizelistmodel", 1, 0, "SizesListModel");
@@ -53,14 +53,14 @@ int main(int argc, char *argv[])
     });
 
     QQmlApplicationEngine engine;
-    engine.addImportPath(QLatin1String("qrc:///")); //Add "qrc://" to QML import path
-    engine.load(QUrl(QLatin1String("qrc:/main.qml")));
+    engine.addImportPath(QStringLiteral("qrc:///")); //Add "qrc://" to QML import path
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     if (engine.rootObjects().isEmpty())
         return -1;
 
     auto dispatcher = QFAppDispatcher::instance(&engine);
-    dispatcher->dispatch(QLatin1String("startApp"));
+    dispatcher->dispatch(QStringLiteral("startApp"));
 
-    return qGuiApp->exec();
+    return QApplication::exec();
 }
