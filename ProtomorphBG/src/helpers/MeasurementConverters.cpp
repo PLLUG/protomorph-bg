@@ -1,14 +1,12 @@
 #include "src/helpers/MeasurementConverters.hpp"
 
 #include <QApplication>
-#include <QScreen>
+#include <QDesktopWidget>
 
 #include <cmath>
 
-constexpr double MM_IN_INCHES{25.4};
-
-static QScreen *s_desctop{};
-static double s_logDotsPerInch{0.0};
+static QDesktopWidget *s_desctop{};
+static double s_pixelsInMM{0.0};
 
 double Helper::roundToNDecimalPlaces(double value, int nofDecimalPlaces)
 {
@@ -20,20 +18,20 @@ double Helper::fromMMToPixelsOnScreen(double value)
 {
     if (!s_desctop)
     {
-        s_desctop = QApplication::screens().at(0);
-        s_logDotsPerInch = std::ceil(s_desctop->logicalDotsPerInch() / MM_IN_INCHES);
+        s_desctop = QApplication::desktop();
+        s_pixelsInMM = std::ceil(s_desctop->width() / s_desctop->widthMM());
     }
 
-    return roundToNDecimalPlaces(s_logDotsPerInch * value);
+    return roundToNDecimalPlaces(value * s_pixelsInMM);
 }
 
 double Helper::fromPixelsOnScreenToMM(double value)
 {
     if (!s_desctop)
     {
-        s_desctop = QApplication::screens().at(0);
-        s_logDotsPerInch = std::ceil(s_desctop->logicalDotsPerInch() / MM_IN_INCHES);
+        s_desctop = QApplication::desktop();
+        s_pixelsInMM = std::ceil(s_desctop->width() / s_desctop->widthMM());
     }
 
-    return roundToNDecimalPlaces(value / s_logDotsPerInch);
+    return roundToNDecimalPlaces(value / s_pixelsInMM);
 }
