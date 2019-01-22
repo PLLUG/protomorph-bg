@@ -3,6 +3,8 @@
 #include <QApplication>
 #include <QScreen>
 
+#include <cmath>
+
 constexpr double MM_IN_INCHES{25.4};
 
 static QScreen *s_desctop{};

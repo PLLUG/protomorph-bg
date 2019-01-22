@@ -27,6 +27,7 @@ Page {
                 font{
                     pointSize: 20
                     family: fontAwesome.family
+                    styleName: fontAwesome.styleName
                 }
 
                 ToolTip {

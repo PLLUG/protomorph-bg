@@ -10,8 +10,11 @@ Label {
     property int zoomValue: 100
 
     text: internal.textPattern.arg(root.zoomValue)
-    font.family: FontAwesome.fontAwesomeFreeSolid
-    font.pointSize: 15
+    font{
+        family: FontAwesome.fontAwesomeFreeSolid
+        styleName: FontAwesome.fontAwesomeStyleNameSolid
+        pointSize: 15
+    }
     horizontalAlignment: Label.AlignHCenter
     verticalAlignment: Label.AlignVCenter
 

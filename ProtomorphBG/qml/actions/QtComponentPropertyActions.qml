@@ -13,6 +13,7 @@ ActionGroup {
         text: FontAwesome.icon.paint_roller
         property string tooltipText: qsTr("Change Background")
         property string fontFamily: FontAwesome.fontAwesomeFreeSolid
+        property string styleName: FontAwesome.fontAwesomeStyleNameSolid
     }
 
     Action {
@@ -21,5 +22,6 @@ ActionGroup {
         text: FontAwesome.icon.square
         property string tooltipText: qsTr("Change Borders")
         property string fontFamily: FontAwesome.fontAwesomeFreeRegular
+        property string styleName: FontAwesome.fontAwesomeStyleNameRegular
     }
 }

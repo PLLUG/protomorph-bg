@@ -36,7 +36,11 @@ ColumnLayout{
             Layout.minimumWidth: parent.height
             Layout.maximumWidth: parent.height
 
-            font.family: FontAwesome.fontAwesomeFreeSolid
+            font {
+                family: FontAwesome.fontAwesomeFreeSolid
+                styleName: FontAwesome.fontAwesomeStyleNameSolid
+            }
+
             text:FontAwesome.icon.file_image
 
             onClicked: {

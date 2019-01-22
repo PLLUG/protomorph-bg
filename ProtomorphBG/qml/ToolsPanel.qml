@@ -50,6 +50,7 @@ ToolBar {
                 action: modelData
                 font {
                     family: modelData.fontFamily
+                    styleName: modelData.styleName
                     pointSize: 20
                 }
 

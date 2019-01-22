@@ -34,7 +34,10 @@ Page {
 
         ToolButton {
             text: expanded ? FontAwesome.icon.angle_up : FontAwesome.icon.angle_down
-            font.family: FontAwesome.fontAwesomeFreeSolid
+            font {
+                family: FontAwesome.fontAwesomeFreeSolid
+                styleName: FontAwesome.fontAwesomeStyleNameSolid
+            }
             focusPolicy: Qt.NoFocus
 
             Layout.leftMargin: -8

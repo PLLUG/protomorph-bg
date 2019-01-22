@@ -43,7 +43,8 @@ Page {
             Component.onCompleted: { templatesPanel.panelsModel.append({"url":"qrc:/panels/ComponentBasicProperties.qml"
                                                                            , "fontAwesome": {
                                                                                "symbol": FontAwesome.icon.cogs,
-                                                                               "family": FontAwesome.fontAwesomeFreeSolid
+                                                                               "family": FontAwesome.fontAwesomeFreeSolid,
+                                                                               "styleName": FontAwesome.fontAwesomeStyleNameSolid
                                                                            }
                                                                            , "toolTipText": qsTr("Component properties")
                                                                        })
