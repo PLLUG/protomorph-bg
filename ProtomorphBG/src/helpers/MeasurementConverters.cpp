@@ -1,37 +1,53 @@
 #include "src/helpers/MeasurementConverters.hpp"
 
 #include <QApplication>
-#include <QDesktopWidget>
+#include <QScreen>
 
 #include <cmath>
 
-static QDesktopWidget *s_desctop{};
-static double s_pixelsInMM{0.0};
+constexpr double EFECTIVE_DPI{96.0}; //1 effectivePixel = 1/96 inch
+constexpr double MM_IN_INCH{25.4}; //1 inch = 25.4 milimetr
+static QScreen *s_screen{};
+static double s_logicalDPI{0.0};
 
-double Helper::roundToNDecimalPlaces(double value, int nofDecimalPlaces)
+double Helper::roundToCorrectDoubleMM(double value, int nofDecimalPlaces)
 {
     const auto coeff =  std::pow(10.0, nofDecimalPlaces);
-    return std::round(value * coeff) / coeff;
+    auto calculatedValue = std::round(value * coeff) / coeff;
+    auto modValue = std::fmod(calculatedValue, std::trunc(calculatedValue));
+
+    return qFuzzyCompare(modValue, 0.5) ? calculatedValue : std::round(calculatedValue);
 }
 
 double Helper::fromMMToPixelsOnScreen(double value)
 {
-    if (!s_desctop)
+    if (!s_screen)
     {
-        s_desctop = QApplication::desktop();
-        s_pixelsInMM = std::ceil(s_desctop->width() / s_desctop->widthMM());
+        s_screen = QApplication::screens().at(0);
+        Q_ASSERT(s_screen);
+        s_logicalDPI = s_screen->logicalDotsPerInch();
     }
 
-    return roundToNDecimalPlaces(value * s_pixelsInMM);
+    auto sizeInInch = value / MM_IN_INCH;
+    auto sizeInEffectivePixels = sizeInInch * EFECTIVE_DPI;
+    auto sizeInPisicalPixels = std::ceil((s_logicalDPI / EFECTIVE_DPI) * sizeInEffectivePixels); //get extra pixel if needed
+
+    return  sizeInPisicalPixels;
 }
 
 double Helper::fromPixelsOnScreenToMM(double value)
 {
-    if (!s_desctop)
+    if (!s_screen)
     {
-        s_desctop = QApplication::desktop();
-        s_pixelsInMM = std::ceil(s_desctop->width() / s_desctop->widthMM());
+        s_screen = QApplication::screens().at(0);
+        Q_ASSERT(s_screen);
+        s_logicalDPI = s_screen->logicalDotsPerInch();
     }
 
-    return roundToNDecimalPlaces(value / s_pixelsInMM);
+    auto sizeInEffectivePixels = value / (s_logicalDPI / EFECTIVE_DPI);
+    auto sizeInInch = sizeInEffectivePixels / EFECTIVE_DPI;
+    auto sizeInMM = sizeInInch * MM_IN_INCH;
+
+
+    return  Helper::roundToCorrectDoubleMM(sizeInMM);
 }
