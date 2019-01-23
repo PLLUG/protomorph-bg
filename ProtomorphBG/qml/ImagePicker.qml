@@ -12,13 +12,13 @@ import protomorph.qmlhelper 1.0
 ColumnLayout{
     id: root
 
-    property alias imagePath: filePath.selectedFilePath
+    property alias imagePath: filePathTextField.selectedFilePath
 
     RowLayout {
         Layout.fillWidth: true
 
         TextField {
-            id: filePath
+            id: filePathTextField
             Layout.fillHeight: true
             Layout.fillWidth: true
             rightInset: 0
@@ -57,14 +57,14 @@ ColumnLayout{
                     modality: Qt.WindowModal
                     fileMode: FileDialog.OpenFile
                     nameFilters: ["All Picture Files (*.png *.jpg *.bmp *.svg)"]
-                    folder: filePath.lastOpenedFolderPath
+                    folder: filePathTextField.lastOpenedFolderPath
 
                     acceptLabel : qsTr("Select")
 
                     onAccepted: {
-                        filePath.selectedFilePath = file
-                        filePath.cursorPosition = 0
-                        filePath.lastOpenedFolderPath = folder
+                        filePathTextField.selectedFilePath = file
+                        filePathTextField.cursorPosition = 0
+                        filePathTextField.lastOpenedFolderPath = folder
                         destroy()
                     }
                     onRejected: destroy()
@@ -77,10 +77,10 @@ ColumnLayout{
         Layout.fillWidth: true
         Layout.minimumHeight: item ? (item.sourceSize.height / item.sourceSize.width) * root.width : -1
         Layout.maximumHeight: item ? (item.sourceSize.height / item.sourceSize.width) * root.width : -1
-        active: filePath.text.length !== 0
+        active: filePathTextField.text.length > 0
         sourceComponent: Image {
             fillMode: Image.PreserveAspectFit
-            source: filePath.selectedFilePath
+            source: filePathTextField.selectedFilePath
             asynchronous: true
             cache: false
             mipmap: true

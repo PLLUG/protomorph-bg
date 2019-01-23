@@ -15,7 +15,8 @@ public:
 public slots:
     double fromMMToPixelsOnScreen(double value);
     double fromPixelsOnScreenToMM(double value);
-    double roundToCorrectDoubleMM(double value, int nofDecimalPlaces = 1);
+    double roundToCorrectDoubleMM(double value);
+    double roundToNDecimalPlaces(double value, int nofDecimalPlaces = 1);
     QString urlToDisplayString(const QUrl &url);
 
 

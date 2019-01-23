@@ -10,10 +10,15 @@ constexpr double MM_IN_INCH{25.4}; //1 inch = 25.4 milimetr
 static QScreen *s_screen{};
 static double s_physicalDPI{0.0};
 
-double Helper::roundToCorrectDoubleMM(double value, int nofDecimalPlaces)
+double Helper::roundToNDecimalPlaces(double value, int nofDecimalPlaces)
 {
     const auto coeff =  std::pow(10.0, nofDecimalPlaces);
-    auto calculatedValue = std::round(value * coeff) / coeff;
+    return std::round(value * coeff) / coeff;
+}
+
+double Helper::roundToCorrectDoubleMM(double value)
+{
+    auto calculatedValue = Helper::roundToNDecimalPlaces(value);
     auto modValue = std::fmod(calculatedValue, std::trunc(calculatedValue));
 
     return qFuzzyCompare(modValue, 0.5) ? calculatedValue : std::round(calculatedValue);

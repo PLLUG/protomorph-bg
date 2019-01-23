@@ -23,8 +23,22 @@ Page {
             id: compomponentCanvas
             anchors.centerIn: parent
             color: MainStore.componentEditorStore.backgroundColor
+            onColorChanged: MainStore.componentEditorStore.backgroundImagePath = ""
             scale: easel.currentScale
             height: MainStore.componentEditorStore.height; width: MainStore.componentEditorStore.width;
+
+            Loader {
+                active: MainStore.componentEditorStore.backgroundImagePath.length > 0
+                anchors.fill: parent
+                sourceComponent: Image {
+                    fillMode: Image.PreserveAspectCrop
+                    source: MainStore.componentEditorStore.backgroundImagePath
+                    asynchronous: true
+                    cache: false
+                    mipmap: true
+                    smooth: false
+                }
+            }
         }
     }
 
