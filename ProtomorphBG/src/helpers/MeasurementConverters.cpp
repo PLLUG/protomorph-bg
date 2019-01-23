@@ -8,7 +8,7 @@
 constexpr double EFECTIVE_DPI{96.0}; //1 effectivePixel = 1/96 inch
 constexpr double MM_IN_INCH{25.4}; //1 inch = 25.4 milimetr
 static QScreen *s_screen{};
-static double s_logicalDPI{0.0};
+static double s_physicalDPI{0.0};
 
 double Helper::roundToCorrectDoubleMM(double value, int nofDecimalPlaces)
 {
@@ -25,12 +25,12 @@ double Helper::fromMMToPixelsOnScreen(double value)
     {
         s_screen = QApplication::screens().at(0);
         Q_ASSERT(s_screen);
-        s_logicalDPI = s_screen->logicalDotsPerInch();
+        s_physicalDPI = s_screen->physicalDotsPerInch();
     }
 
     auto sizeInInch = value / MM_IN_INCH;
     auto sizeInEffectivePixels = sizeInInch * EFECTIVE_DPI;
-    auto sizeInPisicalPixels = std::ceil((s_logicalDPI / EFECTIVE_DPI) * sizeInEffectivePixels); //get extra pixel if needed
+    auto sizeInPisicalPixels = std::ceil((s_physicalDPI / EFECTIVE_DPI) * sizeInEffectivePixels); //get extra pixel if needed
 
     return  sizeInPisicalPixels;
 }
@@ -41,10 +41,10 @@ double Helper::fromPixelsOnScreenToMM(double value)
     {
         s_screen = QApplication::screens().at(0);
         Q_ASSERT(s_screen);
-        s_logicalDPI = s_screen->logicalDotsPerInch();
+        s_physicalDPI = s_screen->physicalDotsPerInch();
     }
 
-    auto sizeInEffectivePixels = value / (s_logicalDPI / EFECTIVE_DPI);
+    auto sizeInEffectivePixels = value / (s_physicalDPI / EFECTIVE_DPI);
     auto sizeInInch = sizeInEffectivePixels / EFECTIVE_DPI;
     auto sizeInMM = sizeInInch * MM_IN_INCH;
 
