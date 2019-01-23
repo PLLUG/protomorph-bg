@@ -16,7 +16,10 @@ HEADERS += \
     src/helpers/MeasurementConverters.hpp \
     src/helpers/QmlHelper.hpp \
     src/store/ComponentEditorStore.hpp \
-    src/helpers/UISizeAdapter.hpp
+    src/helpers/UISizeAdapter.hpp \
+    src/dataobjects/ComponentObject.hpp \
+    src/constants/Enums.hpp \
+    src/dataobjects/ComponentDecorationObject.hpp
 
 SOURCES += \
         src/main.cpp \

@@ -19,7 +19,8 @@ KeyTable {
     //Component Properties
     property string changeComponentHeight
     property string changeComponentWidth
-    property string chooseComponentBackground
+    property string changeComponentBackgroundColor
+    property string changeComponentBackgroundImage
     property string changeComponentBorders
 
 }

@@ -5,20 +5,14 @@ import QtQuick.Layouts 1.4
 
 import Qt.labs.platform 1.0
 
-import "qrc:/actions"
-import "qrc:/stores"
-
 ToolButton{
     id: root
+
+    property alias backgroundColor: buttonColor.color
 
     background: Rectangle {
         id: buttonColor
         border.width: 2
-        onColorChanged: ApplicationActions.chooseComponentBackground(color)
-        Component.onCompleted: {
-            buttonColor.color =  Material.accent
-            MainStore.componentEditorStore.backgroundColor = buttonColor.color
-        }
     }
 
     onClicked: {

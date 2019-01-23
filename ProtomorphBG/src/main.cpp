@@ -6,6 +6,8 @@
 
 #include <QuickFlux>
 
+
+#include "src/constants/Enums.hpp"
 #include "src/helpers/QmlHelper.hpp"
 #include "src/helpers/UISizeAdapter.hpp"
 #include "src/models/SizesListModel.hpp"
@@ -51,6 +53,10 @@ int main(int argc, char *argv[])
         qmlEngine->setObjectOwnership(Helper::UISizeAdapter::instance(), QQmlEngine::CppOwnership);
         return Helper::UISizeAdapter::instance();
     });
+
+    //Register enums
+    qmlRegisterUncreatableType<Enums>("protomorph.enums", 1, 0, "Enums", "Enums");
+
 
     QQmlApplicationEngine engine;
     engine.addImportPath(QStringLiteral("qrc:///")); //Add "qrc://" to QML import path

@@ -46,7 +46,7 @@ Page {
                                                                                "family": FontAwesome.fontAwesomeFreeSolid,
                                                                                "styleName": FontAwesome.fontAwesomeStyleNameSolid
                                                                            }
-                                                                           , "toolTipText": qsTr("Component properties")
+                                                                           , "descriptionText": qsTr("Component properties")
                                                                        })
             }
 

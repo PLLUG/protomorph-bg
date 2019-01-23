@@ -10,6 +10,7 @@ import "qrc:/actions"
 import "qrc:/components"
 import "qrc:/constants"
 import "qrc:/custom_controls"
+import "qrc:/stores"
 
 ColumnLayout {
     id: root
@@ -94,6 +95,8 @@ ColumnLayout {
                 Component {
                     id: colorPickerComponent
                     ColorPickerButton {
+                        onBackgroundColorChanged: ApplicationActions.changeComponentBackgroundColor (backgroundColor)
+                        Component.onCompleted: backgroundColor = MainStore.componentEditorStore.backgroundColor
                     }
                 }
                 Component {
@@ -104,6 +107,7 @@ ColumnLayout {
                 Component {
                     id: imagePickerComponent
                     ImagePicker {
+                        onImagePathChanged: ApplicationActions.changeComponentBackgroundImage(imagePath)
                     }
                 }
             }

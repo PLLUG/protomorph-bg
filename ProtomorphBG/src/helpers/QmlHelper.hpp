@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QSizeF>
+#include <QUrl>
 
 namespace Helper {
 class QmlHelper final: public QObject
@@ -15,6 +16,8 @@ public slots:
     double fromMMToPixelsOnScreen(double value);
     double fromPixelsOnScreenToMM(double value);
     double roundToCorrectDoubleMM(double value, int nofDecimalPlaces = 1);
+    QString urlToDisplayString(const QUrl &url);
+
 
 private:
     explicit QmlHelper(QObject *parent = nullptr);

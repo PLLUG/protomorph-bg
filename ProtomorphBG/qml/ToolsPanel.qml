@@ -63,8 +63,8 @@ ToolBar {
                         leftMargin: orientation === Qt.Vertical ? parent.width : 0
                         topMargin: orientation === Qt.Horizontal ? parent.height : 0
                         rightMargin: orientation === Qt.Vertical ? parent.width : 0
-                        visible: modelData.tooltipText && hovered
-                        text: modelData.tooltipText ? modelData.tooltipText : ""
+                        visible: modelData.descriptionText && hovered
+                        text: modelData.descriptionText ? modelData.descriptionText : ""
 
                         background: Pane {
                             Material.elevation: 3

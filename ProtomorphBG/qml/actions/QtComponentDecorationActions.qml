@@ -7,39 +7,39 @@ import FontAwesome 1.0
 ActionGroup {
     id: root
 
-    Action {
+    BasicApplicationAction {
         id: addImageAction
         onTriggered: ApplicationActions.addImage()
         text: FontAwesome.icon.image
-        property string tooltipText: qsTr("Add Image")
-        property string fontFamily: FontAwesome.fontAwesomeFreeSolid
-        property string styleName: FontAwesome.fontAwesomeStyleNameSolid
+        descriptionText: qsTr("Add Image")
+        fontFamily: FontAwesome.fontAwesomeFreeSolid
+        styleName: FontAwesome.fontAwesomeStyleNameSolid
     }
 
-    Action {
+    BasicApplicationAction {
         id: addIconAction
         onTriggered: ApplicationActions.addIcon()
         text: FontAwesome.icon.star
-        property string tooltipText: qsTr("Add Icon")
-        property string fontFamily: FontAwesome.fontAwesomeFreeSolid
-        property string styleName: FontAwesome.fontAwesomeStyleNameSolid
+        descriptionText: qsTr("Add Icon")
+        fontFamily: FontAwesome.fontAwesomeFreeSolid
+        styleName: FontAwesome.fontAwesomeStyleNameSolid
     }
 
-    Action {
+    BasicApplicationAction {
         id: addShapeAction
         onTriggered: ApplicationActions.addShape()
         text: FontAwesome.icon.shapes
-        property string tooltipText: qsTr("Add Shape")
-        property string fontFamily: FontAwesome.fontAwesomeFreeSolid
-        property string styleName: FontAwesome.fontAwesomeStyleNameSolid
+        descriptionText: qsTr("Add Shape")
+        fontFamily: FontAwesome.fontAwesomeFreeSolid
+        styleName: FontAwesome.fontAwesomeStyleNameSolid
     }
 
-    Action {
+    BasicApplicationAction {
         id: addTextAction
         onTriggered: ApplicationActions.addText()
         text: FontAwesome.icon.font
-        property string tooltipText: qsTr("Add Text")
-        property string fontFamily: FontAwesome.fontAwesomeFreeSolid
-        property string styleName: FontAwesome.fontAwesomeStyleNameSolid
+        descriptionText: qsTr("Add Text")
+        fontFamily: FontAwesome.fontAwesomeFreeSolid
+        styleName: FontAwesome.fontAwesomeStyleNameSolid
     }
 }

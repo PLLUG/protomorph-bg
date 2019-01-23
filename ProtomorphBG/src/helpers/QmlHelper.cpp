@@ -2,6 +2,8 @@
 
 #include "src/helpers/MeasurementConverters.hpp"
 
+#include <QDir>
+
 using namespace Helper;
 
 QmlHelper::QmlHelper(QObject *parent)
@@ -28,4 +30,9 @@ double QmlHelper::fromPixelsOnScreenToMM(double value)
 double QmlHelper::roundToCorrectDoubleMM(double value, int nofDecimalPlaces)
 {
     return Helper::roundToCorrectDoubleMM(value, nofDecimalPlaces);
+}
+
+QString QmlHelper::urlToDisplayString(const QUrl &url)
+{
+    return QDir::toNativeSeparators(url.toLocalFile());
 }

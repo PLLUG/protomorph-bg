@@ -31,8 +31,8 @@ Page {
                 }
 
                 ToolTip {
-                    text: toolTipText
-                    visible: toolTipText && hovered
+                    text: descriptionText
+                    visible: text.length > 0 && hovered
 
                     background: Pane {
                         Material.elevation: 3

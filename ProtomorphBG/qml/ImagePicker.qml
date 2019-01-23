@@ -7,11 +7,12 @@ import Qt.labs.platform 1.0
 
 import FontAwesome 1.0
 
-import "qrc:/actions"
-import "qrc:/stores"
+import protomorph.qmlhelper 1.0
 
 ColumnLayout{
     id: root
+
+    property alias imagePath: filePath.selectedFilePath
 
     RowLayout {
         Layout.fillWidth: true
@@ -25,7 +26,7 @@ ColumnLayout{
             property url selectedFilePath
             property url lastOpenedFolderPath: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
 
-            text: selectedFilePath ? selectedFilePath.toString() : ""
+            text: selectedFilePath ? QmlHelper.urlToDisplayString(selectedFilePath) : ""
             autoScroll: true
             inputMethodHints: Qt.ImhUrlCharactersOnly
             placeholderText: qsTr("Select background image...")
@@ -47,6 +48,28 @@ ColumnLayout{
                 var dialog = imagePickerDialogComponent.createObject(mainWindow)
                 dialog.open()
             }
+
+            Component {
+                id: imagePickerDialogComponent
+
+                FileDialog {
+                    title: qsTr("Choose image")
+                    modality: Qt.WindowModal
+                    fileMode: FileDialog.OpenFile
+                    nameFilters: ["All Picture Files (*.png *.jpg *.bmp *.svg)"]
+                    folder: filePath.lastOpenedFolderPath
+
+                    acceptLabel : qsTr("Select")
+
+                    onAccepted: {
+                        filePath.selectedFilePath = file
+                        filePath.cursorPosition = 0
+                        filePath.lastOpenedFolderPath = folder
+                        destroy()
+                    }
+                    onRejected: destroy()
+                }
+            }
         }
     }
 
@@ -67,27 +90,5 @@ ColumnLayout{
 
     Item {
         Layout.fillHeight: true
-    }
-
-    Component {
-        id: imagePickerDialogComponent
-
-        FileDialog {
-            title: qsTr("Choose image")
-            modality: Qt.WindowModal
-            fileMode: FileDialog.OpenFile
-            nameFilters: ["All Picture Files (*.png *.jpg *.bmp *.svg)"]
-            folder: filePath.lastOpenedFolderPath
-
-            acceptLabel : qsTr("Select")
-
-            onAccepted: {
-                filePath.selectedFilePath = file
-                filePath.cursorPosition = 0
-                filePath.lastOpenedFolderPath = folder
-                destroy()
-            }
-            onRejected: destroy()
-        }
     }
 }

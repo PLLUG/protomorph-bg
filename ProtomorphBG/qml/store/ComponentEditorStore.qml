@@ -20,8 +20,13 @@ ComponentEditorStoreTemplate {
     }
 
     Filter {
-        type: ActionTypes.chooseComponentBackground
+        type: ActionTypes.changeComponentBackgroundColor
         onDispatched: root.backgroundColor = message.backgroundColor
+    }
+
+    Filter {
+        type: ActionTypes.changeComponentBackgroundImage
+        onDispatched: root.backgroundImagePath = message.backgroundImagePath
     }
 
     Filter {
