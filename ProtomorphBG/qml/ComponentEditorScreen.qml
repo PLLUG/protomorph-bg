@@ -13,7 +13,6 @@ import FontAwesome 1.0
 import "qrc:/actions"
 import "qrc:/components"
 import "qrc:/custom_controls"
-import "qrc:/panels"
 
 Page {
     id: root
@@ -27,6 +26,7 @@ Page {
             horizontalPadding: 0
             verticalPadding: 0
         }
+
         ComponentEasel {
             id: easel
             Layout.fillHeight: true
@@ -40,16 +40,11 @@ Page {
             Layout.maximumWidth: internal.sidePanelInitialWidth
             Layout.alignment: Qt.AlignTop
 
-            Component.onCompleted: { templatesPanel.panelsModel.append({"url":"qrc:/panels/ComponentBasicProperties.qml"
-                                                                           , "fontAwesome": {
-                                                                               "symbol": FontAwesome.icon.cogs,
-                                                                               "family": FontAwesome.fontAwesomeFreeSolid,
-                                                                               "styleName": FontAwesome.fontAwesomeStyleNameSolid
-                                                                           }
-                                                                           , "descriptionText": qsTr("Component properties")
-                                                                       })
-            }
-
+            Component.onCompleted: templatesPanel.addPanelContentItem("qrc:/panels/ComponentBasicPropertiesPanel.qml"
+                                                                      , qsTr("Component properties")
+                                                                      , FontAwesome.icon.cogs
+                                                                      , FontAwesome.fontAwesomeFreeSolid
+                                                                      , FontAwesome.fontAwesomeStyleNameSolid)
         }
     }
 

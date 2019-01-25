@@ -6,21 +6,30 @@ import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.5
 
 import "qrc:/actions"
-import "qrc:/panels"
 
 Page {
     id: root
     padding: 0
 
-    property ListModel panelsModel: ListModel{
-        dynamicRoles: true
+    function addPanelContentItem(contentItemUrl, descriptionText, fontAwesomeSymbol, fontAwesomeFamily, fontAwesomeStyleName) {
+        panelsModel.append({"contentItemUrl" : contentItemUrl
+                               , "fontAwesome": {
+                                   "symbol": fontAwesomeSymbol,
+                                   "family": fontAwesomeFamily,
+                                   "styleName": fontAwesomeStyleName
+                               }
+                               , "descriptionText": descriptionText
+                           })
     }
 
     header: TabBar {
         id: tabBar
 
         Repeater {
-            model: panelsModel
+            model: ListModel{
+                id: panelsModel
+                dynamicRoles: true
+            }
 
             TabButton {
                 text: fontAwesome.symbol
@@ -53,7 +62,7 @@ Page {
             model: panelsModel
 
             Loader {
-                source: url
+                source: contentItemUrl
                 anchors.fill: parent
             }
         }

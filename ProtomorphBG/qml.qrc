@@ -35,10 +35,15 @@
         <file alias="ComponentEditorStore.qml">qml/store/ComponentEditorStore.qml</file>
     </qresource>
     <qresource prefix="/panels">
-        <file alias="ComponentBasicProperties.qml">qml/panels/ComponentBasicProperties.qml</file>
+        <file alias="ComponentBasicPropertiesPanel.qml">qml/panels/ComponentBasicPropertiesPanel.qml</file>
+        <file alias="BasicPanel.qml">qml/panels/BasicPanel.qml</file>
     </qresource>
     <qresource prefix="/constants">
         <file alias="BackgroundConstants.qml">qml/constants/BackgroundConstants.qml</file>
         <file alias="qmldir">qml/constants/qmldir</file>
+    </qresource>
+    <qresource prefix="/panels/sections">
+        <file alias="ComponentBackgroundSection.qml">qml/panels/sections/ComponentBackgroundSection.qml</file>
+        <file alias="ComponentSizeSection.qml">qml/panels/sections/ComponentSizeSection.qml</file>
     </qresource>
 </RCC>
