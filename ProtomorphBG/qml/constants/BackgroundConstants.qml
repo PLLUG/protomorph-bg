@@ -1,12 +1,18 @@
 pragma Singleton
 import QtQuick 2.12
 
+import protomorph.enums 1.0
+
 QtObject {
     id: root
 
-    readonly property var backgroundTypes: [colorType, gradientType, imageType]
+    readonly property var backgroundTypes: [
+        createBackgroundTypeObject(Enums.BACKGROUND_COLOR, qsTr("Color")),
+        createBackgroundTypeObject(Enums.BACKGROUND_GRADIENT, qsTr("Gradient")),
+        createBackgroundTypeObject(Enums.BACKGROUND_IMAGE, qsTr("Image")),
+    ]
 
-    readonly property var colorType: {"original" : "Color", "translated" : qsTr("Color")}
-    readonly property var gradientType: {"original" : "Gradient", "translated" : qsTr("Gradient")}
-    readonly property var imageType: {"original" : "Image", "translated" : qsTr("Image")}
+    function createBackgroundTypeObject(type, translatedLabel) {
+        return {"type" : type, "translated" : translatedLabel}
+    }
 }

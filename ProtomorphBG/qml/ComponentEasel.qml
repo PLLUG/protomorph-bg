@@ -5,6 +5,9 @@ import QtQuick.Controls.Material 2.4
 import QtQuick.Layouts 1.12
 import QtQuick.Controls.Material 2.5
 
+import protomorph.enums 1.0
+import protomorph.qmlhelper 1.0
+
 import "qrc:/custom_controls"
 import "qrc:/stores"
 
@@ -19,20 +22,64 @@ Page {
     contentItem: ZoomArea {
         id: easel
 
-        Rectangle {
+        Item {
             id: compomponentCanvas
             anchors.centerIn: parent
-            color: MainStore.componentEditorStore.backgroundColor
-            onColorChanged: MainStore.componentEditorStore.backgroundImagePath = ""
-            scale: easel.currentScale
-            height: MainStore.componentEditorStore.height; width: MainStore.componentEditorStore.width;
+            height: MainStore.componentEditorStore.height
+            width: MainStore.componentEditorStore.width
 
             Loader {
-                active: MainStore.componentEditorStore.backgroundImagePath.length > 0
+                id: backgroundLoader
                 anchors.fill: parent
-                sourceComponent: Image {
+
+                sourceComponent: rectBackgroundComponent
+
+                Binding {
+                    target: backgroundLoader.item
+                    value: easel.currentScale
+                    property: "scale"
+                }
+
+                Connections {
+                    enabled: root.visible
+                    target: MainStore.componentEditorStore
+                    onBackgroundChanged: {
+                        backgroundLoader.sourceComponent = undefined
+                        switch(background.type) {
+                        case Enums.BACKGROUND_COLOR:
+                            backgroundLoader.sourceComponent = rectBackgroundComponent
+                            backgroundLoader.item.color = background.value
+                            break
+                        case Enums.BACKGROUND_GRADIENT:
+                            backgroundLoader.sourceComponent = rectBackgroundComponent
+                            backgroundLoader.item.gradient = background.value
+                            break
+                        case Enums.BACKGROUND_IMAGE:
+                            backgroundLoader.sourceComponent = imageBackgroundComponent
+                            backgroundLoader.item.source = background.value
+                            break
+                        case Enums.BACKGROUND_NONE:
+                        default:
+                            backgroundLoader.sourceComponent = rectBackgroundComponent
+                            break
+                        }
+                    }
+                }
+            }
+
+            Component {
+                id: rectBackgroundComponent
+
+                Rectangle {
+                    color: Material.accent
+                }
+            }
+
+            Component {
+                id: imageBackgroundComponent
+
+                Image {
                     fillMode: Image.PreserveAspectCrop
-                    source: MainStore.componentEditorStore.backgroundImagePath
                     asynchronous: true
                     cache: false
                     mipmap: true
@@ -41,7 +88,6 @@ Page {
             }
         }
     }
-
 
     footer: Page {
         id: statusBar

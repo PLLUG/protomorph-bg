@@ -20,6 +20,7 @@ KeyTable {
     property string changeComponentHeight
     property string changeComponentWidth
     property string changeComponentBackgroundColor
+    property string changeComponentBackgroundGradient
     property string changeComponentBackgroundImage
     property string changeComponentBorders
 

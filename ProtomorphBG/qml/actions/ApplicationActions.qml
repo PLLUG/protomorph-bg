@@ -17,6 +17,7 @@ ActionCreator {
     signal addText
 
     signal changeComponentBackgroundColor(color backgroundColor)
+    signal changeComponentBackgroundGradient(string backgroundGradient)
     signal changeComponentBackgroundImage(string backgroundImagePath)
     signal changeComponentBorders
 }

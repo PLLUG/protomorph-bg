@@ -1,5 +1,7 @@
 #include "src/store/ComponentEditorStore.hpp"
 
+using namespace Dataobject;
+
 ComponentEditorStore::ComponentEditorStore(QObject *parent)
     : QFStore{parent}
 {
@@ -15,19 +17,14 @@ double ComponentEditorStore::height() const
     return m_component.sizeInPixels.height();
 }
 
-QColor ComponentEditorStore::backgroundColor() const
-{
-    return m_component.backgroundBrush.color();
-}
-
-QString ComponentEditorStore::backgroundImagePath() const
-{
-    return m_component.backgroundImagePath;
-}
-
 Enums::ComponentType ComponentEditorStore::componentType() const
 {
-    return m_component.componentType;
+    return m_component.type;
+}
+
+QVariantMap ComponentEditorStore::background() const
+{
+    return m_component.background.toQmlType();
 }
 
 void ComponentEditorStore::setWidth(double width)
@@ -48,29 +45,17 @@ void ComponentEditorStore::setHeight(double height)
     emit heightChanged(m_component.sizeInPixels.height());
 }
 
-void ComponentEditorStore::setBackgroundColor(const QColor &backgroundColor)
-{
-    if (m_component.backgroundBrush.color() == backgroundColor)
-        return;
-
-    m_component.backgroundBrush.setColor(backgroundColor);
-    emit backgroundColorChanged(m_component.backgroundBrush.color());
-}
-
-void ComponentEditorStore::setBackgroundImagePath(const QString &backgroundImage)
-{
-    if (m_component.backgroundImagePath == backgroundImage)
-        return;
-
-    m_component.backgroundImagePath = backgroundImage;
-    emit backgroundImagePathChanged(m_component.backgroundImagePath);
-}
-
 void ComponentEditorStore::setComponentType(Enums::ComponentType componentType)
 {
-    if (m_component.componentType == componentType)
+    if (m_component.type == componentType)
         return;
 
-    m_component.componentType = componentType;
-    emit componentTypeChanged(m_component.componentType);
+    m_component.type = componentType;
+    emit componentTypeChanged(m_component.type);
+}
+
+void ComponentEditorStore::setBackground(const QVariantMap &backgroundProp)
+{
+    m_component.background.fillFromQmlType(backgroundProp);
+    emit backgroundChanged(m_component.background.toQmlType());
 }

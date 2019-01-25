@@ -1,6 +1,7 @@
 import QtQuick 2.12
 
 import QtQuick.Controls 2.5
+import QtQuick.Extras 1.4
 
 import FontAwesome 1.0
 
@@ -13,7 +14,6 @@ Label {
     font{
         family: FontAwesome.fontAwesomeFreeSolid
         styleName: FontAwesome.fontAwesomeStyleNameSolid
-        pointSize: 15
     }
     horizontalAlignment: Label.AlignHCenter
     verticalAlignment: Label.AlignVCenter

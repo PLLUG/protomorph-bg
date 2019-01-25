@@ -3,6 +3,7 @@ import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.4
 import QtQuick.Layouts 1.4
 
+import protomorph.enums 1.0
 import protomorph.sizelistmodel 1.0
 import protomorph.uisizeadapter 1.0
 
@@ -67,12 +68,11 @@ ColumnLayout {
         Layout.maximumHeight: backgroundSection.expanded ? backgroundSection.implicitHeight : backgroundSection.header.implicitHeight
 
         contentComponent: ColumnLayout {
-
             ComboBox {
                 id: backgroundType
 
                 Layout.fillWidth: true
-                Layout.fillHeight: true
+                Layout.minimumHeight: UISizeAdapter.calculateSize(30)
 
                 textRole: "translated"
                 model: BackgroundConstants.backgroundTypes
@@ -80,30 +80,32 @@ ColumnLayout {
 
             Loader {
                 Layout.fillWidth: true
-                Layout.minimumHeight: UISizeAdapter.calculateSize(30)
 
-                sourceComponent: {
-                    switch(backgroundType.model[backgroundType.currentIndex].original) {
-                    case BackgroundConstants.colorType.original:
+                sourceComponent: {                    
+                    switch(BackgroundConstants.backgroundTypes[backgroundType.currentIndex].type) {
+                    case Enums.BACKGROUND_COLOR:
                         return colorPickerComponent
-                    case BackgroundConstants.gradientType.original:
+                    case Enums.BACKGROUND_GRADIENT:
                         return gradientPickerComponent
-                    case BackgroundConstants.imageType.original:
+                    case Enums.BACKGROUND_IMAGE:
                         return imagePickerComponent
                     }
                 }
+
                 Component {
                     id: colorPickerComponent
                     ColorPickerButton {
                         onBackgroundColorChanged: ApplicationActions.changeComponentBackgroundColor (backgroundColor)
-                        Component.onCompleted: backgroundColor = MainStore.componentEditorStore.backgroundColor
                     }
                 }
+
                 Component {
                     id: gradientPickerComponent
-                    ColorPickerButton {
+                    GradientPresetsPicker {
+                        onGradientChanged: ApplicationActions.changeComponentBackgroundGradient(gradient)
                     }
                 }
+
                 Component {
                     id: imagePickerComponent
                     ImagePicker {

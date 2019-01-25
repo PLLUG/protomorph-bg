@@ -17,9 +17,11 @@ HEADERS += \
     src/helpers/QmlHelper.hpp \
     src/store/ComponentEditorStore.hpp \
     src/helpers/UISizeAdapter.hpp \
-    src/dataobjects/ComponentObject.hpp \
     src/constants/Enums.hpp \
-    src/dataobjects/ComponentDecorationObject.hpp
+    src/helpers/GradientHelper.hpp \
+    src/dataobjects/Background.hpp \
+    src/dataobjects/ComponentDecoration.hpp \
+    src/dataobjects/Component.hpp
 
 SOURCES += \
         src/main.cpp \
@@ -27,7 +29,8 @@ SOURCES += \
     src/helpers/MeasurementConverters.cpp \
     src/helpers/QmlHelper.cpp \
     src/store/ComponentEditorStore.cpp \
-    src/helpers/UISizeAdapter.cpp
+    src/helpers/UISizeAdapter.cpp \
+    src/helpers/GradientHelper.cpp
 
 RESOURCES += qml.qrc \
     fonts.qrc \

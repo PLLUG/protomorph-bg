@@ -1,6 +1,7 @@
 #ifndef QMLHELPER_HPP
 #define QMLHELPER_HPP
 
+#include <QGradient>
 #include <QObject>
 #include <QSizeF>
 #include <QUrl>
@@ -18,7 +19,8 @@ public slots:
     double roundToCorrectDoubleMM(double value);
     double roundToNDecimalPlaces(double value, int nofDecimalPlaces = 1);
     QString urlToDisplayString(const QUrl &url);
-
+    QStringList getPreseteGradientsList();
+    QGradient::Preset getPresetGradient(const QString &pesetName);
 
 private:
     explicit QmlHelper(QObject *parent = nullptr);

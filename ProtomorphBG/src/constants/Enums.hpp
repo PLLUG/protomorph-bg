@@ -8,27 +8,37 @@ class Enums
     Q_GADGET
 
 public:
+    enum class BackgroundType
+    {
+        BACKGROUND_COLOR,
+        BACKGROUND_GRADIENT,
+        BACKGROUND_IMAGE,
+        BACKGROUND_NONE
+    };
+    Q_ENUM(BackgroundType)
+
     enum class ComponentType
     {
-        BOARD,
-        BOX,
-        CARD,
-        TILE
+        COMPONENT_BOARD,
+        COMPONENT_BOX,
+        COMPONENT_CARD,
+        COMPONENT_TILE
     };
     Q_ENUM(ComponentType)
 
-    enum class ComponentDecorationType
+    enum class DecorationType
     {
-        ICON,
-        IMAGE,
-        SHAPE,
-        TEXT
+        DECORATION_ICON,
+        DECORATION_IMAGE,
+        DECORATION_SHAPE,
+        DECORATION_TEXT
     };
-    Q_ENUM(ComponentDecorationType)
+    Q_ENUM(DecorationType)
 };
 
+Q_DECLARE_METATYPE(Enums::BackgroundType)
 Q_DECLARE_METATYPE(Enums::ComponentType)
-Q_DECLARE_METATYPE(Enums::ComponentDecorationType)
+Q_DECLARE_METATYPE(Enums::DecorationType)
 
 
 #endif // ENUMS_HPP

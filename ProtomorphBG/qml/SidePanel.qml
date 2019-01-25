@@ -25,7 +25,6 @@ Page {
             TabButton {
                 text: fontAwesome.symbol
                 font{
-                    pointSize: 20
                     family: fontAwesome.family
                     styleName: fontAwesome.styleName
                 }

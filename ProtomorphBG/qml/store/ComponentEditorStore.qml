@@ -3,6 +3,7 @@ import QtQuick 2.12
 import QuickFlux 1.1
 
 import protomorph.componenteditorstoretemplate 1.0
+import protomorph.enums 1.0
 
 import "qrc:/actions"
 
@@ -21,12 +22,17 @@ ComponentEditorStoreTemplate {
 
     Filter {
         type: ActionTypes.changeComponentBackgroundColor
-        onDispatched: root.backgroundColor = message.backgroundColor
+        onDispatched: root.background = internal.createBackgroundProperties(Enums.BACKGROUND_COLOR, message.backgroundColor)
+    }
+
+    Filter {
+        type: ActionTypes.changeComponentBackgroundGradient
+        onDispatched: root.background = internal.createBackgroundProperties(Enums.BACKGROUND_GRADIENT, message.backgroundGradient)
     }
 
     Filter {
         type: ActionTypes.changeComponentBackgroundImage
-        onDispatched: root.backgroundImagePath = message.backgroundImagePath
+        onDispatched: root.background = internal.createBackgroundProperties(Enums.BACKGROUND_IMAGE, message.backgroundImagePath)
     }
 
     Filter {
@@ -47,5 +53,13 @@ ComponentEditorStoreTemplate {
     Filter {
         type: ActionTypes.addText
         onDispatched: print("addText")
+    }
+
+    QtObject {
+        id: internal
+
+        function createBackgroundProperties(selectedType, selectedValue) {
+            return {"type": selectedType, "value": selectedValue}
+        }
     }
 }

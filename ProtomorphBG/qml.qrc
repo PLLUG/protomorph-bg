@@ -11,6 +11,7 @@
         <file alias="ToolsPanel.qml">qml/ToolsPanel.qml</file>
         <file alias="ColorPickerButton.qml">qml/ColorPickerButton.qml</file>
         <file alias="ImagePicker.qml">qml/ImagePicker.qml</file>
+        <file alias="GradientPresetsPicker.qml">qml/GradientPresetsPicker.qml</file>
     </qresource>
     <qresource prefix="/screens">
         <file alias="ComponentEditorScreen.qml">qml/ComponentEditorScreen.qml</file>

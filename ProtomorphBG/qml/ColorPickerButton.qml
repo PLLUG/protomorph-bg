@@ -1,18 +1,23 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.4
-import QtQuick.Layouts 1.4
 
 import Qt.labs.platform 1.0
+
+import protomorph.uisizeadapter 1.0
 
 ToolButton{
     id: root
 
     property alias backgroundColor: buttonColor.color
+    implicitHeight: UISizeAdapter.calculateSize(30)
 
     background: Rectangle {
         id: buttonColor
-        border.width: 2
+        border{
+            color: Material.background
+            width: UISizeAdapter.calculateSize(2)
+        }
     }
 
     onClicked: {

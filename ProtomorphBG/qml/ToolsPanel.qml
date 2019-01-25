@@ -4,10 +4,6 @@ import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.5
 import QtQuick.Layouts 1.4
 
-import protomorph.uisizeadapter 1.0
-
-import FontAwesome 1.0
-
 ToolBar {
     id: root
 
@@ -18,7 +14,6 @@ ToolBar {
 
     contentItem: Loader {
         active: root.visible
-        anchors.fill: parent
         sourceComponent: orientation === Qt.Horizontal ? rowLayoutComponent : columnLayoutComponent
     }
 
@@ -51,29 +46,19 @@ ToolBar {
                 font {
                     family: modelData.fontFamily
                     styleName: modelData.styleName
-                    pointSize: 20
                 }
 
                 Loader {
-                    active: enableTooltips
+                    active: enableTooltips && toolButton.hovered
                     sourceComponent: ToolTip {
                         parent: toolButton
                         anchors.centerIn: parent
-                        bottomMargin: orientation === Qt.Horizontal ? parent.height : 0
-                        leftMargin: orientation === Qt.Vertical ? parent.width : 0
-                        topMargin: orientation === Qt.Horizontal ? parent.height : 0
-                        rightMargin: orientation === Qt.Vertical ? parent.width : 0
-                        visible: modelData.descriptionText && hovered
+                        bottomMargin: orientation === Qt.Horizontal ? 1.25 * parent.height : 0
+                        leftMargin: orientation === Qt.Vertical ? 1.25 * parent.width : 0
+                        topMargin: orientation === Qt.Horizontal ? 1.25 * parent.height : 0
+                        rightMargin: orientation === Qt.Vertical ? 1.25 * parent.width : 0
+                        visible: modelData.descriptionText && toolButton.hovered
                         text: modelData.descriptionText ? modelData.descriptionText : ""
-
-                        background: Pane {
-                            Material.elevation: 3
-
-                            Rectangle {
-                                anchors.fill: parent
-                                color: Material.background
-                            }
-                        }
                     }
                 }
             }
