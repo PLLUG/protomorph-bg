@@ -8,16 +8,14 @@ ActionCreator {
     signal quitApp
 
     //Component edit screen actions
-    signal changeComponentHeight(int height);
-    signal changeComponentWidth(int width);
+    signal changeComponentHeight(real height);
+    signal changeComponentWidth(real width);
 
     signal addImage
     signal addIcon
     signal addShape
     signal addText
 
-    signal changeComponentBackgroundColor(color backgroundColor)
-    signal changeComponentBackgroundGradient(string backgroundGradient)
-    signal changeComponentBackgroundImage(string backgroundImagePath)
-    signal changeComponentBorders
+    signal changeComponentBackground(var backgroundPropertiesObj)
+    signal changeComponentBorders(var bordersPropertiesObj)
 }

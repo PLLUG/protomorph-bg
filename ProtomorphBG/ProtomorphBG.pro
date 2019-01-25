@@ -21,7 +21,8 @@ HEADERS += \
     src/helpers/GradientHelper.hpp \
     src/dataobjects/Background.hpp \
     src/dataobjects/ComponentDecoration.hpp \
-    src/dataobjects/Component.hpp
+    src/dataobjects/Component.hpp \
+    src/dataobjects/Borders.hpp
 
 SOURCES += \
         src/main.cpp \

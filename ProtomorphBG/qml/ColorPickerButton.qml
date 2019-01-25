@@ -9,7 +9,9 @@ import protomorph.uisizeadapter 1.0
 ToolButton{
     id: root
 
-    property alias backgroundColor: buttonColor.color
+    property alias pickedColor: buttonColor.color
+    property bool showAlphaChannel: false
+
     implicitHeight: UISizeAdapter.calculateSize(30)
 
     background: Rectangle {
@@ -22,6 +24,8 @@ ToolButton{
 
     onClicked: {
         var dialog = colorPickerDialogComponent.createObject(mainWindow)
+        if(showAlphaChannel)
+            dialog.options = ColorDialog.ShowAlphaChannel
         dialog.color = buttonColor.color
         dialog.open()
     }
@@ -32,6 +36,7 @@ ToolButton{
         ColorDialog {
             title: qsTr("Choose color")
             modality: Qt.WindowModal
+
             onAccepted: {
                 root.background.color = color
                 destroy()

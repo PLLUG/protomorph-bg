@@ -13,7 +13,9 @@ ColumnLayout {
     id: root
 
     ComboBox {
-        id: backgroundType
+        id: backgroundTypeCombobox
+
+        readonly property int backgroundType: model[currentIndex].type
 
         Layout.fillWidth: true
         Layout.minimumHeight: UISizeAdapter.calculateSize(30)
@@ -26,7 +28,7 @@ ColumnLayout {
         Layout.fillWidth: true
 
         sourceComponent: {
-            switch(BackgroundConstants.backgroundTypes[backgroundType.currentIndex].type) {
+            switch(backgroundTypeCombobox.backgroundType) {
             case Enums.BACKGROUND_COLOR:
                 return colorPickerComponent
             case Enums.BACKGROUND_GRADIENT:
@@ -35,26 +37,34 @@ ColumnLayout {
                 return imagePickerComponent
             }
         }
+    }
 
-        Component {
-            id: colorPickerComponent
-            ColorPickerButton {
-                onBackgroundColorChanged: ApplicationActions.changeComponentBackgroundColor (backgroundColor)
-            }
+    Component {
+        id: colorPickerComponent
+        ColorPickerButton {
+            onPickedColorChanged: internal.notifyBackgroundChanged(backgroundTypeCombobox.backgroundType, pickedColor)
         }
+    }
 
-        Component {
-            id: gradientPickerComponent
-            GradientPresetsPicker {
-                onGradientChanged: ApplicationActions.changeComponentBackgroundGradient(gradient)
-            }
+    Component {
+        id: gradientPickerComponent
+        GradientPresetsPicker {
+            onGradientChanged: internal.notifyBackgroundChanged(backgroundTypeCombobox.backgroundType, gradient)
         }
+    }
 
-        Component {
-            id: imagePickerComponent
-            ImagePicker {
-                onImagePathChanged: ApplicationActions.changeComponentBackgroundImage(imagePath)
-            }
+    Component {
+        id: imagePickerComponent
+        ImagePicker {
+            onImagePathChanged: internal.notifyBackgroundChanged(backgroundTypeCombobox.backgroundType, imagePath)
+        }
+    }
+
+    QtObject {
+        id: internal
+        function notifyBackgroundChanged(backgroundType, backgroundValue) {
+            var backgroundPropertiesObj = BackgroundConstants.createBackgroundPropertiesObject(backgroundType, backgroundValue)
+            ApplicationActions.changeComponentBackground(backgroundPropertiesObj)
         }
     }
 }

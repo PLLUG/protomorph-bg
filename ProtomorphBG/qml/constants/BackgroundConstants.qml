@@ -15,4 +15,8 @@ QtObject {
     function createBackgroundTypeObject(type, translatedLabel) {
         return {"type" : type, "translated" : translatedLabel}
     }
+
+    function createBackgroundPropertiesObject(selectedType, selectedValue) {
+        return {"type": selectedType, "value": selectedValue}
+    }
 }

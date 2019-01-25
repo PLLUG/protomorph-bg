@@ -46,5 +46,6 @@
     <qresource prefix="/panels/sections">
         <file alias="ComponentBackgroundSection.qml">qml/panels/sections/ComponentBackgroundSection.qml</file>
         <file alias="ComponentSizeSection.qml">qml/panels/sections/ComponentSizeSection.qml</file>
+        <file alias="ComponentBorderSection.qml">qml/panels/sections/ComponentBorderSection.qml</file>
     </qresource>
 </RCC>

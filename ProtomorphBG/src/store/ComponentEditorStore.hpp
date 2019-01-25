@@ -11,6 +11,7 @@ class ComponentEditorStore: public QFStore
     Q_PROPERTY(double height READ height WRITE setHeight NOTIFY heightChanged)
     Q_PROPERTY(double width READ width WRITE setWidth NOTIFY widthChanged)
     Q_PROPERTY(QVariantMap background READ background WRITE setBackground NOTIFY backgroundChanged)
+    Q_PROPERTY(QVariantMap borders READ borders WRITE setBorders NOTIFY bordersChanged)
     Q_PROPERTY(Enums::ComponentType componentType READ componentType WRITE setComponentType NOTIFY componentTypeChanged)
 
 public:
@@ -20,8 +21,8 @@ public:
     double width() const;
     double height() const;
     QVariantMap background() const;
+    QVariantMap borders() const;
     Enums::ComponentType componentType() const;
-
 
 signals:
     void widthChanged(double width);
@@ -30,12 +31,14 @@ signals:
     void componentTypeChanged(Enums::ComponentType componentType);
 
 
+    void bordersChanged(QVariantMap borders);
+
 public slots:
     void setWidth(double width);
     void setHeight(double height);
     void setBackground(const QVariantMap &backgroundProp);
+    void setBorders(QVariantMap bordersProp);
     void setComponentType(Enums::ComponentType componentType);
-
 
 private:
     Dataobject::Component m_component;

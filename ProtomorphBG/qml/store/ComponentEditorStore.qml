@@ -21,18 +21,13 @@ ComponentEditorStoreTemplate {
     }
 
     Filter {
-        type: ActionTypes.changeComponentBackgroundColor
-        onDispatched: root.background = internal.createBackgroundProperties(Enums.BACKGROUND_COLOR, message.backgroundColor)
+        type: ActionTypes.changeComponentBackground
+        onDispatched: root.background = message.backgroundPropertiesObj
     }
 
     Filter {
-        type: ActionTypes.changeComponentBackgroundGradient
-        onDispatched: root.background = internal.createBackgroundProperties(Enums.BACKGROUND_GRADIENT, message.backgroundGradient)
-    }
-
-    Filter {
-        type: ActionTypes.changeComponentBackgroundImage
-        onDispatched: root.background = internal.createBackgroundProperties(Enums.BACKGROUND_IMAGE, message.backgroundImagePath)
+        type: ActionTypes.changeComponentBorders
+        onDispatched: root.borders = message.bordersPropertiesObj
     }
 
     Filter {
@@ -53,13 +48,5 @@ ComponentEditorStoreTemplate {
     Filter {
         type: ActionTypes.addText
         onDispatched: print("addText")
-    }
-
-    QtObject {
-        id: internal
-
-        function createBackgroundProperties(selectedType, selectedValue) {
-            return {"type": selectedType, "value": selectedValue}
-        }
     }
 }

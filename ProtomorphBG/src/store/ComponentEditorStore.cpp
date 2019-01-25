@@ -27,6 +27,11 @@ QVariantMap ComponentEditorStore::background() const
     return m_component.background.toQmlType();
 }
 
+QVariantMap ComponentEditorStore::borders() const
+{
+    return m_component.borders.toQmlType();
+}
+
 void ComponentEditorStore::setWidth(double width)
 {
     if (qFuzzyCompare(m_component.sizeInPixels.width(), width))
@@ -58,4 +63,10 @@ void ComponentEditorStore::setBackground(const QVariantMap &backgroundProp)
 {
     m_component.background.fillFromQmlType(backgroundProp);
     emit backgroundChanged(m_component.background.toQmlType());
+}
+
+void ComponentEditorStore::setBorders(QVariantMap bordersProp)
+{
+    m_component.borders.fillFromQmlType(bordersProp);
+    emit bordersChanged(m_component.borders.toQmlType());
 }

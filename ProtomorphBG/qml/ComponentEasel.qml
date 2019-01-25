@@ -5,6 +5,7 @@ import QtQuick.Controls.Material 2.4
 import QtQuick.Layouts 1.12
 
 import "qrc:/custom_controls"
+import "qrc:/stores"
 
 Page {
     id: root
