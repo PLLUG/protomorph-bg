@@ -20,6 +20,7 @@
         <file alias="ComponentEasel.qml">qml/ComponentEasel.qml</file>
         <file alias="MainMenuBar.qml">qml/MainMenuBar.qml</file>
         <file alias="CollapsibleSection.qml">qml/CollapsibleSection.qml</file>
+        <file alias="ComponentCanvas.qml">qml/ComponentCanvas.qml</file>
     </qresource>
     <qresource prefix="/actions">
         <file alias="ActionTypes.qml">qml/actions/ActionTypes.qml</file>

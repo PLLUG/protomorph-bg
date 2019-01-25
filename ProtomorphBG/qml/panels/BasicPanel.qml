@@ -22,7 +22,6 @@ Flickable {
             right: parent.right
         }
 
-
         Repeater {
             model: ListModel {
                 id: sectionModel

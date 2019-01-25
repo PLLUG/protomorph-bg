@@ -14,12 +14,11 @@ import "qrc:/actions"
 import "qrc:/components"
 import "qrc:/custom_controls"
 
-Page {
+Pane {
     id: root
     padding: 0
 
-    OldControls.SplitView {
-        anchors.fill: parent
+    contentItem: OldControls.SplitView {
         resizing: false
 
         handleDelegate: ToolSeparator {
