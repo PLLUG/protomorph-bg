@@ -35,4 +35,5 @@ SOURCES += \
 
 RESOURCES += qml.qrc \
     fonts.qrc \
-    images.qrc
+    images.qrc \
+    icons.qrc

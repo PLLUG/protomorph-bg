@@ -7,7 +7,6 @@
 namespace Dataobject {
 struct Borders {
     QColor color;
-    double widthInMM;
     double widthInPixels;
 
     void fillFromQmlType(const QVariantMap &borderProp)

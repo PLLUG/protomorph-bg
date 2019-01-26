@@ -17,7 +17,6 @@ struct Component
     std::vector<ComponentDecoration *> componentDecorations;
     Backround background;
     Borders borders;
-    QSizeF sizeInMM;
     QSizeF sizeInPixels;
 };
 }

@@ -3,7 +3,7 @@
 	url = https://github.com/Guitarheroua/fontawesome.pri.git
 [submodule "ProtomorphBG/submodules/icons"]
 	path = ProtomorphBG/submodules/icons
-	url = https://github.com/game-icons/icons.git
+	url = https://github.com/Guitarheroua/icons.git
 [submodule "ProtomorphBG/submodules/quickflux"]
 	path = ProtomorphBG/submodules/quickflux
 	url = https://github.com/Guitarheroua/quickflux.git
