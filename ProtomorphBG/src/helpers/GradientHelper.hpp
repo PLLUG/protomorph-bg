@@ -6,8 +6,8 @@
 
 
 namespace Helper {
-QGradient::Preset getPresetGradient(const QString &pesetName);
-QString getPresetGradientString(QGradient::Preset pesetEnum);
+QGradient::Preset getPresetGradient(const QString &presetName);
+QString getPresetGradientString(QGradient::Preset presetEnum);
 QStringList getPresetGradientsList();
 }
 

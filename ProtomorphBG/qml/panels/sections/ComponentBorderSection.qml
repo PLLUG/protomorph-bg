@@ -14,7 +14,7 @@ ColumnLayout {
     Slider {
         id: borderWidthSpinbox
         Layout.fillWidth: true
-        Layout.preferredHeight: internal.componentsDefaultHeight
+        Layout.minimumHeight: internal.componentsDefaultHeight
 
         from: 0
         to: internal.sliderMaxValue
@@ -25,7 +25,7 @@ ColumnLayout {
     ColorPickerButton {
         id: borderColorPicker
         Layout.fillWidth: true
-        Layout.preferredHeight: internal.componentsDefaultHeight
+        Layout.minimumHeight: internal.componentsDefaultHeight
         showAlphaChannel: true
         onPickedColorChanged: internal.notifyBordersChanged()
     }

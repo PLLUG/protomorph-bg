@@ -14,7 +14,7 @@ ColumnLayout {
     ComboBox {
         id: cardSizes
         Layout.fillWidth: true
-        Layout.preferredHeight: internal.componentsDefaultHeight
+        Layout.minimumHeight: internal.componentsDefaultHeight
 
         textRole: "sizeAsString"
         displayText: currentText + " mm"
@@ -33,14 +33,14 @@ ColumnLayout {
     SizeSpinBox {
         id: widthSpinbox
         Layout.fillWidth: true
-        Layout.preferredHeight: internal.componentsDefaultHeight
+        Layout.minimumHeight: internal.componentsDefaultHeight
         onValueChanged: ApplicationActions.changeComponentWidth(widthSpinbox.value)
     }
 
     SizeSpinBox {
         id: heightSpinbox
         Layout.fillWidth: true
-        Layout.preferredHeight: internal.componentsDefaultHeight
+        Layout.minimumHeight: internal.componentsDefaultHeight
         onValueChanged: ApplicationActions.changeComponentHeight(heightSpinbox.value)
     }
 

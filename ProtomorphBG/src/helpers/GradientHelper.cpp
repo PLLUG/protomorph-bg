@@ -2,27 +2,59 @@
 
 #include <QMetaEnum>
 
-static QMetaEnum s_metaEnum{QMetaEnum::fromType<QGradient::Preset>()};
 
-QGradient::Preset Helper::getPresetGradient(const QString &pesetName)
+class PresetGradiensInitializer {
+public:
+    PresetGradiensInitializer()
+        : m_metaEnum{QMetaEnum::fromType<QGradient::Preset>()}
+    {
+        initPresetGradients();
+    }
+
+    QGradient::Preset getPresetGradient(const QString &presetName)
+    {
+        auto enumValue = m_metaEnum.keyToValue(presetName.toStdString().c_str());
+        return static_cast<QGradient::Preset>(enumValue);
+    }
+
+    QStringList getPresetGradientsList()
+    {
+        return m_presetGradients;
+    }
+
+    QString getPresetGradientString(QGradient::Preset presetEnum)
+    {
+        return m_metaEnum.valueToKey(static_cast<int>(presetEnum));
+    }
+
+private:
+    void initPresetGradients()
+    {
+        auto nofEnumValues = m_metaEnum.keyCount();
+
+        m_presetGradients.reserve(nofEnumValues);
+
+        for (auto i = 0; i < nofEnumValues; ++i)
+            m_presetGradients << QLatin1String{m_metaEnum.key(i)};
+    }
+
+    QStringList m_presetGradients;
+    QMetaEnum m_metaEnum;
+};
+
+static PresetGradiensInitializer s_presetGradiensInitializer;
+
+QGradient::Preset Helper::getPresetGradient(const QString &presetName)
 {
-    auto enumValue = s_metaEnum.keyToValue(pesetName.toStdString().c_str());
-    return static_cast<QGradient::Preset>(enumValue);
+    return s_presetGradiensInitializer.getPresetGradient(presetName);
 }
 
 QStringList Helper::getPresetGradientsList()
 {
-    auto nofEnumValues = s_metaEnum.keyCount();
-    QStringList presetGradients;
-    presetGradients.reserve(nofEnumValues);
-
-    for (auto i = 0; i < nofEnumValues; ++i)
-        presetGradients << QLatin1String{s_metaEnum.key(i)};
-
-    return presetGradients;
+    return s_presetGradiensInitializer.getPresetGradientsList();
 }
 
-QString Helper::getPresetGradientString(QGradient::Preset pesetEnum)
+QString Helper::getPresetGradientString(QGradient::Preset presetEnum)
 {
-    return s_metaEnum.valueToKey(static_cast<int>(pesetEnum));
+    return s_presetGradiensInitializer.getPresetGradientString(presetEnum);
 }
