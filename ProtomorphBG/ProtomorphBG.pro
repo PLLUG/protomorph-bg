@@ -22,7 +22,8 @@ HEADERS += \
     src/dataobjects/Background.hpp \
     src/dataobjects/ComponentDecoration.hpp \
     src/dataobjects/Component.hpp \
-    src/dataobjects/Borders.hpp
+    src/dataobjects/Borders.hpp \
+    src/models/GameIconsListModel.hpp
 
 SOURCES += \
         src/main.cpp \
@@ -31,9 +32,10 @@ SOURCES += \
     src/helpers/QmlHelper.cpp \
     src/store/ComponentEditorStore.cpp \
     src/helpers/UISizeAdapter.cpp \
-    src/helpers/GradientHelper.cpp
+    src/helpers/GradientHelper.cpp \
+    src/models/GameIconsListModel.cpp
 
 RESOURCES += qml.qrc \
     fonts.qrc \
     images.qrc \
-    icons.qrc
+    game-icons.qrc
