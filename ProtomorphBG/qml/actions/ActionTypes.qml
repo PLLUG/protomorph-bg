@@ -21,4 +21,5 @@ KeyTable {
     property string changeComponentWidth
     property string changeComponentBackground
     property string changeComponentBorders
+    property string iconSelected
 }

@@ -18,4 +18,5 @@ ActionCreator {
 
     signal changeComponentBackground(var backgroundPropertiesObj)
     signal changeComponentBorders(var bordersPropertiesObj)
+    signal iconSelected(var iconPropertiesObj)
 }

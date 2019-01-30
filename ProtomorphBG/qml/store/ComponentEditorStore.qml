@@ -34,6 +34,11 @@ ComponentEditorStoreTemplate {
     }
 
     Filter {
+        type: ActionTypes.iconSelected
+        onDispatched: print(message.iconPropertiesObj)
+    }
+
+    Filter {
         type: ActionTypes.addIcon
         onDispatched: {
             var gameIconsView = gameIconsViewComponent.createObject(mainWindow)
@@ -61,7 +66,6 @@ ComponentEditorStoreTemplate {
         GameIconsView {
             anchors.centerIn: parent
             width: parent.width/2; height: width
-
         }
     }
 }

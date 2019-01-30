@@ -19,8 +19,9 @@ public:
 
     struct GameIconProperties
     {
-        QString name;
         QString data;
+        QString name;
+        QString url;
     };
 
     static GameIconsListModel *instance();
