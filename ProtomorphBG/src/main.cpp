@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 
     //Show splashscreen
     auto splashScreenPixmap = QPixmap{QStringLiteral(":/splashscreen/splashScreen.png")};
-    auto splashScreen = new QSplashScreen{splashScreenPixmap.scaled(splashScreenPixmap.size()), Qt::WindowStaysOnTopHint};
+    auto splashScreen = new QSplashScreen{splashScreenPixmap.scaled(splashScreenPixmap.size())};
     splashScreen->show();
     QApplication::processEvents();
 

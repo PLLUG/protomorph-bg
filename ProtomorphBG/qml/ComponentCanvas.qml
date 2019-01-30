@@ -7,6 +7,7 @@ import QtGraphicalEffects 1.12
 import protomorph.enums 1.0
 
 import "qrc:/stores"
+import "qrc:/custom_controls"
 
 Control {
     id: root
@@ -66,9 +67,8 @@ Control {
             border.width: 2
             z: index
 
-            MouseArea {
+            ItemVisualManipulator {
                 anchors.fill: parent
-                drag.target: parent
             }
         }
     }

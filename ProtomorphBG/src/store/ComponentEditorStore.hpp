@@ -12,7 +12,6 @@ class ComponentEditorStore: public QFStore
     Q_PROPERTY(double width READ width WRITE setWidth NOTIFY widthChanged)
     Q_PROPERTY(QVariantMap background READ background WRITE setBackground NOTIFY backgroundChanged)
     Q_PROPERTY(QVariantMap borders READ borders WRITE setBorders NOTIFY bordersChanged)
-    Q_PROPERTY(QVariantMap icon)
     Q_PROPERTY(Enums::ComponentType componentType READ componentType WRITE setComponentType NOTIFY componentTypeChanged)
 
 public:
