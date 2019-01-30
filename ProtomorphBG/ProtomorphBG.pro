@@ -3,6 +3,12 @@ CONFIG += c++17 ordered
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
+if win32 {
+    CONFIG(release, debug|release) {
+        QMAKE_CXXFLAGS_RELEASE += /O2
+        QMAKE_LFLAGS_RELEASE -= /O1 /O3
+    }
+}
 #SUBMODULES
 FLUX= submodules/quickflux/quickflux.pri
 FONTAWESOMEPATH = submodules/fontawesome.pri/fontawesome.pri

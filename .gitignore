@@ -4,3 +4,13 @@
 *.autosave
 
 *build*/
+
+*.exe
+
+*.dll
+
+*.lib
+
+*.obj
+
+*.qm
