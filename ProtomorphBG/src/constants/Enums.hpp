@@ -22,16 +22,21 @@ public:
         COMPONENT_BOARD,
         COMPONENT_BOX,
         COMPONENT_CARD,
-        COMPONENT_TILE
+        COMPONENT_TILE,
+        COMPONENT_TEMPLATE
     };
     Q_ENUM(ComponentType)
 
     enum class DecorationType
     {
-        DECORATION_ICON,
+        DECORATION_GAME_ICON,
         DECORATION_IMAGE,
         DECORATION_SHAPE,
-        DECORATION_TEXT
+        DECORATION_TEXT,
+        DECORATION_GAME_ICON_TEMPLATE,
+        DECORATION_IMAGE_TEMPLATE,
+        DECORATION_SHAPE_TEMPLATE,
+        DECORATION_TEXT_TEMPLATE
     };
     Q_ENUM(DecorationType)
 };

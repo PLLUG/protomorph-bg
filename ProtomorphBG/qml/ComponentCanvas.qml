@@ -54,6 +54,25 @@ Control {
         }
     }
 
+    contentItem: Repeater {
+        model: 10
+
+        Rectangle {
+            width: 100; height: 100
+            x: root.x + 10 * index
+            y: root.y + 10 * index
+            color: "green"
+            border.color: "blue"
+            border.width: 2
+            z: index
+
+            MouseArea {
+                anchors.fill: parent
+                drag.target: parent
+            }
+        }
+    }
+
     Component {
         id: rectBackgroundComponent
 

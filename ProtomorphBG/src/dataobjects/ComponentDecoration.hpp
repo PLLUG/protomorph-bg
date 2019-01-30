@@ -3,13 +3,20 @@
 
 #include "src/constants/Enums.hpp"
 
+#include <QColor>
 #include <QRectF>
 
 namespace Dataobject {
 struct ComponentDecoration
 {
-    Enums::DecorationType type;
     QRectF boundingRect;
+    qreal rotationAngle;
+    Enums::DecorationType type;
+};
+
+struct GameIconDecoration : public ComponentDecoration {
+    QString gameIconData;
+    QColor fillColor;
 };
 }
 

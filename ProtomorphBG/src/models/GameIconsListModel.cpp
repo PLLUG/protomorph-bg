@@ -4,8 +4,8 @@
 #include <QDirIterator>
 #include <QDebug>
 
- const auto ICONS_DIR_PATH = QStringLiteral(":/gameicons");
- GameIconsListModel::GameIconsPropertiesVector GameIconsListModel::m_gameIcons;
+const auto ICONS_DIR_PATH = QStringLiteral(":/gameicons");
+GameIconsListModel::GameIconsPropertiesVector GameIconsListModel::m_gameIcons;
 
 GameIconsListModel::GameIconsListModel(QObject *parent)
     : QAbstractListModel{parent}
@@ -16,17 +16,16 @@ GameIconsListModel::GameIconsListModel(QObject *parent)
         QDirIterator sourceDirIterator(ICONS_DIR_PATH);
 
         QFile file;
-        auto fileInfo = QFileInfo(file);
-
+        auto fileInfo = QFileInfo{};
         while (sourceDirIterator.hasNext()) {
             file.setFileName(sourceDirIterator.next());
-            fileInfo.refresh();
 
             if(file.open(QFile::ReadOnly))
             {
-            auto svgData = Helper::modifyGameIconSvgColors(QString(file.readAll()));
-            m_gameIcons.emplace_back(std::make_unique<GameIconsListModel::GameIconProperties>(GameIconsListModel::GameIconProperties{svgData, fileInfo.baseName().replace('-', ' '), fileInfo.filePath()}));
-            file.close();
+                fileInfo.setFile(file);
+                auto svgData = Helper::modifyGameIconSvgColors(QString(file.readAll()));
+                m_gameIcons.emplace_back(std::make_unique<GameIconsListModel::GameIconProperties>(GameIconsListModel::GameIconProperties{svgData, fileInfo.baseName().replace('-', ' '), fileInfo.filePath()}));
+                file.close();
             }
         }
     }

@@ -7,6 +7,8 @@ ComponentEditorStore::ComponentEditorStore(QObject *parent)
 {
 }
 
+ComponentEditorStore::~ComponentEditorStore() = default;
+
 double ComponentEditorStore::width() const
 {
     return m_component.sizeInPixels.width();
