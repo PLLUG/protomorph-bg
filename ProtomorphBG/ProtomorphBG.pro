@@ -1,4 +1,4 @@
-QT += qml quick quickcontrols2 svg widgets
+QT += qml quick quickcontrols2 svg widgets xml
 CONFIG += c++17 ordered
 
 DEFINES += QT_DEPRECATED_WARNINGS
@@ -23,7 +23,11 @@ HEADERS += \
     src/dataobjects/ComponentDecoration.hpp \
     src/dataobjects/Component.hpp \
     src/dataobjects/Borders.hpp \
-    src/models/GameIconsListModel.hpp
+    src/models/GameIconsListModel.hpp \
+    src/qmlitems/SvgImage.hpp \
+    src/models/GameIconsFilterModel.hpp \
+    src/qmlitems/SvgCanvas.hpp \
+    src/helpers/GameIconsSvgColorsHelper.hpp
 
 SOURCES += \
         src/main.cpp \
@@ -33,7 +37,11 @@ SOURCES += \
     src/store/ComponentEditorStore.cpp \
     src/helpers/UISizeAdapter.cpp \
     src/helpers/GradientHelper.cpp \
-    src/models/GameIconsListModel.cpp
+    src/models/GameIconsListModel.cpp \
+    src/qmlitems/SvgImage.cpp \
+    src/models/GameIconsFilterModel.cpp \
+    src/qmlitems/SvgCanvas.cpp \
+    src/helpers/GameIconsSvgColorsHelper.cpp
 
 RESOURCES += qml.qrc \
     fonts.qrc \

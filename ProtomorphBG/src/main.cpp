@@ -1,26 +1,39 @@
+#include "src/constants/Enums.hpp"
+#include "src/helpers/QmlHelper.hpp"
+#include "src/helpers/UISizeAdapter.hpp"
+#include "src/models/GameIconsFilterModel.hpp"
+#include "src/models/GameIconsListModel.hpp"
+#include "src/models/SizesListModel.hpp"
+#include "src/qmlitems/SvgCanvas.hpp"
+#include "src/qmlitems/SvgImage.hpp"
+#include "src/store/ComponentEditorStore.hpp"
+
+#include <QuickFlux>
+
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQuickStyle>
 #include <QFontDatabase>
 #include <QIcon>
+#include <QSplashScreen>
+#include <QDesktopWidget>
 
-#include <QuickFlux>
-
-#include "src/constants/Enums.hpp"
-#include "src/helpers/QmlHelper.hpp"
-#include "src/helpers/UISizeAdapter.hpp"
-#include <src/models/GameIconsListModel.hpp>
-#include "src/models/SizesListModel.hpp"
-#include "src/store/ComponentEditorStore.hpp"
+#include <memory>
 
 int main(int argc, char *argv[])
 {
     qputenv("QML_DISABLE_DISK_CACHE", "true");
 
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QCoreApplication::setApplicationName(QStringLiteral("Protomorph BG"));
+    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QApplication::setApplicationName(QStringLiteral("Protomorph BG"));
 
     QApplication app(argc, argv);
+
+    //Show splashscreen
+    auto splashScreenPixmap = QPixmap{QStringLiteral(":/splashscreen/splashScreen.png")};
+    auto splashScreen = new QSplashScreen{splashScreenPixmap.scaled(splashScreenPixmap.size()), Qt::WindowStaysOnTopHint};
+    splashScreen->show();
+    QApplication::processEvents();
 
     //Set application style to material
     QQuickStyle::setStyle(QStringLiteral("Material"));
@@ -35,9 +48,25 @@ int main(int argc, char *argv[])
 
     QApplication::setWindowIcon(QIcon{QStringLiteral(":/icons/protomorph-bg.ico")});
 
+    //Register qml item
+    qmlRegisterType<SvgImage>("protomorph.svgimage", 1, 0, "SvgImage");
+    qmlRegisterType<SvgPainter>("protomorph.svgimage", 1, 0, "SvgPainter");
+
     //Register models
     qmlRegisterType<SizesListModel>("protomorph.sizelistmodel", 1, 0, "SizesListModel");
-    qmlRegisterType<GameIconsListModel>("protomorph.gameiconsmodel", 1, 0, "GameIconsListModel");
+
+    qmlRegisterSingletonType<GameIconsListModel>("protomorph.gameiconsmodel", 1, 0, "GameIconsListModel", [](auto qmlEngine, auto jsEngine) -> QObject* {
+        Q_UNUSED(jsEngine)
+        qmlEngine->setObjectOwnership(GameIconsListModel::instance(), QQmlEngine::CppOwnership);
+        return GameIconsListModel::instance();
+    });
+
+    GameIconsFilterModel::instance()->setSourceModel(GameIconsListModel::instance());
+    qmlRegisterSingletonType<GameIconsFilterModel>("protomorph.gameiconsmodel", 1, 0, "GameIconsFilterModel", [](auto qmlEngine, auto jsEngine) -> QObject* {
+        Q_UNUSED(jsEngine)
+        qmlEngine->setObjectOwnership(GameIconsFilterModel::instance(), QQmlEngine::CppOwnership);
+        return GameIconsFilterModel::instance();
+    });
 
     //Register stores
     qmlRegisterType<ComponentEditorStore>("protomorph.componenteditorstoretemplate", 1, 0, "ComponentEditorStoreTemplate");
@@ -60,6 +89,11 @@ int main(int argc, char *argv[])
 
 
     QQmlApplicationEngine engine;
+    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, [&splashScreen]{
+        splashScreen->hide();
+        splashScreen->close();
+        splashScreen->deleteLater();
+    });
     engine.addImportPath(QStringLiteral("qrc:///")); //Add "qrc://" to QML import path
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 

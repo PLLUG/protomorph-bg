@@ -6,9 +6,12 @@ import protomorph.componenteditorstoretemplate 1.0
 import protomorph.enums 1.0
 
 import "qrc:/actions"
+import "qrc:/components"
 
 ComponentEditorStoreTemplate {
     id: root
+
+    property var mainWindow
 
     Filter {
         type: ActionTypes.changeComponentHeight
@@ -32,7 +35,10 @@ ComponentEditorStoreTemplate {
 
     Filter {
         type: ActionTypes.addIcon
-        onDispatched: print("addIcon")
+        onDispatched: {
+            var gameIconsView = gameIconsViewComponent.createObject(mainWindow)
+            gameIconsView.open()
+        }
     }
 
     Filter {
@@ -48,5 +54,14 @@ ComponentEditorStoreTemplate {
     Filter {
         type: ActionTypes.addText
         onDispatched: print("addText")
+    }
+
+    Component {
+        id: gameIconsViewComponent
+        GameIconsView {
+            anchors.centerIn: parent
+            width: parent.width/2; height: width
+
+        }
     }
 }

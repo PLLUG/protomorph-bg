@@ -2,4 +2,7 @@
     <qresource prefix="/icons">
         <file alias="protomorph-bg.ico">resources/icons/protomorph-bg.ico</file>
     </qresource>
+    <qresource prefix="/splashscreen">
+        <file alias="splashScreen.png">resources/splashscreen/splashScreen.png</file>
+    </qresource>
 </RCC>

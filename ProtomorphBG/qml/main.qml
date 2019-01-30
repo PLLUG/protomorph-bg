@@ -31,6 +31,10 @@ ApplicationWindow {
     SystemStore {
         id: systemStore
         bindSource: AppDispatcher
-        Component.onCompleted: MainStore.systemStore = systemStore
+    }
+
+    Component.onCompleted: {
+        MainStore.systemStore = systemStore
+        MainStore.componentEditorStore.mainWindow = mainWindow
     }
 }
