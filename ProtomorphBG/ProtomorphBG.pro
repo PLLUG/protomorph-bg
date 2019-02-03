@@ -1,7 +1,7 @@
 QT += qml quick quickcontrols2 svg widgets xml
 CONFIG += c++17 ordered
 
-DEFINES += QT_DEPRECATED_WARNINGS
+DEFINES += QT_DEPRECATED_WARNINGS TURNOFFSVGLOADING
 
 win32:CONFIG(release, debug|release) {
         QMAKE_CXXFLAGS_RELEASE += /O2

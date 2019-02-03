@@ -10,6 +10,7 @@ GameIconsListModel::GameIconsPropertiesVector GameIconsListModel::m_gameIcons;
 GameIconsListModel::GameIconsListModel(QObject *parent)
     : QAbstractListModel{parent}
 {
+#ifndef TURNOFFSVGLOADING
     if (m_gameIcons.empty())
     {
         m_gameIcons.reserve(QDir{ICONS_DIR_PATH}.count());
@@ -29,6 +30,7 @@ GameIconsListModel::GameIconsListModel(QObject *parent)
             }
         }
     }
+#endif
 }
 
 GameIconsListModel::~GameIconsListModel() = default;

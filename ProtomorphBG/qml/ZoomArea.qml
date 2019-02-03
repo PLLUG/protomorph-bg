@@ -12,6 +12,8 @@ MouseArea {
     property real maxScale: 2.0
     property real scaleStep: 0.1
 
+    scrollGestureEnabled: true
+
     onWheel: {
         if (root.currentScale >= root.minScale
                 && root.currentScale <= root.maxScale) {

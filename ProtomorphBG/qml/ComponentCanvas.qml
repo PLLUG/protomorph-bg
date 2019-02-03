@@ -55,20 +55,20 @@ Control {
         }
     }
 
-    contentItem: Repeater {
-        model: 10
+    Repeater {
+        model: 1
 
-        Rectangle {
+        anchors.fill: parent
+
+        ItemVisualManipulator {
             width: 100; height: 100
-            x: root.x + 10 * index
-            y: root.y + 10 * index
-            color: "green"
-            border.color: "blue"
-            border.width: 2
-            z: index
 
-            ItemVisualManipulator {
-                anchors.fill: parent
+            contentItem: Rectangle {
+                id: decoration
+
+                color: "green"
+                border.color: "blue"
+                border.width: 2
             }
         }
     }
