@@ -12,7 +12,7 @@
         <file alias="ColorPickerButton.qml">qml/ColorPickerButton.qml</file>
         <file alias="ImagePicker.qml">qml/ImagePicker.qml</file>
         <file alias="GradientPresetsPicker.qml">qml/GradientPresetsPicker.qml</file>
-        <file alias="ItemVisualManipulator.qml">qml/ItemVisualManipulator.qml</file>
+        <file alias="BasicSelectableDecoration.qml">qml/BasicSelectableDecoration.qml</file>
     </qresource>
     <qresource prefix="/screens">
         <file alias="ComponentEditorScreen.qml">qml/ComponentEditorScreen.qml</file>

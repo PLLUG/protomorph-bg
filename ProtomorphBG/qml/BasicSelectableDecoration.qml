@@ -15,10 +15,15 @@ Item {
 
     Rectangle {
         id: borderRect
+
         color: "transparent"
-        anchors.fill: parent
-        anchors.margins: -internal.borderWidth
-        border{
+
+        anchors{
+            fill: parent
+            margins: -internal.borderWidth
+        }
+
+        border {
             color: internal.borderColor
             width: internal.borderWidth
         }
@@ -32,7 +37,6 @@ Item {
             onEntered: cursorShape = Qt.SizeAllCursor
         }
     }
-
 
     Repeater {
         model: internal.resizeSpots
@@ -49,14 +53,23 @@ Item {
                 horizontalCenter: modelData.anchors.horizontalCenter
             }
 
+            readonly property string spotType: modelData.type
             property point previousCoordinates
 
             color: internal.borderColor
             width: internal.spotSideSize; height: internal.spotSideSize
             radius: internal.spotRadius
 
+            Rectangle {
+                anchors{
+                    margins: UISizeAdapter.calculateSize(1)
+                    fill: parent
+                }
+                color: Material.accent
+            }
+
             MouseArea {
-                property string spotType: modelData.type
+
                 anchors.fill: parent
                 cursorShape: modelData.cursorType
                 drag.target: spotRect
@@ -70,54 +83,30 @@ Item {
                     var displacementY = mouseY - spotRect.previousCoordinates.y
                     var displacementX = mouseX - spotRect.previousCoordinates.x
 
-                    switch(spotType) {
-                    case "topLeft":
-                        root.y += displacementY
-                        root.height -= displacementY
-                        root.x += displacementX
-                        root.width -= displacementX
-                        break;
-                    case "topMid":
-                        root.y += displacementY
-                        root.height -= displacementY
-                        break;
-                    case "topRight":
-                        root.y += displacementY
-                        root.height -= displacementY
-                        root.width += displacementX
-                        break;
-                    case "leftMid":
-                        root.x += displacementX
-                        root.width -= displacementX
-                        break;
-                    case "rightMid":
-                        root.width += displacementX
-                        break;
-                    case "bottomLeft":
-                        root.height += displacementY
-                        root.x += displacementX
-                        root.width -= displacementX
-                        break;
-                    case "bottomMid":
-                        root.height += displacementY
-                        break;
-                    case "bottomRight":
-                        root.width += displacementX
-                        root.height += displacementY
-                        break;
+                    var newDecorationRect = internal.getNewSizeFromResizeSpot(spotRect.spotType, displacementX, displacementY)
+
+                    if(newDecorationRect.height > internal.minDecorationSideize) {
+                        root.y = newDecorationRect.y
+                        root.height = newDecorationRect.height
+                    }
+
+                    if(newDecorationRect.width > internal.minDecorationSideize) {
+                        root.x = newDecorationRect.x
+                        root.width = newDecorationRect.width
                     }
                 }
             }
         }
     }
 
-
     QtObject {
         id: internal
-        readonly property color borderColor: Material.background
+        readonly property color borderColor: Qt.darker(Material.background)
         readonly property real borderWidth: UISizeAdapter.calculateSize(3)
-        readonly property real spotSideSize: borderWidth * 3.0
-        readonly property real spotRadius: borderWidth / 1.5
+        readonly property real spotSideSize: borderWidth * 1.5
+        readonly property real spotRadius: spotSideSize / 4.0
+
+        readonly property real minDecorationSideize: UISizeAdapter.calculateSize(15)
 
         property var resizeSpots: [
             {type: "topLeft", anchors: {bottom: root.top, right: root.left}, cursorType: Qt.SizeFDiagCursor},
@@ -129,5 +118,49 @@ Item {
             {type: "bottomMid", anchors: {top: root.bottom, horizontalCenter: root.horizontalCenter}, cursorType: Qt.SizeVerCursor},
             {type: "bottomRight", anchors: {top: root.bottom, left: root.right}, cursorType: Qt.SizeFDiagCursor}
         ]
+
+        function getNewSizeFromResizeSpot(resizeSpotType, displacementX, displacementY) {
+            var newX = root.x; var newY = root.y;
+            var newWidth = root.width; var newHeight = root.height;
+
+            switch(resizeSpotType) {
+            case "topLeft":
+                newY += displacementY
+                newHeight -= displacementY
+                newX += displacementX
+                newWidth -= displacementX
+                break;
+            case "topMid":
+                newY += displacementY
+                newHeight -= displacementY
+                break;
+            case "topRight":
+                newY += displacementY
+                newHeight -= displacementY
+                newWidth += displacementX
+                break;
+            case "leftMid":
+                newX += displacementX
+                newWidth -= displacementX
+                break;
+            case "rightMid":
+                newWidth += displacementX
+                break;
+            case "bottomLeft":
+                newHeight += displacementY
+                newX += displacementX
+                newWidth -= displacementX
+                break;
+            case "bottomMid":
+                newHeight += displacementY
+                break;
+            case "bottomRight":
+                newWidth += displacementX
+                newHeight += displacementY
+                break;
+            }
+
+            return Qt.rect(newX, newY, newWidth, newHeight);
+        }
     }
 }

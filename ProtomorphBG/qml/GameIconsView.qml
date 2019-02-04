@@ -20,7 +20,6 @@ Dialog {
     standardButtons: Dialog.Ok | Dialog.Cancel
     parent: Overlay.overlay
 
-//    width: parent.width/2; height: width
     anchors.centerIn: parent
 
     closePolicy: Popup.NoAutoClose

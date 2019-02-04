@@ -9,12 +9,13 @@ import protomorph.enums 1.0
 import "qrc:/stores"
 import "qrc:/custom_controls"
 
-Control {
+Item {
     id: root
 
-    background: Loader {
+    Loader {
         id: backgroundLoader
         sourceComponent: rectBackgroundComponent
+        anchors.fill: parent
 
         Binding {
             target: backgroundLoader.item
@@ -51,24 +52,6 @@ Control {
                     backgroundLoader.sourceComponent = rectBackgroundComponent
                     break
                 }
-            }
-        }
-    }
-
-    Repeater {
-        model: 1
-
-        anchors.fill: parent
-
-        ItemVisualManipulator {
-            width: 100; height: 100
-
-            contentItem: Rectangle {
-                id: decoration
-
-                color: "green"
-                border.color: "blue"
-                border.width: 2
             }
         }
     }

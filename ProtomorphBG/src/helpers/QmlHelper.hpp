@@ -23,7 +23,6 @@ public slots:
     QString urlToDisplayString(const QUrl &url);
     QStringList getPreseteGradientsList();
     QGradient::Preset getPresetGradient(const QString &pesetName);
-    void resizeQtQuickItem(QQuickItem *item, const QVariantMap &resizeProp);
 
 private:
     explicit QmlHelper(QObject *parent = nullptr);

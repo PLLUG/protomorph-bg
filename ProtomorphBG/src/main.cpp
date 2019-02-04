@@ -18,8 +18,6 @@
 #include <QSplashScreen>
 #include <QDesktopWidget>
 
-#include <memory>
-
 int main(int argc, char *argv[])
 {
     qputenv("QML_DISABLE_DISK_CACHE", "true");

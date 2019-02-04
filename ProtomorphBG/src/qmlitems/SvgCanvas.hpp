@@ -29,9 +29,8 @@ signals:
 private:
     virtual void paint(QPainter *painter) override;
 
-    QString m_content;
     QColor m_imageColor;
-    QSvgRenderer *m_renderer;
+    QString m_content;
 };
 
 #endif // SVGCANVAS_H

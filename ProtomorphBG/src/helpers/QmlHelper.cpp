@@ -54,18 +54,3 @@ QGradient::Preset QmlHelper::getPresetGradient(const QString &pesetName)
 {
     return Helper::getPresetGradient(pesetName);
 }
-
-void QmlHelper::resizeQtQuickItem(QQuickItem *item, const QVariantMap &resizeProp)
-{
-    if (auto x = resizeProp.value(QStringLiteral("x")); !x.isNull()) {
-        auto itemX = item->x();
-        auto itemWidth = item->width();
-        item->setX(itemX + x.toReal());
-        item->setWidth(itemWidth + x.toReal());
-    }
-    if (auto y = resizeProp.value(QStringLiteral("y")); !y.isNull()) {
-        item->setY(item->y() + y.toReal());
-        item->setHeight(item->height() + y.toReal());
-    }
-    item->update();
-}
