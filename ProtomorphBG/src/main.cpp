@@ -4,8 +4,7 @@
 #include "src/models/GameIconsFilterModel.hpp"
 #include "src/models/GameIconsListModel.hpp"
 #include "src/models/SizesListModel.hpp"
-#include "src/qmlitems/SvgCanvas.hpp"
-#include "src/qmlitems/SvgImage.hpp"
+#include "src/qmlitems/SvgPainter.hpp"
 #include "src/store/ComponentEditorStore.hpp"
 
 #include <QuickFlux>
@@ -47,7 +46,6 @@ int main(int argc, char *argv[])
     QApplication::setWindowIcon(QIcon{QStringLiteral(":/icons/protomorph-bg.ico")});
 
     //Register qml item
-    qmlRegisterType<SvgImage>("protomorph.svgimage", 1, 0, "SvgImage");
     qmlRegisterType<SvgPainter>("protomorph.svgimage", 1, 0, "SvgPainter");
 
     //Register models
@@ -67,7 +65,7 @@ int main(int argc, char *argv[])
     });
 
     //Register stores
-    qmlRegisterType<ComponentEditorStore>("protomorph.componenteditorstoretemplate", 1, 0, "ComponentEditorStoreTemplate");
+    qmlRegisterType<ComponentEditorStore>("protomorph.componenteditorstore", 1, 0, "ComponentEditorStore");
 
     //Register singletons
     qmlRegisterSingletonType<Helper::QmlHelper>("protomorph.qmlhelper", 1, 0, "QmlHelper", [](auto qmlEngine, auto jsEngine) -> QObject* {

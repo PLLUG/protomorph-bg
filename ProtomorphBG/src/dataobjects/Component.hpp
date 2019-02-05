@@ -13,11 +13,11 @@
 namespace Dataobject {
 struct Component
 {
-    Enums::ComponentType type;
     std::vector<ComponentDecoration *> componentDecorations;
     Backround background;
     Borders borders;
-    QSizeF sizeInPixels;
+    QSizeF size;
+    Enums::ComponentType type;
 };
 }
 #endif // COMPONENTOBJECT_HPP

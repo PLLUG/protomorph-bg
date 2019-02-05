@@ -7,22 +7,18 @@
 namespace Dataobject {
 struct Borders {
     QColor color;
-    double widthInPixels;
+    double width;
 
     void fillFromQmlType(const QVariantMap &borderProp)
     {
-        color = borderProp.value(QStringLiteral("borderColor")).value<QColor>();
-        widthInPixels = borderProp.value(QStringLiteral("borderWidthInPixels")).value<double>();
-    }
+        auto newColor = borderProp.value(QStringLiteral("borderColor")).value<QColor>();
+        if (newColor != color)
+            color = newColor;
 
-    QVariantMap toQmlType() const
-    {
-        QVariantMap borderProp;
-        borderProp.insert(QStringLiteral("borderColor"), QVariant::fromValue(color));
-        borderProp.insert(QStringLiteral("borderWidthInPixels"), QVariant::fromValue(widthInPixels));
-        return borderProp;
+        auto newWidth = borderProp.value(QStringLiteral("borderWidthInPixels")).value<double>();
+        if(!qFuzzyCompare(newWidth, width))
+            width = newWidth;
     }
-
 };
 }
 

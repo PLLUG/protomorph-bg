@@ -21,20 +21,13 @@ ApplicationWindow {
         id: mainMenuBar
     }
 
-
     StackView {
         anchors.fill: parent
         initialItem: ComponentEditorScreen {
         }
     }
 
-    SystemStore {
-        id: systemStore
-        bindSource: AppDispatcher
-    }
-
-    Component.onCompleted: {
-        MainStore.systemStore = systemStore
-        MainStore.componentEditorStore.mainWindow = mainWindow
+    MainStore {
+        id: mainStore
     }
 }

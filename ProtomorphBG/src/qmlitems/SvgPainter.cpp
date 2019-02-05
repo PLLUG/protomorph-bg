@@ -1,4 +1,4 @@
-#include "src/qmlitems/SvgCanvas.hpp"
+#include "src/qmlitems/SvgPainter.hpp"
 
 #include <QPainter>
 
@@ -44,7 +44,7 @@ void SvgPainter::setImageColor(const QColor& imageColor)
 void SvgPainter::paint(QPainter *painter)
 {
     auto dataWithBackgroundColor = m_content.arg(m_imageColor.name());
-    static QSvgRenderer renderer(this);
+    static QSvgRenderer renderer;
     renderer.load(dataWithBackgroundColor.toUtf8());
     renderer.render(painter, boundingRect());
 }

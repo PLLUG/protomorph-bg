@@ -19,33 +19,33 @@ Item {
 
         Binding {
             target: backgroundLoader.item
-            value: MainStore.componentEditorStore.borders.borderWidthInPixels
+            value: mainStore.componentEditorStore.borderWidth
             property: "border.width"
         }
 
         Binding {
             target: backgroundLoader.item
-            value: MainStore.componentEditorStore.borders.borderColor
+            value: mainStore.componentEditorStore.borderColor
             property: "border.color"
         }
 
         Connections {
             enabled: root.visible
-            target: MainStore.componentEditorStore
-            onBackgroundChanged: {
+            target: mainStore.componentEditorStore
+            onBackgroundTypeChanged: {
                 backgroundLoader.sourceComponent = undefined
-                switch(background.type) {
+                switch(backgroundType) {
                 case Enums.BACKGROUND_COLOR:
                     backgroundLoader.sourceComponent = rectBackgroundComponent
-                    backgroundLoader.item.color = background.value
+                    backgroundLoader.item.color = mainStore.componentEditorStore.backgroundValue
                     break
                 case Enums.BACKGROUND_GRADIENT:
                     backgroundLoader.sourceComponent = rectBackgroundComponent
-                    backgroundLoader.item.gradient = background.value
+                    backgroundLoader.item.gradient = mainStore.componentEditorStore.backgroundValue
                     break
                 case Enums.BACKGROUND_IMAGE:
                     backgroundLoader.sourceComponent = imageBackgroundComponent
-                    backgroundLoader.item.source = background.value
+                    backgroundLoader.item.source = mainStore.componentEditorStore.backgroundValue
                     break
                 case Enums.BACKGROUND_NONE:
                 default:
@@ -53,45 +53,59 @@ Item {
                     break
                 }
             }
-        }
-    }
 
-    Component {
-        id: rectBackgroundComponent
-
-        Rectangle {
-            color: Material.accent
-        }
-    }
-
-    Component {
-        id: imageBackgroundComponent
-
-        Item {
-            property alias border: borderRect.border
-            property alias source: backgroundImage.source
-
-            Image {
-                id: backgroundImage
-                anchors.fill: parent
-                fillMode: Image.PreserveAspectCrop
-                asynchronous: true
-                cache: false
-                mipmap: true
-                smooth: false
+            onBackgroundValueChanged: {
+                switch(mainStore.componentEditorStore.backgroundType) {
+                case Enums.BACKGROUND_COLOR:
+                    backgroundLoader.item.color = mainStore.componentEditorStore.backgroundValue
+                    break
+                case Enums.BACKGROUND_GRADIENT:
+                    backgroundLoader.item.gradient = mainStore.componentEditorStore.backgroundValue
+                    break
+                case Enums.BACKGROUND_IMAGE:
+                    backgroundLoader.item.source = mainStore.componentEditorStore.backgroundValue
+                    break
+                }
             }
+        }
+
+        Component {
+            id: rectBackgroundComponent
 
             Rectangle {
-                id: borderRect
-                color: "transparent"
-                anchors.fill: parent
-                visible: false
+                color: Material.accent
             }
+        }
 
-            OpacityMask {
-                anchors.fill: parent
-                source: borderRect
-                maskSource: backgroundImage
+        Component {
+            id: imageBackgroundComponent
+
+            Item {
+                property alias border: borderRect.border
+                property alias source: backgroundImage.source
+
+                Image {
+                    id: backgroundImage
+                    anchors.fill: parent
+                    fillMode: Image.PreserveAspectCrop
+                    asynchronous: true
+                    cache: false
+                    mipmap: true
+                    smooth: false
+                }
+
+                Rectangle {
+                    id: borderRect
+                    color: "transparent"
+                    anchors.fill: parent
+                    visible: false
+                }
+
+                OpacityMask {
+                    anchors.fill: parent
+                    source: borderRect
+                    maskSource: backgroundImage
+                }
             }
         }
     }

@@ -5,18 +5,16 @@
 
 #include <QColor>
 #include <QRectF>
+#include <QVariant>
 
 namespace Dataobject {
 struct ComponentDecoration
 {
+    QVariant decorationData;
     QRectF boundingRect;
-    qreal rotationAngle;
+    QColor backgroundColor;
+    QColor foregroundColor;
     Enums::DecorationType type;
-};
-
-struct GameIconDecoration : public ComponentDecoration {
-    QString gameIconData;
-    QColor fillColor;
 };
 }
 

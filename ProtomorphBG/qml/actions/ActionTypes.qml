@@ -15,11 +15,4 @@ KeyTable {
     property string addIcon
     property string addShape
     property string addText
-
-    //Component Properties
-    property string changeComponentHeight
-    property string changeComponentWidth
-    property string changeComponentBackground
-    property string changeComponentBorders
-    property string iconSelected
 }

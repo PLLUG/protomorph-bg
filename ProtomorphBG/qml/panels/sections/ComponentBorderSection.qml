@@ -33,7 +33,7 @@ ColumnLayout {
     QtObject {
         id: internal
         readonly property real componentsDefaultHeight: UISizeAdapter.calculateSize(30)
-        readonly property real sliderMaxValue: MainStore.componentEditorStore.width / 2.0
+        readonly property real sliderMaxValue: mainStore.componentEditorStore.width / 2.0
 
         function notifyBordersChanged() {
             ApplicationActions.changeComponentBorders({"borderWidthInPixels": borderWidthSpinbox.value, "borderColor": borderColorPicker.pickedColor})

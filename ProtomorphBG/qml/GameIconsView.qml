@@ -25,7 +25,7 @@ Dialog {
     closePolicy: Popup.NoAutoClose
 
     onAccepted: {
-        ApplicationActions.iconSelected({iconUrl: root.currentIconUrl})
+        ApplicationActions.addDecoration({iconUrl: root.currentIconUrl})
         GameIconsFilterModel.searchPattern = ""
         destroy()
     }

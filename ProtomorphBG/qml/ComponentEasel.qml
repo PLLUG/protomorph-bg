@@ -20,8 +20,8 @@ Page {
 
         ComponentCanvas {
             anchors.centerIn: parent
-            height: MainStore.componentEditorStore.height
-            width: MainStore.componentEditorStore.width
+            height: mainStore.componentEditorStore.height
+            width: mainStore.componentEditorStore.width
 
             scale: easel.currentScale
         }

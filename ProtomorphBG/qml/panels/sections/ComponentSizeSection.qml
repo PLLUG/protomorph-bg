@@ -34,14 +34,14 @@ ColumnLayout {
         id: widthSpinbox
         Layout.fillWidth: true
         Layout.minimumHeight: internal.componentsDefaultHeight
-        onValueChanged: ApplicationActions.changeComponentWidth(widthSpinbox.value)
+        onValueChanged: ApplicationActions.changeComponentSize(Qt.size(widthSpinbox.value, heightSpinbox.value))
     }
 
     SizeSpinBox {
         id: heightSpinbox
         Layout.fillWidth: true
         Layout.minimumHeight: internal.componentsDefaultHeight
-        onValueChanged: ApplicationActions.changeComponentHeight(heightSpinbox.value)
+        onValueChanged: ApplicationActions.changeComponentSize(Qt.size(widthSpinbox.value, heightSpinbox.value))
     }
 
     QtObject {

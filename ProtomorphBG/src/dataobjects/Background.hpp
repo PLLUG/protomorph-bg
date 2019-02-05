@@ -28,35 +28,28 @@ struct Backround
             imagePath = backgroundQmlProp.value(QStringLiteral("value")).value<QString>();
             break;
         case Enums::BackgroundType::BACKGROUND_NONE:
-        default:
-            color = QColor{};
+            color = QColor{Qt::transparent};
             gradientPreset = static_cast<QGradient::Preset>(-1);
             imagePath = QString{};
             break;
         }
     }
 
-    QVariantMap toQmlType() const
+    QVariant colorValueToVariant() const
     {
-        QVariantMap bacgroundProp;
-        bacgroundProp.insert(QStringLiteral("type"), QVariant::fromValue(static_cast<int>(type)));
-
-        switch(type) {
+        switch(type)
+        {
         case Enums::BackgroundType::BACKGROUND_COLOR:
-            bacgroundProp.insert(QStringLiteral("value"), QVariant::fromValue(color));
-            break;
+            return color;
         case Enums::BackgroundType::BACKGROUND_GRADIENT:
-            bacgroundProp.insert(QStringLiteral("value"), QVariant::fromValue(static_cast<int>(gradientPreset)));
-            break;
+            return static_cast<int>(gradientPreset);
         case Enums::BackgroundType::BACKGROUND_IMAGE:
-            bacgroundProp.insert(QStringLiteral("value"), QVariant::fromValue(imagePath));
-            break;
+            return imagePath;
         case Enums::BackgroundType::BACKGROUND_NONE:
-        default:
-            break;
+            return QColor{Qt::transparent};
         }
 
-        return bacgroundProp;
+        return QColor{Qt::transparent};
     }
 };
 }

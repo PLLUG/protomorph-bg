@@ -55,6 +55,23 @@ Pane {
             verticalCenter: parent.verticalCenter
             left: parent.left
         }
+
+        Component.onCompleted: {
+            ComponentDecorationActions.addIcon.triggered.connect(onAddImageTriggered)
+        }
+
+        function onAddImageTriggered() {
+            var gameIconsView = gameIconsViewComponent.createObject(mainWindow)
+            gameIconsView.open()
+        }
+
+        Component {
+            id: gameIconsViewComponent
+            GameIconsView {
+                anchors.centerIn: parent
+                width: parent.width / 2.0; height: width
+            }
+        }
     }
 
     QtObject {
