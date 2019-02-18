@@ -1,6 +1,6 @@
 #include "src/store/ComponentEditorStore.hpp"
 
-#include <unordered_map>
+#include "src/dataobjects/factories/GameIconDecorationFactory.hpp"
 
 using namespace Dataobject;
 
@@ -15,10 +15,15 @@ const static QMap<QString, ComponentEditorStore::SupportedAction> s_supportedAct
 ComponentEditorStore::ComponentEditorStore(QObject *parent)
     : QFStore{parent}
 {
+    initDecorationFactories();
     connect(this, &ComponentEditorStore::dispatched, this, &ComponentEditorStore::onDispatched, Qt::DirectConnection);
 }
 
-ComponentEditorStore::~ComponentEditorStore() = default;
+ComponentEditorStore::~ComponentEditorStore()
+{
+    for(const auto &[type, factory] : m_decorationFactories)
+        delete factory;
+}
 
 double ComponentEditorStore::width() const
 {
@@ -80,6 +85,11 @@ void ComponentEditorStore::setComponentSize(QSizeF componentSize)
         emit heightChanged(m_component.size.height());
 }
 
+void ComponentEditorStore::initDecorationFactories()
+{
+    m_decorationFactories[Enums::DecorationType::DECORATION_GAME_ICON] = new Dataobject::GameIconDecorationFactory();
+}
+
 void ComponentEditorStore::setBackground(const QVariantMap &backgroundProp)
 {
     auto oldBackground = m_component.background;
@@ -126,8 +136,13 @@ void ComponentEditorStore::onDispatched(const QString &type, const QJSValue &mes
 
     switch (supportedAction)
     {
-    case SupportedAction::ADD_DECORATION:
+    case SupportedAction::ADD_DECORATION: {
+        auto newDecoration = messageMap.value(QStringLiteral("propertiesObj")).toMap();
+        if(auto decorationType = newDecoration.value(QStringLiteral("type")); decorationType.isValid())
+            if (auto decorationFactory = m_decorationFactories.at(decorationType.value<Enums::DecorationType>()))
+                m_component.componentDecorations.emplace_back(decorationFactory->createDecoration(newDecoration.value(QStringLiteral("decorationData")).toMap()));
         break;
+    }
     case SupportedAction::CHANGE_COMPONENT_BACKGROUND: {
         auto newBackgroundProperties = messageMap.value(QStringLiteral("propertiesObj")).toMap();
         setBackground(newBackgroundProperties);

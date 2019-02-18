@@ -33,8 +33,6 @@ QVariant ComponentDecorationsListModel::data(const QModelIndex &index, int role)
         return decoration->backgroundColor;
     case ForegroundRole:
         return decoration->foregroundColor;
-    case DecorationDataRole:
-        return decoration->decorationData;
     default:
         break;
     }
@@ -48,8 +46,7 @@ QHash<int, QByteArray> ComponentDecorationsListModel::roleNames() const
         {TypeRole, QByteArrayLiteral("type")},
         {BoundingRectRole, QByteArrayLiteral("boundingRect")},
         {BackgroundRole, QByteArrayLiteral("background")},
-        {ForegroundRole, QByteArrayLiteral("foreground")},
-        {DecorationDataRole, QByteArrayLiteral("decorationData")},
+        {ForegroundRole, QByteArrayLiteral("foreground")}
     };
     return roles;
 }

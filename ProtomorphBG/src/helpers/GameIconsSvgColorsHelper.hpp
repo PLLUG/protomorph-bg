@@ -5,7 +5,7 @@
 
 namespace Helper
 {
-QString modifyGameIconSvgColors(const QString &data);
+QString modifyGameIconSvgColors(const QByteArray &data);
 };
 
 #endif // GAMEICONSSVGCOLORSHELPER_HPP

@@ -81,7 +81,6 @@ ColumnLayout{
         sourceComponent: Image {
             fillMode: Image.PreserveAspectFit
             source: filePathTextField.selectedFilePath
-            asynchronous: true
             cache: false
             mipmap: true
             smooth: false

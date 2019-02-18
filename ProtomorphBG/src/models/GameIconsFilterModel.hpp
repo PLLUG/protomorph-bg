@@ -3,8 +3,6 @@
 
 #include <QSortFilterProxyModel>
 
-
-
 class GameIconsFilterModel : public QSortFilterProxyModel
 {
     Q_OBJECT

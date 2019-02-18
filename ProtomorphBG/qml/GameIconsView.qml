@@ -8,6 +8,7 @@ import QtGraphicalEffects 1.0
 import protomorph.uisizeadapter 1.0
 import protomorph.gameiconsmodel 1.0
 import protomorph.svgimage 1.0
+import protomorph.enums 1.0
 
 import "qrc:/actions"
 
@@ -25,7 +26,7 @@ Dialog {
     closePolicy: Popup.NoAutoClose
 
     onAccepted: {
-        ApplicationActions.addDecoration({iconUrl: root.currentIconUrl})
+        ApplicationActions.addDecoration({type: Enums.DECORATION_GAME_ICON, decorationData:{}})
         GameIconsFilterModel.searchPattern = ""
         destroy()
     }

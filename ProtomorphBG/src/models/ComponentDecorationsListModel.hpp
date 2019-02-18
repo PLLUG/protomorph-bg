@@ -6,7 +6,7 @@
 #include <vector>
 
 namespace Dataobject {
-class ComponentDecoration;
+struct ComponentDecoration;
 }
 
 
@@ -18,7 +18,6 @@ class ComponentDecorationsListModel : public QAbstractListModel
         BoundingRectRole,
         BackgroundRole,
         ForegroundRole,
-        DecorationDataRole
     };
 public:
     explicit ComponentDecorationsListModel(QObject *parent = nullptr);

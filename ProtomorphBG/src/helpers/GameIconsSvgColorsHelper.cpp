@@ -4,7 +4,7 @@
 
 static QDomDocument s_domDocument;
 
-QString Helper::modifyGameIconSvgColors(const QString &data)
+QString Helper::modifyGameIconSvgColors(const QByteArray &data)
 {
     if (!s_domDocument.setContent(data))
         return data;

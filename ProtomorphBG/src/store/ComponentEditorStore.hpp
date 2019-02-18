@@ -2,8 +2,11 @@
 #define COMPONENTEDITORSTORE_HPP
 
 #include "src/dataobjects/Component.hpp"
+#include "src/dataobjects/factories/IDataObjectDecorationFactory.hpp"
 
 #include <qfstore.h>
+
+#include <unordered_map>
 
 class ComponentEditorStore: public QFStore
 {
@@ -54,7 +57,11 @@ private:
     void setComponentType(Enums::ComponentType componentType);
     void setComponentSize(QSizeF componentSize);
 
+    void initDecorationFactories();
+
     Dataobject::Component m_component;
+    //TODO: This is not responsibility of this store, to handle decorations, move this to separate logic
+    std::unordered_map<Enums::DecorationType, Dataobject::IDataObjectDecorationFactory *> m_decorationFactories;
 };
 
 #endif // COMPONENTEDITORSTORE_HPP

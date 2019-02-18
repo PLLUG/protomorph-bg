@@ -22,6 +22,7 @@ public:
         QString data;
         QString name;
         QString url;
+        QString qmlUrl;
     };
 
     static GameIconsListModel *instance();
@@ -35,7 +36,7 @@ private:
     virtual ~GameIconsListModel() override;
 
     using GameIconsPropertiesVector = std::vector<std::unique_ptr<GameIconProperties>>;
-    static GameIconsPropertiesVector m_gameIcons;
+    GameIconsPropertiesVector m_gameIcons;
 };
 
 #endif // GAMEICONSLISTMODEL_HPP

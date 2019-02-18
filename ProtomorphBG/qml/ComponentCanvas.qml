@@ -88,7 +88,6 @@ Item {
                     id: backgroundImage
                     anchors.fill: parent
                     fillMode: Image.PreserveAspectCrop
-                    asynchronous: true
                     cache: false
                     mipmap: true
                     smooth: false

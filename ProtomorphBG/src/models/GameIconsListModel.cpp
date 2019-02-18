@@ -5,28 +5,28 @@
 #include <QDebug>
 
 const auto ICONS_DIR_PATH = QStringLiteral(":/gameicons");
-GameIconsListModel::GameIconsPropertiesVector GameIconsListModel::m_gameIcons;
 
 GameIconsListModel::GameIconsListModel(QObject *parent)
     : QAbstractListModel{parent}
 {
-    if (m_gameIcons.empty())
+    m_gameIcons.reserve(QDir{ICONS_DIR_PATH}.count());
+    QDirIterator sourceDirIterator(ICONS_DIR_PATH);
+
+    QFile file;
+    auto fileInfo = QFileInfo{};
+    while (sourceDirIterator.hasNext())
     {
-        m_gameIcons.reserve(QDir{ICONS_DIR_PATH}.count());
-        QDirIterator sourceDirIterator(ICONS_DIR_PATH);
+        file.setFileName(sourceDirIterator.next());
 
-        QFile file;
-        auto fileInfo = QFileInfo{};
-        while (sourceDirIterator.hasNext()) {
-            file.setFileName(sourceDirIterator.next());
-
-            if(file.open(QFile::ReadOnly))
-            {
-                fileInfo.setFile(file);
-                auto svgData = Helper::modifyGameIconSvgColors(QString(file.readAll()));
-                m_gameIcons.emplace_back(std::make_unique<GameIconsListModel::GameIconProperties>(GameIconsListModel::GameIconProperties{svgData, fileInfo.baseName().replace('-', ' '), fileInfo.filePath()}));
-                file.close();
-            }
+        if(file.open(QFile::ReadOnly))
+        {
+            fileInfo.setFile(file);
+            auto svgData = Helper::modifyGameIconSvgColors(file.readAll());
+            auto svgName = fileInfo.baseName().replace('-', ' ');
+            auto svgPath = fileInfo.filePath();
+            auto svgQmlPath = QStringLiteral("qrc%1").arg(svgPath);
+            m_gameIcons.emplace_back(std::make_unique<GameIconsListModel::GameIconProperties>(GameIconsListModel::GameIconProperties{svgData, svgName, svgPath, svgQmlPath}));
+            file.close();
         }
     }
 }
@@ -64,7 +64,7 @@ QVariant GameIconsListModel::data(const QModelIndex &index, int role) const
     case IconUrlRole:
         return iconProperties->url;
     case IconQmlUrlRole:
-        return QStringLiteral("qrc%1").arg(iconProperties->url);
+        return iconProperties->qmlUrl;
     default:
         break;
     }

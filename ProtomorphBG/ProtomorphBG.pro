@@ -32,7 +32,11 @@ HEADERS += \
     src/models/GameIconsFilterModel.hpp \
     src/helpers/GameIconsSvgColorsHelper.hpp \
     src/models/ComponentDecorationsListModel.hpp \
-    src/qmlitems/SvgPainter.hpp
+    src/qmlitems/SvgPainter.hpp \
+    src/store/DecorationStore.hpp \
+    src/store/GameIconDecorationStore.hpp \
+    src/dataobjects/factories/GameIconDecorationFactory.hpp \
+    src/dataobjects/factories/IDataObjectDecorationFactory.hpp
 
 SOURCES += \
         src/main.cpp \
@@ -47,7 +51,9 @@ SOURCES += \
     src/models/GameIconsFilterModel.cpp \
     src/helpers/GameIconsSvgColorsHelper.cpp \
     src/models/ComponentDecorationsListModel.cpp \
-    src/qmlitems/SvgPainter.cpp
+    src/qmlitems/SvgPainter.cpp \
+    src/store/GameIconDecorationStore.cpp \
+    src/dataobjects/factories/GameIconDecorationFactory.cpp
 
 RESOURCES += qml.qrc \
     fonts.qrc \
