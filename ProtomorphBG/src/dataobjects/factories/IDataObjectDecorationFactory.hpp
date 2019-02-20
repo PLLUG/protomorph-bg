@@ -5,13 +5,15 @@
 
 #include <QVariantMap>
 
+#include <memory>
+
 namespace Dataobject {
 class IDataObjectDecorationFactory
 {
 public:
     virtual ~IDataObjectDecorationFactory() = default;
 
-    virtual ComponentDecoration *createDecoration(const QVariantMap &decorationData) const = 0;
+    virtual std::unique_ptr<ComponentDecoration> createDecoration(const QVariantMap &decorationData) const = 0;
 };
 }
 

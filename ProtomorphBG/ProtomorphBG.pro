@@ -35,7 +35,8 @@ HEADERS += \
     src/store/DecorationStore.hpp \
     src/store/GameIconDecorationStore.hpp \
     src/dataobjects/factories/GameIconDecorationFactory.hpp \
-    src/dataobjects/factories/IDataObjectDecorationFactory.hpp
+    src/dataobjects/factories/IDataObjectDecorationFactory.hpp \
+    src/store/factories/IDecorationStoreFactory.hpp
 
 SOURCES += \
         src/main.cpp \

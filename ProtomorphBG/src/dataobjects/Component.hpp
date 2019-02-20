@@ -8,12 +8,15 @@
 
 #include <QSizeF>
 
+#include <memory>
 #include <vector>
 
 namespace Dataobject {
 struct Component
 {
-    std::vector<ComponentDecoration *> componentDecorations;
+    using Decorations = std::vector<std::unique_ptr<ComponentDecoration>>;
+
+    Decorations componentDecorations;
     Backround background;
     Borders borders;
     QSizeF size;
