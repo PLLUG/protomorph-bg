@@ -1,5 +1,4 @@
 #include "src/models/GameIconsListModel.hpp"
-#include "src/helpers/GameIconsSvgColorsHelper.hpp"
 
 #include <QDirIterator>
 #include <QDebug>
@@ -21,7 +20,7 @@ GameIconsListModel::GameIconsListModel(QObject *parent)
         if(file.open(QFile::ReadOnly))
         {
             fileInfo.setFile(file);
-            auto svgData = Helper::modifyGameIconSvgColors(file.readAll());
+            auto svgData = file.readAll();
             auto svgName = fileInfo.baseName().replace('-', ' ');
             auto svgPath = fileInfo.filePath();
             auto svgQmlPath = QStringLiteral("qrc%1").arg(svgPath);
