@@ -1,28 +1,23 @@
 #include "src/store/ComponentEditorStore.hpp"
 
-#include "src/dataobjects/factories/GameIconDecorationFactory.hpp"
+#include "src/dataobjects/factories/DecorationProducer.hpp"
 
 using namespace Dataobject;
 
-const static QMap<QString, ComponentEditorStore::SupportedAction> s_supportedActionsMap
-    {
-        {QStringLiteral("addDecoration"), ComponentEditorStore::SupportedAction::ADD_DECORATION},
-        {QStringLiteral("changeComponentBackground"), ComponentEditorStore::SupportedAction::CHANGE_COMPONENT_BACKGROUND},
-        {QStringLiteral("changeComponentBorders"), ComponentEditorStore::SupportedAction::CHANGE_COMPONENT_BORDERS},
-        {QStringLiteral("changeComponentSize"), ComponentEditorStore::SupportedAction::CHANGE_COMPONENT_SIZE}
-    };
-
 ComponentEditorStore::ComponentEditorStore(QObject *parent)
     : QFStore{parent}
+    , m_decorationProducer{std::make_unique<DecorationProducer>()}
 {
-    initDecorationFactories();
+    m_supportedActionsMap = {{QStringLiteral("addDecoration"), SupportedAction::ADD_DECORATION},
+                             {QStringLiteral("changeComponentBackground"), SupportedAction::CHANGE_COMPONENT_BACKGROUND},
+                             {QStringLiteral("changeComponentBorders"), SupportedAction::CHANGE_COMPONENT_BORDERS},
+                             {QStringLiteral("changeComponentSize"), SupportedAction::CHANGE_COMPONENT_SIZE}};
+
     connect(this, &ComponentEditorStore::dispatched, this, &ComponentEditorStore::onDispatched, Qt::DirectConnection);
 }
 
 ComponentEditorStore::~ComponentEditorStore()
 {
-    for(const auto &[type, factory] : m_decorationFactories)
-        delete factory;
 }
 
 ComponentEditorStore *ComponentEditorStore::instance()
@@ -91,11 +86,6 @@ void ComponentEditorStore::setComponentSize(QSizeF componentSize)
         emit heightChanged(m_component.size.height());
 }
 
-void ComponentEditorStore::initDecorationFactories()
-{
-    m_decorationFactories[Enums::DecorationType::DECORATION_GAME_ICON] = new Dataobject::GameIconDecorationFactory();
-}
-
 void ComponentEditorStore::setBackground(const QVariantMap &backgroundProp)
 {
     auto oldBackground = m_component.background;
@@ -137,7 +127,7 @@ void ComponentEditorStore::setBorders(const QVariantMap &bordersProp)
 
 void ComponentEditorStore::onDispatched(const QString &type, const QJSValue &message)
 {
-    auto supportedAction = s_supportedActionsMap.value(type);
+    auto supportedAction = m_supportedActionsMap.value(type);
     auto messageMap = message.toVariant().toMap();
 
     switch (supportedAction)
@@ -145,8 +135,10 @@ void ComponentEditorStore::onDispatched(const QString &type, const QJSValue &mes
     case SupportedAction::ADD_DECORATION: {
         auto newDecoration = messageMap.value(QStringLiteral("propertiesObj")).toMap();
         if(auto decorationType = newDecoration.value(QStringLiteral("type")); decorationType.isValid())
-            if (auto decorationFactory = m_decorationFactories.at(decorationType.value<Enums::DecorationType>()))
-                m_component.componentDecorations.emplace_back(decorationFactory->createDecoration(newDecoration.value(QStringLiteral("decorationData")).toMap()));
+        {
+            auto decorationData = newDecoration.value(QStringLiteral("decorationData")).toMap();
+            m_component.componentDecorations.emplace_back(m_decorationProducer->createDecoration(decorationType.value<Enums::DecorationType>(), decorationData));
+        }
         break;
     }
     case SupportedAction::CHANGE_COMPONENT_BACKGROUND: {

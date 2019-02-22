@@ -2,11 +2,13 @@
 #define COMPONENTEDITORSTORE_HPP
 
 #include "src/dataobjects/Component.hpp"
-#include "src/dataobjects/factories/IDataObjectDecorationFactory.hpp"
 
 #include <qfstore.h>
 
+#include <memory>
 #include <unordered_map>
+
+class DecorationProducer;
 
 class ComponentEditorStore: public QFStore
 {
@@ -19,7 +21,6 @@ class ComponentEditorStore: public QFStore
     Q_PROPERTY(QVariant backgroundValue READ backgroundValue NOTIFY backgroundValueChanged)
     Q_PROPERTY(Enums::ComponentType componentType READ componentType WRITE setComponentType NOTIFY componentTypeChanged)
 
-public:
     enum class SupportedAction
     {
         ADD_DECORATION,
@@ -28,6 +29,7 @@ public:
         CHANGE_COMPONENT_SIZE
     };
 
+public:
     static ComponentEditorStore *instance();
 
     double width() const;
@@ -59,11 +61,10 @@ private:
     void setComponentType(Enums::ComponentType componentType);
     void setComponentSize(QSizeF componentSize);
 
-    void initDecorationFactories();
+    QMap<QString, ComponentEditorStore::SupportedAction> m_supportedActionsMap;
+    std::unique_ptr<DecorationProducer> m_decorationProducer;
 
     Dataobject::Component m_component;
-    //TODO: This is not responsibility of this store, to handle decorations, move this to separate logic
-    std::unordered_map<Enums::DecorationType, Dataobject::IDataObjectDecorationFactory *> m_decorationFactories;
 };
 
 #endif // COMPONENTEDITORSTORE_HPP
