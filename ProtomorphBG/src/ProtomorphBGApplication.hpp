@@ -3,6 +3,8 @@
 
 #include <QApplication>
 
+class ComponentEditorStore;
+class QFAppDispatcher;
 class QQmlApplicationEngine;
 class QSplashScreen;
 
@@ -20,6 +22,7 @@ private:
     void registerQmlComponents();
 
     QQmlApplicationEngine *m_engine{};
+    QFAppDispatcher *m_appDispatcher{};
     QSplashScreen *m_splashScreen{};
 };
 

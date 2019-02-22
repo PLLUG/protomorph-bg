@@ -4,7 +4,7 @@
 
 GameIconDecorationStore::GameIconDecorationStore(Dataobject::GameIconDecoration &gameIconDecoration, QObject *parent)
     : DecorationStore{parent}
-      , m_gameIconDecoration{gameIconDecoration}
+    , m_gameIconDecoration{gameIconDecoration}
 {
 }
 

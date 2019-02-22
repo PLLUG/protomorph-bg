@@ -28,8 +28,7 @@ public:
         CHANGE_COMPONENT_SIZE
     };
 
-    explicit ComponentEditorStore(QObject *parent = nullptr);
-    virtual ~ComponentEditorStore() override;
+    static ComponentEditorStore *instance();
 
     double width() const;
     double height() const;
@@ -52,6 +51,9 @@ private slots:
     void onDispatched(const QString &type, const QJSValue &message);
 
 private:
+    explicit ComponentEditorStore(QObject *parent = nullptr);
+    virtual ~ComponentEditorStore() override;
+
     void setBackground(const QVariantMap &backgroundProp);
     void setBorders(const QVariantMap &bordersProp);
     void setComponentType(Enums::ComponentType componentType);

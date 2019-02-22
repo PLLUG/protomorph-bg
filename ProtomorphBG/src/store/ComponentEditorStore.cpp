@@ -25,6 +25,12 @@ ComponentEditorStore::~ComponentEditorStore()
         delete factory;
 }
 
+ComponentEditorStore *ComponentEditorStore::instance()
+{
+    static ComponentEditorStore instance;
+    return &instance;
+}
+
 double ComponentEditorStore::width() const
 {
     return m_component.size.width();

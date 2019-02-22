@@ -8,12 +8,8 @@ Store {
     id: root
     bindSource: AppDispatcher
 
-    property alias componentEditorStore: componentEditorStore
+    property Store componentEditorStore: ComponentEditorStore
     property alias systemStore: systemStore
-
-    ComponentEditorStore{
-        id: componentEditorStore
-    }
 
     SystemStore {
         id: systemStore

@@ -21,6 +21,7 @@
 ProtomorphBGApplication::ProtomorphBGApplication(int argc, char *argv[])
     : QApplication{argc, argv}
     , m_engine{new QQmlApplicationEngine{this}}
+    , m_appDispatcher{QFAppDispatcher::instance(m_engine)}
     , m_splashScreen{new QSplashScreen}
 {
     configureApplicationStyle();
@@ -81,7 +82,12 @@ void ProtomorphBGApplication::registerQmlComponents()
     });
 
     //Register stores
-    qmlRegisterType<ComponentEditorStore>("protomorph.componenteditorstore", 1, 0, "ComponentEditorStore");
+    ComponentEditorStore::instance()->setBindSource(m_appDispatcher);
+    qmlRegisterSingletonType<ComponentEditorStore>("protomorph.componenteditorstore", 1, 0, "ComponentEditorStore", [](auto qmlEngine, auto jsEngine) -> QObject* {
+        Q_UNUSED(jsEngine)
+        qmlEngine->setObjectOwnership(ComponentEditorStore::instance(), QQmlEngine::CppOwnership);
+        return ComponentEditorStore::instance();
+    });
 
     //Register singletons
     qmlRegisterSingletonType<Helper::QmlHelper>("protomorph.qmlhelper", 1, 0, "QmlHelper", [](auto qmlEngine, auto jsEngine) -> QObject* {
@@ -108,8 +114,7 @@ bool ProtomorphBGApplication::runQmlEngine()
     if (m_engine->rootObjects().isEmpty())
         return false;
 
-    auto dispatcher = QFAppDispatcher::instance(m_engine);
-    dispatcher->dispatch(QStringLiteral("startApp"));
+    m_appDispatcher->dispatch(QStringLiteral("startApp"));
 
     return true;
 }
