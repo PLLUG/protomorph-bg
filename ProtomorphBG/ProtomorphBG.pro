@@ -36,7 +36,8 @@ HEADERS += \
     src/store/GameIconDecorationStore.hpp \
     src/dataobjects/factories/GameIconDecorationFactory.hpp \
     src/dataobjects/factories/IDataObjectDecorationFactory.hpp \
-    src/store/factories/IDecorationStoreFactory.hpp
+    src/store/factories/IDecorationStoreFactory.hpp \
+    src/ProtomorphBGApplication.hpp
 
 SOURCES += \
         src/main.cpp \
@@ -52,7 +53,8 @@ SOURCES += \
     src/models/ComponentDecorationsListModel.cpp \
     src/qmlitems/SvgPainter.cpp \
     src/store/GameIconDecorationStore.cpp \
-    src/dataobjects/factories/GameIconDecorationFactory.cpp
+    src/dataobjects/factories/GameIconDecorationFactory.cpp \
+    src/ProtomorphBGApplication.cpp
 
 RESOURCES += qml.qrc \
     fonts.qrc \
