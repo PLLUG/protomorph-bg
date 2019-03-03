@@ -1,9 +1,9 @@
 [submodule "ProtomorphBG/submodules/fontawesome.pri"]
 	path = ProtomorphBG/submodules/fontawesome.pri
 	url = https://github.com/Guitarheroua/fontawesome.pri.git
-[submodule "ProtomorphBG/submodules/icons"]
-	path = ProtomorphBG/submodules/icons
-	url = https://github.com/Guitarheroua/icons.git
+[submodule "ProtomorphBG/submodules/protomorph-bg-icons"]
+	path = ProtomorphBG/submodules/protomorph-bg-icons
+	url = https://github.com/Guitarheroua/protomorph-bg-icons.git
 [submodule "ProtomorphBG/submodules/quickflux"]
 	path = ProtomorphBG/submodules/quickflux
 	url = https://github.com/Guitarheroua/quickflux.git
