@@ -1,6 +1,7 @@
 #include "src/ProtomorphBGApplication.hpp"
 
 #include "src/constants/Enums.hpp"
+#include "src/dataobjects/EditorComponent.hpp"
 #include "src/helpers/QmlHelper.hpp"
 #include "src/helpers/UISizeAdapter.hpp"
 #include "src/models/GameIconsFilterModel.hpp"
@@ -23,6 +24,7 @@ ProtomorphBGApplication::ProtomorphBGApplication(int argc, char *argv[])
     , m_engine{new QQmlApplicationEngine{this}}
     , m_appDispatcher{QFAppDispatcher::instance(m_engine)}
     , m_splashScreen{new QSplashScreen}
+    , m_component{std::make_shared<Dataobject::EditorComponent>()}
 {
     configureApplicationStyle();
     initSplashScreen();
@@ -82,6 +84,7 @@ void ProtomorphBGApplication::registerQmlComponents()
     });
 
     //Register stores
+    ComponentEditorStore::instance()->setComponent(m_component);
     ComponentEditorStore::instance()->setBindSource(m_appDispatcher);
     qmlRegisterSingletonType<ComponentEditorStore>("protomorph.componenteditorstore", 1, 0, "ComponentEditorStore", [](auto qmlEngine, auto jsEngine) -> QObject* {
         Q_UNUSED(jsEngine)

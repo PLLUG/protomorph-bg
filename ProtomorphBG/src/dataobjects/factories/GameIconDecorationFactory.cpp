@@ -9,8 +9,10 @@ GameIconDecorationFactory::~GameIconDecorationFactory() = default;
 
 std::unique_ptr<ComponentDecoration> GameIconDecorationFactory::createDecoration(const QVariantMap &decorationData) const
 {
-    Q_UNUSED(decorationData)
-    return std::make_unique<GameIconDecoration>();
+    auto gameIconDecoration = std::make_unique<GameIconDecoration>();
+    gameIconDecoration->iconData = decorationData.value(QStringLiteral("iconData")).toString();
+    gameIconDecoration->iconName = decorationData.value(QStringLiteral("iconName")).toString();
+    return std::move(gameIconDecoration);
 }
 
 std::unique_ptr<DecorationStore> GameIconDecorationFactory::createDecorationStore(ComponentDecoration &componentDecoraton)

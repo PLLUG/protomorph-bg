@@ -15,8 +15,6 @@ import "qrc:/actions"
 Dialog {
     id: root
 
-    property string currentIconUrl: ""
-
     modal: true; focus: true;
     standardButtons: Dialog.Ok | Dialog.Cancel
     parent: Overlay.overlay
@@ -26,7 +24,9 @@ Dialog {
     closePolicy: Popup.NoAutoClose
 
     onAccepted: {
-        ApplicationActions.addDecoration({type: Enums.DECORATION_GAME_ICON, decorationData:{}})
+        ApplicationActions.addDecoration({type: Enums.DECORATION_GAME_ICON,
+                                          decorationData:{ iconData: internal.currentIconData,
+                                                           iconName: internal.currentIconName}})
         GameIconsFilterModel.searchPattern = ""
         destroy()
     }
@@ -104,7 +104,8 @@ Dialog {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    root.currentIconUrl = iconUrlRole
+                    internal.currentIconData = iconDataRole
+                    internal.currentIconName = iconNameRole
                     gridView.currentIndex = index
                 }
             }
@@ -124,6 +125,9 @@ Dialog {
             readonly property real gridViewDefaultHeight: gridView.width
             readonly property real defaultMargin: UISizeAdapter.calculateSize(5)
             readonly property real selectionBorderWidth: UISizeAdapter.calculateSize(3)
+
+            property string currentIconData: ""
+            property string currentIconName: ""
         }
     }
 }

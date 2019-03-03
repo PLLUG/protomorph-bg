@@ -1,5 +1,6 @@
 #include "src/store/ComponentEditorStore.hpp"
 
+#include "src/dataobjects/EditorComponent.hpp"
 #include "src/dataobjects/factories/DecorationProducer.hpp"
 
 using namespace Dataobject;
@@ -26,87 +27,92 @@ ComponentEditorStore *ComponentEditorStore::instance()
     return &instance;
 }
 
+void ComponentEditorStore::setComponent(std::shared_ptr<Dataobject::EditorComponent> &component)
+{
+    m_component = component;
+}
+
 double ComponentEditorStore::width() const
 {
-    return m_component.size.width();
+    return m_component->size.width();
 }
 
 double ComponentEditorStore::height() const
 {
-    return m_component.size.height();
+    return m_component->size.height();
 }
 
 Enums::ComponentType ComponentEditorStore::componentType() const
 {
-    return m_component.type;
+    return m_component->type;
 }
 
 Enums::BackgroundType ComponentEditorStore::backgroundType() const
 {
-    return m_component.background.type;
+    return m_component->background.type;
 }
 
 QVariant ComponentEditorStore::backgroundValue() const
 {
-    return m_component.background.colorValueToVariant();
+    return m_component->background.colorValueToVariant();
 }
 
 double ComponentEditorStore::borderWidth() const
 {
-    return m_component.borders.width;
+    return m_component->borders.width;
 }
 
 QColor ComponentEditorStore::borderColor() const
 {
-    return m_component.borders.color;
+    return m_component->borders.color;
 }
 
 void ComponentEditorStore::setComponentType(Enums::ComponentType componentType)
 {
-    if (m_component.type == componentType)
+    if (m_component->type == componentType)
         return;
 
-    m_component.type = componentType;
-    emit componentTypeChanged(m_component.type);
+    m_component->type = componentType;
+    emit componentTypeChanged(m_component->type);
 }
 
 void ComponentEditorStore::setComponentSize(QSizeF componentSize)
 {
-    if (m_component.size == componentSize)
+    if (m_component->size == componentSize)
         return;
 
-    auto oldSize = m_component.size;
+    auto oldSize = m_component->size;
 
-    m_component.size = componentSize;
+    m_component->size = componentSize;
 
-    if (!qFuzzyCompare(oldSize.width(), m_component.size.width()))
-        emit widthChanged(m_component.size.width());
+    if (!qFuzzyCompare(oldSize.width(), m_component->size.width()))
+        emit widthChanged(m_component->size.width());
 
-    if (!qFuzzyCompare(oldSize.height(), m_component.size.height()))
-        emit heightChanged(m_component.size.height());
+    if (!qFuzzyCompare(oldSize.height(), m_component->size.height()))
+        emit heightChanged(m_component->size.height());
 }
 
 void ComponentEditorStore::setBackground(const QVariantMap &backgroundProp)
 {
-    auto oldBackground = m_component.background;
-    m_component.background.fillFromQmlType(backgroundProp);
+    auto oldBackground = m_component->background;
+    m_component->background.fillFromQmlType(backgroundProp);
 
-    if (oldBackground.type != m_component.background.type)
-        emit backgroundTypeChanged(m_component.background.type);
+    if (oldBackground.type != m_component->background.type)
+        emit backgroundTypeChanged(m_component->background.type);
 
-    switch(m_component.background.type)
+    switch(m_component->background.type)
     {
     case Enums::BackgroundType::BACKGROUND_COLOR:
-        if (oldBackground.color != m_component.background.color)
-            emit backgroundValueChanged(m_component.background.colorValueToVariant());
+        if (oldBackground.color != m_component->background.color)
+            emit backgroundValueChanged(m_component->background.colorValueToVariant());
         break;
     case Enums::BackgroundType::BACKGROUND_GRADIENT:
-        if (oldBackground.gradientPreset  != m_component.background.gradientPreset)
-            emit backgroundValueChanged(m_component.background.colorValueToVariant());
+        if (oldBackground.gradientPreset  != m_component->background.gradientPreset)
+            emit backgroundValueChanged(m_component->background.colorValueToVariant());
         break;
     case Enums::BackgroundType::BACKGROUND_IMAGE:
-        if (oldBackground.imagePath != m_component.background.imagePath)
-            emit backgroundValueChanged(m_component.background.colorValueToVariant());
+        if (oldBackground.imagePath != m_component->background.imagePath)
+            emit backgroundValueChanged(m_component->background.colorValueToVariant());
         break;
     case Enums::BackgroundType::BACKGROUND_NONE:
         break;
@@ -115,14 +121,14 @@ void ComponentEditorStore::setBackground(const QVariantMap &backgroundProp)
 
 void ComponentEditorStore::setBorders(const QVariantMap &bordersProp)
 {
-    auto oldBorders = m_component.borders;
-    m_component.borders.fillFromQmlType(bordersProp);
+    auto oldBorders = m_component->borders;
+    m_component->borders.fillFromQmlType(bordersProp);
 
-    if(!qFuzzyCompare(oldBorders.width, m_component.borders.width))
-        emit borderWidthChanged(m_component.borders.width);
+    if(!qFuzzyCompare(oldBorders.width, m_component->borders.width))
+        emit borderWidthChanged(m_component->borders.width);
 
-    if(oldBorders.color != m_component.borders.color)
-        emit borderColorChanged(m_component.borders.color);
+    if(oldBorders.color != m_component->borders.color)
+        emit borderColorChanged(m_component->borders.color);
 }
 
 void ComponentEditorStore::onDispatched(const QString &type, const QJSValue &message)
@@ -137,7 +143,14 @@ void ComponentEditorStore::onDispatched(const QString &type, const QJSValue &mes
         if(auto decorationType = newDecoration.value(QStringLiteral("type")); decorationType.isValid())
         {
             auto decorationData = newDecoration.value(QStringLiteral("decorationData")).toMap();
-            m_component.componentDecorations.emplace_back(m_decorationProducer->createDecoration(decorationType.value<Enums::DecorationType>(), decorationData));
+            auto decorationTypeEnum = decorationType.value<Enums::DecorationType>();
+            auto decoration = m_decorationProducer->createDecoration(decorationTypeEnum, decorationData);
+
+            decoration->boundingRect = QRectF{QPointF{m_component->size.width() / 2.0, m_component->size.height() / 2.0},
+                                              m_component->size / 4.0};
+
+            m_component->componentDecorations.emplace_back(std::move(decoration));
+            m_decorationStores.emplace_back(m_decorationProducer->createDecorationStore(decorationTypeEnum, *m_component->componentDecorations.back()));
         }
         break;
     }

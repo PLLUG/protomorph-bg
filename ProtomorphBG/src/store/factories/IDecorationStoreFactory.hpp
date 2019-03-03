@@ -1,11 +1,13 @@
 #ifndef IDECORATIONSTOREFACTORY_HPP
 #define IDECORATIONSTOREFACTORY_HPP
 
-#include <src/dataobjects/ComponentDecoration.hpp>
-#include "src/store/DecorationStore.hpp"
-
 #include <memory>
 
+#include "src/store/DecorationStore.hpp"
+
+namespace Dataobject {
+struct ComponentDecoration;
+}
 
 class IDecorationStoreFactory
 {

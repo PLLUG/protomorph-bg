@@ -25,7 +25,6 @@ HEADERS += \
     src/helpers/GradientHelper.hpp \
     src/dataobjects/Background.hpp \
     src/dataobjects/ComponentDecoration.hpp \
-    src/dataobjects/Component.hpp \
     src/dataobjects/Borders.hpp \
     src/models/GameIconsListModel.hpp \
     src/qmlitems/SvgImage.hpp \
@@ -38,7 +37,8 @@ HEADERS += \
     src/dataobjects/factories/IDataObjectDecorationFactory.hpp \
     src/store/factories/IDecorationStoreFactory.hpp \
     src/ProtomorphBGApplication.hpp \
-    src/dataobjects/factories/DecorationProducer.hpp
+    src/dataobjects/factories/DecorationProducer.hpp \
+    src/dataobjects/EditorComponent.hpp
 
 SOURCES += \
         src/main.cpp \

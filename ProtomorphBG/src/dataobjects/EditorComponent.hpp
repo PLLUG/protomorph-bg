@@ -12,7 +12,7 @@
 #include <vector>
 
 namespace Dataobject {
-struct Component
+struct EditorComponent
 {
     using Decorations = std::vector<std::unique_ptr<ComponentDecoration>>;
 
