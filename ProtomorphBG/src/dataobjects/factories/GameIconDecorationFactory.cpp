@@ -2,12 +2,10 @@
 
 #include "src/store/GameIconDecorationStore.hpp"
 
-using namespace Dataobject;
-
 GameIconDecorationFactory::GameIconDecorationFactory() = default;
 GameIconDecorationFactory::~GameIconDecorationFactory() = default;
 
-std::unique_ptr<ComponentDecoration> GameIconDecorationFactory::createDecoration(const QVariantMap &decorationData) const
+std::unique_ptr<DecorationComponent> GameIconDecorationFactory::createDecoration(const QVariantMap &decorationData) const
 {
     auto gameIconDecoration = std::make_unique<GameIconDecoration>();
     gameIconDecoration->iconData = decorationData.value(QStringLiteral("iconData")).toString();
@@ -15,7 +13,7 @@ std::unique_ptr<ComponentDecoration> GameIconDecorationFactory::createDecoration
     return std::move(gameIconDecoration);
 }
 
-std::unique_ptr<DecorationStore> GameIconDecorationFactory::createDecorationStore(ComponentDecoration &componentDecoraton)
+std::unique_ptr<DecorationStore> GameIconDecorationFactory::createDecorationStore(DecorationComponent &componentDecoraton)
 {
     auto gameIconDecoration = static_cast<GameIconDecoration &>(componentDecoraton);
     return std::make_unique<GameIconDecorationStore>(gameIconDecoration);

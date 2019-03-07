@@ -4,8 +4,6 @@
 GameIconsFilterModel::GameIconsFilterModel(QObject *parent)
     : QSortFilterProxyModel{parent}
 {
-    connect(this, &GameIconsFilterModel::searchPatternChanged,
-            this, &GameIconsFilterModel::invalidate, Qt::UniqueConnection);
 }
 
 GameIconsFilterModel::~GameIconsFilterModel() = default;
@@ -27,7 +25,8 @@ void GameIconsFilterModel::setSearchPattern(QString searchPattern)
         return;
 
     m_searchPattern = searchPattern;
-    emit searchPatternChanged(m_searchPattern);
+
+    invalidate();
 }
 
 bool GameIconsFilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const

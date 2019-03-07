@@ -5,19 +5,16 @@
 
 #include <vector>
 
-namespace Dataobject {
-struct ComponentDecoration;
-}
-
+class DecorationStore;
 
 class ComponentDecorationsListModel : public QAbstractListModel
 {
     Q_OBJECT
     enum ComponentDecorationRole {
         TypeRole = Qt::UserRole + 1,
-        BoundingRectRole,
-        BackgroundRole,
-        ForegroundRole,
+        DecorationStoreRole,
+        SelectedRole,
+        ZOrderRole
     };
 public:
     explicit ComponentDecorationsListModel(QObject *parent = nullptr);
@@ -27,7 +24,7 @@ private:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     virtual QHash<int, QByteArray> roleNames() const override;
 
-    std::vector<Dataobject::ComponentDecoration *> m_componentDecorations;
+    std::vector<std::unique_ptr<DecorationStore>> m_componentDecorations;
 };
 
 #endif // COMPONENTDECORATIONSLISTMODEL_HPP

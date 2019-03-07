@@ -12,7 +12,7 @@ GameIconsListModel::GameIconsListModel(QObject *parent)
     QDirIterator sourceDirIterator(ICONS_DIR_PATH);
 
     QFile file;
-    auto fileInfo = QFileInfo{};
+    QFileInfo fileInfo;
     while (sourceDirIterator.hasNext())
     {
         file.setFileName(sourceDirIterator.next());

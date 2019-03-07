@@ -4,17 +4,16 @@
 #include "src/constants/Enums.hpp"
 #include "src/dataobjects/Background.hpp"
 #include "src/dataobjects/Borders.hpp"
-#include "src/dataobjects/ComponentDecoration.hpp"
+#include "src/dataobjects/DecorationComponent.hpp"
 
 #include <QSizeF>
 
 #include <memory>
 #include <vector>
 
-namespace Dataobject {
 struct EditorComponent
 {
-    using Decorations = std::vector<std::unique_ptr<ComponentDecoration>>;
+    using Decorations = std::vector<std::unique_ptr<DecorationComponent>>;
 
     Decorations componentDecorations;
     Backround background;
@@ -22,5 +21,5 @@ struct EditorComponent
     QSizeF size;
     Enums::ComponentType type;
 };
-}
+
 #endif // COMPONENTOBJECT_HPP

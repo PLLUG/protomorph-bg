@@ -3,11 +3,8 @@
 
 #include <QApplication>
 
-namespace Dataobject {
-struct EditorComponent;
-}
-
 class ComponentEditorStore;
+struct EditorComponent;
 class QFAppDispatcher;
 class QQmlApplicationEngine;
 class QSplashScreen;
@@ -30,7 +27,7 @@ private:
     QSplashScreen *m_splashScreen{};
 
     //TODO: Component member is temporary here, while data serializator and objects pool will not introduced
-    std::shared_ptr<Dataobject::EditorComponent> m_component;
+    std::shared_ptr<EditorComponent> m_component;
 };
 
 #endif // PROTOMORPHBGAPPLICATION_HPP

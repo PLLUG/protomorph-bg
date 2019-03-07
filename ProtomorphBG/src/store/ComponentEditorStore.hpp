@@ -10,12 +10,9 @@
 #include <memory>
 #include <vector>
 
-namespace Dataobject {
-struct EditorComponent;
-}
-
 class DecorationStore;
 class DecorationProducer;
+struct EditorComponent;
 
 class ComponentEditorStore: public QFStore
 {
@@ -38,7 +35,7 @@ class ComponentEditorStore: public QFStore
 
 public:
     static ComponentEditorStore *instance();
-    void setComponent(std::shared_ptr<Dataobject::EditorComponent> &component);
+    void setComponent(std::shared_ptr<EditorComponent> &component);
 
     double width() const;
     double height() const;
@@ -64,14 +61,14 @@ private:
     explicit ComponentEditorStore(QObject *parent = nullptr);
     virtual ~ComponentEditorStore() override;
 
-    void setBackground(const QVariantMap &backgroundProp);
-    void setBorders(const QVariantMap &bordersProp);
+    void setBackground(const QVariant &backgroundProp);
+    void setBorders(const QVariant &bordersProp);
     void setComponentType(Enums::ComponentType componentType);
     void setComponentSize(QSizeF componentSize);
 
     std::vector<std::unique_ptr<DecorationStore>> m_decorationStores;
     QMap<QString, ComponentEditorStore::SupportedAction> m_supportedActionsMap;
-    std::shared_ptr<Dataobject::EditorComponent> m_component;
+    std::shared_ptr<EditorComponent> m_component;
     std::unique_ptr<DecorationProducer> m_decorationProducer;
 };
 

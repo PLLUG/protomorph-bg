@@ -24,7 +24,7 @@ ProtomorphBGApplication::ProtomorphBGApplication(int argc, char *argv[])
     , m_engine{new QQmlApplicationEngine{this}}
     , m_appDispatcher{QFAppDispatcher::instance(m_engine)}
     , m_splashScreen{new QSplashScreen}
-    , m_component{std::make_shared<Dataobject::EditorComponent>()}
+    , m_component{std::make_shared<EditorComponent>()}
 {
     configureApplicationStyle();
     initSplashScreen();

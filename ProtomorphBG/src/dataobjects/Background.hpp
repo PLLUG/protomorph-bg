@@ -2,20 +2,21 @@
 #define BACKGROUND_HPP
 
 #include "src/constants/Enums.hpp"
+#include "src/dataobjects/IVariantSerializable.hpp"
 
 #include <QBrush>
 #include <QVariantMap>
 
-namespace Dataobject {
-struct Backround
+struct Backround : public IVariantSerializable
 {
     Enums::BackgroundType type{Enums::BackgroundType::BACKGROUND_NONE};
     QColor color;
     QString imagePath;
     QGradient::Preset gradientPreset;
 
-    void fillFromQmlType(const QVariantMap &backgroundQmlProp)
+    virtual void fromVariant(const QVariant &value) override
     {
+        auto backgroundQmlProp = value.toMap();
         type = backgroundQmlProp.value(QStringLiteral("type")).value<Enums::BackgroundType>();
         switch(type) {
         case Enums::BackgroundType::BACKGROUND_COLOR:
@@ -35,7 +36,7 @@ struct Backround
         }
     }
 
-    QVariant colorValueToVariant() const
+    virtual QVariant toVariant() const override
     {
         switch(type)
         {
@@ -52,5 +53,5 @@ struct Backround
         return QColor{Qt::transparent};
     }
 };
-}
+
 #endif // BACKGROUND_HPP

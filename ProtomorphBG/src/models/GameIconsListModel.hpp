@@ -19,7 +19,7 @@ public:
 
     struct GameIconProperties
     {
-        QString data;
+        QByteArray data;
         QString name;
         QString url;
         QString qmlUrl;

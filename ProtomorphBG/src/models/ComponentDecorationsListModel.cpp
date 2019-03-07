@@ -1,6 +1,6 @@
 #include "ComponentDecorationsListModel.hpp"
 
-#include "src/dataobjects/ComponentDecoration.hpp"
+#include "src/store/DecorationStore.hpp"
 
 ComponentDecorationsListModel::ComponentDecorationsListModel(QObject *parent)
     : QAbstractListModel{parent}
@@ -9,8 +9,6 @@ ComponentDecorationsListModel::ComponentDecorationsListModel(QObject *parent)
 
 int ComponentDecorationsListModel::rowCount(const QModelIndex &parent) const
 {
-    // For list models only the root node (an invalid parent) should return the list's size. For all
-    // other (valid) parents, rowCount() should return 0 so that it does not become a tree model.
     if (parent.isValid())
         return 0;
 
@@ -22,17 +20,18 @@ QVariant ComponentDecorationsListModel::data(const QModelIndex &index, int role)
     if (!index.isValid())
         return QVariant();
 
-    auto decoration = m_componentDecorations.at(static_cast<size_t>(index.row()));
+    const auto indexRow = index.row();
+    const auto &decoration = m_componentDecorations.at(static_cast<size_t>(indexRow));
 
     switch (role) {
     case TypeRole:
-        return static_cast<int>(decoration->type);
-    case BoundingRectRole:
-        return  decoration->boundingRect;
-    case BackgroundRole:
-        return decoration->backgroundColor;
-    case ForegroundRole:
-        return decoration->foregroundColor;
+        return static_cast<int>(decoration->decorationType());
+    case DecorationStoreRole:
+        return QVariant::fromValue(decoration.get());
+    case SelectedRole:
+        return decoration->isSelected();
+    case ZOrderRole:
+        return indexRow;
     default:
         break;
     }
@@ -44,9 +43,9 @@ QHash<int, QByteArray> ComponentDecorationsListModel::roleNames() const
 {
     static const auto roles = QHash<int, QByteArray>{
         {TypeRole, QByteArrayLiteral("type")},
-        {BoundingRectRole, QByteArrayLiteral("boundingRect")},
-        {BackgroundRole, QByteArrayLiteral("background")},
-        {ForegroundRole, QByteArrayLiteral("foreground")}
+        {DecorationStoreRole, QByteArrayLiteral("decorationStore")},
+        {SelectedRole, QByteArrayLiteral("selected")},
+        {ZOrderRole, QByteArrayLiteral("zOrder")},
     };
     return roles;
 }

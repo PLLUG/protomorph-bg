@@ -4,8 +4,6 @@
 #include "src/dataobjects/factories/IDataObjectDecorationFactory.hpp"
 #include "src/store/factories/IDecorationStoreFactory.hpp"
 
-namespace Dataobject
-{
 class GameIconDecorationFactory : public IDataObjectDecorationFactory
                                 , public IDecorationStoreFactory
 {
@@ -15,10 +13,10 @@ public:
 
 private:
     // IDataObjectDecorationFactory interface
-    virtual std::unique_ptr<ComponentDecoration> createDecoration(const QVariantMap &decorationData) const override;
+    virtual std::unique_ptr<DecorationComponent> createDecoration(const QVariantMap &decorationData) const override;
 
     // IDecorationStoreFactory interface
-    virtual std::unique_ptr<DecorationStore> createDecorationStore(ComponentDecoration &componentDecoraton) override;
+    virtual std::unique_ptr<DecorationStore> createDecorationStore(DecorationComponent &componentDecoraton) override;
 };
-}
+
 #endif // GAMEICONDECORATIONFACTORY_HPP

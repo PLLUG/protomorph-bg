@@ -17,9 +17,11 @@ class DecorationStore : public QFStore
     Q_PROPERTY(QSizeF decorationSize READ decorationSize NOTIFY decorationSizeChanged)
     Q_PROPERTY(QColor backgroundColor READ backgroundColor NOTIFY backgroundColorChanged)
     Q_PROPERTY(QColor foregroundColor READ foregroundColor NOTIFY foregroundColorChanged)
+    Q_PROPERTY(bool isSelected READ isSelected  WRITE setSelected NOTIFY selectionChanged)
+
 public:
-    explicit DecorationStore(QObject *parent = nullptr) : QFStore{parent}{}
-    virtual ~DecorationStore() = default;
+    explicit DecorationStore(QObject *parent = nullptr);
+    virtual ~DecorationStore();
 
     virtual Enums::DecorationType decorationType() const = 0;
 
@@ -28,11 +30,20 @@ public:
     virtual QPointF decorationPosition() const = 0;
     virtual QSizeF decorationSize() const = 0;
 
+    bool isSelected() const;
+
+public slots:
+    void setSelected(bool isSelected);
+
 signals:
     void backgroundColorChanged(const QColor &backgroundColor);
     void foregroundColorChanged(const QColor &foregroundColor);
     void decorationPositionChanged(const QPointF &decorationPosition);
     void decorationSizeChanged(const QSizeF &decorationSize);
+    void selectionChanged(bool isSelected);
+
+private:
+    bool m_isSelected;
 };
 
 #endif // DECORATIONSTORE_HPP

@@ -24,7 +24,6 @@ HEADERS += \
     src/constants/Enums.hpp \
     src/helpers/GradientHelper.hpp \
     src/dataobjects/Background.hpp \
-    src/dataobjects/ComponentDecoration.hpp \
     src/dataobjects/Borders.hpp \
     src/models/GameIconsListModel.hpp \
     src/qmlitems/SvgImage.hpp \
@@ -38,7 +37,10 @@ HEADERS += \
     src/store/factories/IDecorationStoreFactory.hpp \
     src/ProtomorphBGApplication.hpp \
     src/dataobjects/factories/DecorationProducer.hpp \
-    src/dataobjects/EditorComponent.hpp
+    src/dataobjects/EditorComponent.hpp \
+    src/dataobjects/DecorationComponent.hpp \
+    src/dataobjects/BasicComponent.hpp \
+    src/dataobjects/IVariantSerializable.hpp
 
 SOURCES += \
         src/main.cpp \
@@ -56,7 +58,8 @@ SOURCES += \
     src/store/GameIconDecorationStore.cpp \
     src/dataobjects/factories/GameIconDecorationFactory.cpp \
     src/ProtomorphBGApplication.cpp \
-    src/dataobjects/factories/DecorationProducer.cpp
+    src/dataobjects/factories/DecorationProducer.cpp \
+    src/store/DecorationStore.cpp
 
 RESOURCES += qml.qrc \
     fonts.qrc \

@@ -3,10 +3,7 @@
 
 #include "src/store/DecorationStore.hpp"
 
-namespace Dataobject
-{
 struct GameIconDecoration;
-}
 
 class GameIconDecorationStore final : public DecorationStore
 {
@@ -14,7 +11,7 @@ class GameIconDecorationStore final : public DecorationStore
     Q_PROPERTY(QString iconData READ iconData NOTIFY iconChanged)
     Q_PROPERTY(QString iconName READ iconName NOTIFY iconChanged)
 public:
-    explicit GameIconDecorationStore(Dataobject::GameIconDecoration &gameIconDecoration, QObject *parent = nullptr);
+    explicit GameIconDecorationStore(GameIconDecoration &gameIconDecoration, QObject *parent = nullptr);
     virtual ~GameIconDecorationStore() override;
 
     // DecorationStore interface
@@ -32,7 +29,7 @@ signals:
     void iconChanged();
 
 private:
-    Dataobject::GameIconDecoration &m_gameIconDecoration;
+    GameIconDecoration &m_gameIconDecoration;
 };
 
 #endif // GAMEICONDECORATIONSTORE_HPP

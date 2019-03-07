@@ -5,16 +5,14 @@
 
 #include "src/store/DecorationStore.hpp"
 
-namespace Dataobject {
-struct ComponentDecoration;
-}
+struct DecorationComponent;
 
 class IDecorationStoreFactory
 {
 public:
     virtual ~IDecorationStoreFactory() = default;
 
-    virtual std::unique_ptr<DecorationStore> createDecorationStore(Dataobject::ComponentDecoration &componentDecoraton) = 0;
+    virtual std::unique_ptr<DecorationStore> createDecorationStore(DecorationComponent &componentDecoraton) = 0;
 };
 
 #endif // IDECORATIONSTOREFACTORY_HPP

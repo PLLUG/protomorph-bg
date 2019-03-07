@@ -3,7 +3,7 @@
 #include "src/dataobjects/EditorComponent.hpp"
 #include "src/dataobjects/factories/DecorationProducer.hpp"
 
-using namespace Dataobject;
+const auto PROPERTY_OBJECT_NAME = QStringLiteral("propertiesObj");
 
 ComponentEditorStore::ComponentEditorStore(QObject *parent)
     : QFStore{parent}
@@ -27,7 +27,7 @@ ComponentEditorStore *ComponentEditorStore::instance()
     return &instance;
 }
 
-void ComponentEditorStore::setComponent(std::shared_ptr<Dataobject::EditorComponent> &component)
+void ComponentEditorStore::setComponent(std::shared_ptr<EditorComponent> &component)
 {
     m_component = component;
 }
@@ -54,7 +54,7 @@ Enums::BackgroundType ComponentEditorStore::backgroundType() const
 
 QVariant ComponentEditorStore::backgroundValue() const
 {
-    return m_component->background.colorValueToVariant();
+    return m_component->background.toVariant();
 }
 
 double ComponentEditorStore::borderWidth() const
@@ -92,10 +92,10 @@ void ComponentEditorStore::setComponentSize(QSizeF componentSize)
         emit heightChanged(m_component->size.height());
 }
 
-void ComponentEditorStore::setBackground(const QVariantMap &backgroundProp)
+void ComponentEditorStore::setBackground(const QVariant &backgroundProp)
 {
     auto oldBackground = m_component->background;
-    m_component->background.fillFromQmlType(backgroundProp);
+    m_component->background.fromVariant(backgroundProp);
 
     if (oldBackground.type != m_component->background.type)
         emit backgroundTypeChanged(m_component->background.type);
@@ -104,25 +104,25 @@ void ComponentEditorStore::setBackground(const QVariantMap &backgroundProp)
     {
     case Enums::BackgroundType::BACKGROUND_COLOR:
         if (oldBackground.color != m_component->background.color)
-            emit backgroundValueChanged(m_component->background.colorValueToVariant());
+            emit backgroundValueChanged(m_component->background.toVariant());
         break;
     case Enums::BackgroundType::BACKGROUND_GRADIENT:
         if (oldBackground.gradientPreset  != m_component->background.gradientPreset)
-            emit backgroundValueChanged(m_component->background.colorValueToVariant());
+            emit backgroundValueChanged(m_component->background.toVariant());
         break;
     case Enums::BackgroundType::BACKGROUND_IMAGE:
         if (oldBackground.imagePath != m_component->background.imagePath)
-            emit backgroundValueChanged(m_component->background.colorValueToVariant());
+            emit backgroundValueChanged(m_component->background.toVariant());
         break;
     case Enums::BackgroundType::BACKGROUND_NONE:
         break;
     }
 }
 
-void ComponentEditorStore::setBorders(const QVariantMap &bordersProp)
+void ComponentEditorStore::setBorders(const QVariant &bordersProp)
 {
     auto oldBorders = m_component->borders;
-    m_component->borders.fillFromQmlType(bordersProp);
+    m_component->borders.fromVariant(bordersProp);
 
     if(!qFuzzyCompare(oldBorders.width, m_component->borders.width))
         emit borderWidthChanged(m_component->borders.width);
@@ -139,7 +139,7 @@ void ComponentEditorStore::onDispatched(const QString &type, const QJSValue &mes
     switch (supportedAction)
     {
     case SupportedAction::ADD_DECORATION: {
-        auto newDecoration = messageMap.value(QStringLiteral("propertiesObj")).toMap();
+        auto newDecoration = messageMap.value(PROPERTY_OBJECT_NAME).toMap();
         if(auto decorationType = newDecoration.value(QStringLiteral("type")); decorationType.isValid())
         {
             auto decorationData = newDecoration.value(QStringLiteral("decorationData")).toMap();
@@ -155,13 +155,11 @@ void ComponentEditorStore::onDispatched(const QString &type, const QJSValue &mes
         break;
     }
     case SupportedAction::CHANGE_COMPONENT_BACKGROUND: {
-        auto newBackgroundProperties = messageMap.value(QStringLiteral("propertiesObj")).toMap();
-        setBackground(newBackgroundProperties);
+        setBackground(messageMap.value(PROPERTY_OBJECT_NAME));
         break;
     }
     case SupportedAction::CHANGE_COMPONENT_BORDERS: {
-        auto newBordersProperties = messageMap.value(QStringLiteral("propertiesObj")).toMap();
-        setBorders(newBordersProperties);
+        setBorders(messageMap.value(PROPERTY_OBJECT_NAME));
         break;
     }
     case SupportedAction::CHANGE_COMPONENT_SIZE: {

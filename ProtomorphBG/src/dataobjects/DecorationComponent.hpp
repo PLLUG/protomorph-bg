@@ -1,6 +1,7 @@
 #ifndef COMPONENTDECORATI_HPP
 #define COMPONENTDECORATI_HPP
 
+#include "src/dataobjects/BasicComponent.hpp"
 #include "src/constants/Enums.hpp"
 
 #include <QColor>
@@ -8,20 +9,17 @@
 #include <QString>
 #include <QVariant>
 
-namespace Dataobject {
-struct ComponentDecoration
+struct DecorationComponent: public BasicComponent
 {
-    QRectF boundingRect;
     QColor backgroundColor;
     QColor foregroundColor;
     Enums::DecorationType type;
 };
 
-struct GameIconDecoration: public ComponentDecoration
+struct GameIconDecoration: public DecorationComponent
 {
     QString iconName;
     QString iconData;
 };
-}
 
 #endif // COMPONENTDECORATI_HPP

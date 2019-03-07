@@ -1,8 +1,8 @@
 #include "src/store/GameIconDecorationStore.hpp"
 
-#include "src/dataobjects/ComponentDecoration.hpp"
+#include "src/dataobjects/DecorationComponent.hpp"
 
-GameIconDecorationStore::GameIconDecorationStore(Dataobject::GameIconDecoration &gameIconDecoration, QObject *parent)
+GameIconDecorationStore::GameIconDecorationStore(GameIconDecoration &gameIconDecoration, QObject *parent)
     : DecorationStore{parent}
     , m_gameIconDecoration{gameIconDecoration}
 {

@@ -6,16 +6,13 @@
 class GameIconsFilterModel : public QSortFilterProxyModel
 {
     Q_OBJECT
-    Q_PROPERTY(QString searchPattern READ searchPattern WRITE setSearchPattern NOTIFY searchPatternChanged)
+    Q_PROPERTY(QString searchPattern READ searchPattern WRITE setSearchPattern)
 public:
     static GameIconsFilterModel *instance();
     QString searchPattern() const;
 
 public slots:
     void setSearchPattern(QString searchPattern);
-
-signals:
-    void searchPatternChanged(QString searchPattern);
 
 private:
     explicit GameIconsFilterModel(QObject *parent = nullptr);
