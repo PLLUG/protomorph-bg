@@ -10,6 +10,7 @@
 #include <memory>
 #include <vector>
 
+class ComponentDecorationsModel;
 class DecorationStore;
 class DecorationProducer;
 struct EditorComponent;
@@ -54,6 +55,9 @@ signals:
     void backgroundValueChanged(QVariant backgroundValue);
     void componentTypeChanged(Enums::ComponentType componentType);
 
+public slots:
+    QVariant componentDecorationsModel() const;
+
 private slots:
     void onDispatched(const QString &type, const QJSValue &message);
 
@@ -66,9 +70,9 @@ private:
     void setComponentType(Enums::ComponentType componentType);
     void setComponentSize(QSizeF componentSize);
 
-    std::vector<std::unique_ptr<DecorationStore>> m_decorationStores;
-    QMap<QString, ComponentEditorStore::SupportedAction> m_supportedActionsMap;
+    const QMap<QString, ComponentEditorStore::SupportedAction> m_supportedActionsMap;
     std::shared_ptr<EditorComponent> m_component;
+    std::unique_ptr<ComponentDecorationsModel> m_componentDecorationModel;
     std::unique_ptr<DecorationProducer> m_decorationProducer;
 };
 

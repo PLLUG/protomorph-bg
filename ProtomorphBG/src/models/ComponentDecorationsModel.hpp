@@ -7,24 +7,34 @@
 
 class DecorationStore;
 
-class ComponentDecorationsListModel : public QAbstractListModel
+class ComponentDecorationsModel : public QAbstractListModel
 {
     Q_OBJECT
+
     enum ComponentDecorationRole {
         TypeRole = Qt::UserRole + 1,
         DecorationStoreRole,
         SelectedRole,
         ZOrderRole
     };
+
+    using DecorationStorePtr = std::unique_ptr<DecorationStore>;
+
 public:
-    explicit ComponentDecorationsListModel(QObject *parent = nullptr);
+    explicit ComponentDecorationsModel(QObject *parent = nullptr);
+    ~ComponentDecorationsModel() override;
+
+    void addDecorationStore(DecorationStorePtr &&newDecorationStore);
+    void removeDecorationStore(int index);
 
 private:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     virtual QHash<int, QByteArray> roleNames() const override;
 
-    std::vector<std::unique_ptr<DecorationStore>> m_componentDecorations;
+    QVariant getTypedDecorationStore(const DecorationStorePtr &decorationStore) const;
+
+    std::vector<DecorationStorePtr> m_componentDecorations;
 };
 
 #endif // COMPONENTDECORATIONSLISTMODEL_HPP

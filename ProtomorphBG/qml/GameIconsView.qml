@@ -26,7 +26,8 @@ Dialog {
     onAccepted: {
         ApplicationActions.addDecoration({type: Enums.DECORATION_GAME_ICON,
                                           decorationData:{ iconData: internal.currentIconData,
-                                                           iconName: internal.currentIconName}})
+                                                           iconName: internal.currentIconName,
+                                                           foregroundColor: Material.accent}})
         GameIconsFilterModel.searchPattern = ""
         destroy()
     }

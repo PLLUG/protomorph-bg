@@ -2,24 +2,24 @@
 
 #include "src/dataobjects/EditorComponent.hpp"
 #include "src/dataobjects/factories/DecorationProducer.hpp"
+#include "src/models/ComponentDecorationsModel.hpp"
 
 const auto PROPERTY_OBJECT_NAME = QStringLiteral("propertiesObj");
 
 ComponentEditorStore::ComponentEditorStore(QObject *parent)
     : QFStore{parent}
+    , m_supportedActionsMap{{QStringLiteral("addDecoration"), SupportedAction::ADD_DECORATION},
+                            {QStringLiteral("changeComponentBackground"), SupportedAction::CHANGE_COMPONENT_BACKGROUND},
+                            {QStringLiteral("changeComponentBorders"), SupportedAction::CHANGE_COMPONENT_BORDERS},
+                            {QStringLiteral("changeComponentSize"), SupportedAction::CHANGE_COMPONENT_SIZE}}
+    , m_componentDecorationModel{std::make_unique<ComponentDecorationsModel>()}
     , m_decorationProducer{std::make_unique<DecorationProducer>()}
-{
-    m_supportedActionsMap = {{QStringLiteral("addDecoration"), SupportedAction::ADD_DECORATION},
-                             {QStringLiteral("changeComponentBackground"), SupportedAction::CHANGE_COMPONENT_BACKGROUND},
-                             {QStringLiteral("changeComponentBorders"), SupportedAction::CHANGE_COMPONENT_BORDERS},
-                             {QStringLiteral("changeComponentSize"), SupportedAction::CHANGE_COMPONENT_SIZE}};
 
+{
     connect(this, &ComponentEditorStore::dispatched, this, &ComponentEditorStore::onDispatched, Qt::DirectConnection);
 }
 
-ComponentEditorStore::~ComponentEditorStore()
-{
-}
+ComponentEditorStore::~ComponentEditorStore() = default;
 
 ComponentEditorStore *ComponentEditorStore::instance()
 {
@@ -45,6 +45,11 @@ double ComponentEditorStore::height() const
 Enums::ComponentType ComponentEditorStore::componentType() const
 {
     return m_component->type;
+}
+
+QVariant ComponentEditorStore::componentDecorationsModel() const
+{
+    return QVariant::fromValue(m_componentDecorationModel.get());
 }
 
 Enums::BackgroundType ComponentEditorStore::backgroundType() const
@@ -150,7 +155,9 @@ void ComponentEditorStore::onDispatched(const QString &type, const QJSValue &mes
                                               m_component->size / 4.0};
 
             m_component->componentDecorations.emplace_back(std::move(decoration));
-            m_decorationStores.emplace_back(m_decorationProducer->createDecorationStore(decorationTypeEnum, *m_component->componentDecorations.back()));
+            auto &lastDecoration = *m_component->componentDecorations.back();
+            auto decorationStore = m_decorationProducer->createDecorationStore(decorationTypeEnum, lastDecoration);
+            m_componentDecorationModel->addDecorationStore(std::move(decorationStore));
         }
         break;
     }

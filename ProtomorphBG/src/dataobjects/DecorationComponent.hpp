@@ -19,7 +19,7 @@ struct DecorationComponent: public BasicComponent
 struct GameIconDecoration: public DecorationComponent
 {
     QString iconName;
-    QString iconData;
+    QByteArray iconData;
 };
 
 #endif // COMPONENTDECORATI_HPP

@@ -1,10 +1,13 @@
 import QtQuick 2.12
 
+import QuickFlux 1.1
+
 import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.4
 import QtGraphicalEffects 1.12
 
 import protomorph.enums 1.0
+import protomorph.svgimage 1.0
 
 import "qrc:/stores"
 import "qrc:/custom_controls"
@@ -104,6 +107,35 @@ Item {
                     anchors.fill: parent
                     source: borderRect
                     maskSource: backgroundImage
+                }
+            }
+        }
+    }
+
+    Repeater {
+        model: mainStore.componentEditorStore.componentDecorationsModel()
+
+        BasicSelectableDecoration  {
+
+            property var decorationStore: decorationStoreRole
+            x: decorationStore.decorationPosition.x
+            y:decorationStore.decorationPosition.y
+            width: decorationStore.decorationSize.width
+            height: decorationStore.decorationSize.height
+
+            contentItem:{
+                switch(typeRole) {
+                case Enums.DECORATION_GAME_ICON:
+                    return gameIconComponent
+                }
+            }
+
+            Component {
+                id: gameIconComponent
+
+                SvgPainter {
+                    content: decorationStore.iconData
+                    imageColor: decorationStore.foregroundColor
                 }
             }
         }

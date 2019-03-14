@@ -35,7 +35,7 @@ QSizeF GameIconDecorationStore::decorationSize() const
     return m_gameIconDecoration.boundingRect.size();
 }
 
-QString GameIconDecorationStore::iconData() const
+QByteArray GameIconDecorationStore::iconData() const
 {
     return  m_gameIconDecoration.iconData;
 }
