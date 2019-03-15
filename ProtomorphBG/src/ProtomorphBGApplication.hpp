@@ -3,6 +3,8 @@
 
 #include <QApplication>
 
+#include <memory>
+
 class ComponentEditorStore;
 struct EditorComponent;
 class QFAppDispatcher;

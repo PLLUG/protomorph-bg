@@ -3,6 +3,7 @@
 
 #include <QAbstractListModel>
 
+#include <memory>
 #include <vector>
 
 class DecorationStore;

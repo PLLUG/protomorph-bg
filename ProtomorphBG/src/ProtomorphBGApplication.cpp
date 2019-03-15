@@ -112,7 +112,7 @@ void ProtomorphBGApplication::registerQmlComponents()
 bool ProtomorphBGApplication::runQmlEngine()
 {
     m_engine->addImportPath(QStringLiteral("qrc:///")); //Add "qrc://" to QML import path
-    m_engine->load(QUrl(QStringLiteral("qrc:/main.qml")));
+    m_engine->load(QStringLiteral("qrc:/main.qml"));
 
     if (m_engine->rootObjects().isEmpty())
         return false;

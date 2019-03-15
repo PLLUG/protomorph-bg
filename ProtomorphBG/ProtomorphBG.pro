@@ -1,6 +1,8 @@
 QT += qml quick quickcontrols2 svg widgets
 CONFIG += c++17 ordered
 
+unix:QMAKE_CXXFLAGS += -std=c++17
+
 DEFINES += QT_DEPRECATED_WARNINGS
 
 win32:CONFIG(release, debug|release) {

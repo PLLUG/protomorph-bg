@@ -27,14 +27,11 @@ Dialog {
         ApplicationActions.addDecoration({type: Enums.DECORATION_GAME_ICON,
                                           decorationData:{ iconData: internal.currentIconData,
                                                            iconName: internal.currentIconName,
-                                                           foregroundColor: Material.accent}})
-        GameIconsFilterModel.searchPattern = ""
-        destroy()
+                                                           foregroundColor: Qt.lighter(Material.accent)}})
+        root.closeAndDestroy()
     }
-    onRejected: {
-        GameIconsFilterModel.searchPattern = ""
-        destroy()
-    }
+
+    onRejected: root.closeAndDestroy()
 
     title: qsTr("Game Icons")
 
@@ -127,8 +124,17 @@ Dialog {
             readonly property real defaultMargin: UISizeAdapter.calculateSize(5)
             readonly property real selectionBorderWidth: UISizeAdapter.calculateSize(3)
 
+            readonly property int destroyDelay: 1000
+
             property string currentIconData: ""
             property string currentIconName: ""
+
         }
+    }
+
+    function closeAndDestroy() {
+        GameIconsFilterModel.searchPattern = ""
+        root.close()
+        root.destroy(internal.destroyDelay)
     }
 }
