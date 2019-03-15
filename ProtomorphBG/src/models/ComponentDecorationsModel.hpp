@@ -7,6 +7,7 @@
 #include <vector>
 
 class DecorationStore;
+class QItemSelectionModel;
 
 class ComponentDecorationsModel : public QAbstractListModel
 {
@@ -26,7 +27,12 @@ public:
     ~ComponentDecorationsModel() override;
 
     void addDecorationStore(DecorationStorePtr &&newDecorationStore);
-    void removeDecorationStore(int index);
+
+public slots:
+    void removeDecorationStore(int indexRow);
+
+    void setDecorationSelection(int indexRow);
+    void clearDecorationSelection();
 
 private:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -35,7 +41,9 @@ private:
 
     QVariant getTypedDecorationStore(const DecorationStorePtr &decorationStore) const;
 
+    std::unique_ptr<QItemSelectionModel> m_selectionModel;
     std::vector<DecorationStorePtr> m_componentDecorations;
+    void clearDecorationSelectionAndNotify();
 };
 
 #endif // COMPONENTDECORATIONSLISTMODEL_HPP

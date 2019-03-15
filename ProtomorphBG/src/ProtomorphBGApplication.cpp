@@ -4,6 +4,7 @@
 #include "src/dataobjects/EditorComponent.hpp"
 #include "src/helpers/QmlHelper.hpp"
 #include "src/helpers/UISizeAdapter.hpp"
+#include "src/models/ComponentDecorationsModel.hpp"
 #include "src/models/GameIconsFilterModel.hpp"
 #include "src/models/GameIconsListModel.hpp"
 #include "src/models/SizesListModel.hpp"
@@ -18,6 +19,7 @@
 #include <QIcon>
 #include <QSplashScreen>
 #include <QDesktopWidget>
+#include <QQmlContext>
 
 ProtomorphBGApplication::ProtomorphBGApplication(int argc, char *argv[])
     : QApplication{argc, argv}
@@ -84,13 +86,17 @@ void ProtomorphBGApplication::registerQmlComponents()
     });
 
     //Register stores
-    ComponentEditorStore::instance()->setComponent(m_component);
-    ComponentEditorStore::instance()->setBindSource(m_appDispatcher);
+    auto &componentEditorStore = ComponentEditorStore::instance();
+    componentEditorStore.setComponent(m_component);
+    componentEditorStore.setBindSource(m_appDispatcher);
     qmlRegisterSingletonType<ComponentEditorStore>("protomorph.componenteditorstore", 1, 0, "ComponentEditorStore", [](auto qmlEngine, auto jsEngine) -> QObject* {
         Q_UNUSED(jsEngine)
-        qmlEngine->setObjectOwnership(ComponentEditorStore::instance(), QQmlEngine::CppOwnership);
-        return ComponentEditorStore::instance();
+        qmlEngine->setObjectOwnership(&ComponentEditorStore::instance(), QQmlEngine::CppOwnership);
+        return &ComponentEditorStore::instance();
     });
+
+    m_engine->rootContext()->setContextProperty(QStringLiteral("ComponentDecorationsModel"),
+                                                &componentEditorStore.componentDecorationsModel());
 
     //Register singletons
     qmlRegisterSingletonType<Helper::QmlHelper>("protomorph.qmlhelper", 1, 0, "QmlHelper", [](auto qmlEngine, auto jsEngine) -> QObject* {

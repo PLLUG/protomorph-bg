@@ -113,15 +113,24 @@ Item {
     }
 
     Repeater {
-        model: mainStore.componentEditorStore.componentDecorationsModel()
+        model: ComponentDecorationsModel
 
         BasicSelectableDecoration  {
+            id: decorationManipulator
 
             property var decorationStore: decorationStoreRole
+
             x: decorationStore.decorationPosition.x
             y:decorationStore.decorationPosition.y
             width: decorationStore.decorationSize.width
             height: decorationStore.decorationSize.height
+            z: zOrderRole
+            selected: selectedRole
+
+            onPressed: {
+                if (decorationManipulator.containsPress && !decorationManipulator.selected)
+                    ComponentDecorationsModel.setDecorationSelection(index)
+            }
 
             contentItem:{
                 switch(typeRole) {

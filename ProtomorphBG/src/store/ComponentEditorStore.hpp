@@ -35,7 +35,7 @@ class ComponentEditorStore: public QFStore
     };
 
 public:
-    static ComponentEditorStore *instance();
+    static ComponentEditorStore &instance();
     void setComponent(std::shared_ptr<EditorComponent> &component);
 
     double width() const;
@@ -46,6 +46,8 @@ public:
     QVariant backgroundValue() const;
     Enums::ComponentType componentType() const;
 
+    ComponentDecorationsModel &componentDecorationsModel() const;
+
 signals:
     void widthChanged(double width);
     void heightChanged(double height);
@@ -54,9 +56,6 @@ signals:
     void backgroundTypeChanged(Enums::BackgroundType backgroundType);
     void backgroundValueChanged(QVariant backgroundValue);
     void componentTypeChanged(Enums::ComponentType componentType);
-
-public slots:
-    QVariant componentDecorationsModel() const;
 
 private slots:
     void onDispatched(const QString &type, const QJSValue &message);

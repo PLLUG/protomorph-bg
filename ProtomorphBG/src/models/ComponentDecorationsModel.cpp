@@ -3,8 +3,11 @@
 #include "src/store/DecorationStore.hpp"
 #include <src/store/GameIconDecorationStore.hpp>
 
+#include <QItemSelectionModel>
+
 ComponentDecorationsModel::ComponentDecorationsModel(QObject *parent)
     : QAbstractListModel{parent}
+      , m_selectionModel{std::make_unique<QItemSelectionModel>(this)}
 {
 }
 
@@ -19,15 +22,42 @@ void ComponentDecorationsModel::addDecorationStore(DecorationStorePtr &&newDecor
     endInsertRows();
 }
 
-void ComponentDecorationsModel::removeDecorationStore(int index)
+void ComponentDecorationsModel::removeDecorationStore(int indexRow)
 {
-    beginRemoveRows(QModelIndex(), index, index);
+    beginRemoveRows(QModelIndex(), indexRow, indexRow);
 
-    auto itToRemove = std::begin(m_componentDecorations) + index;
+    auto itToRemove = std::begin(m_componentDecorations) + indexRow;
 
     m_componentDecorations.erase(itToRemove);
 
     endRemoveRows();
+}
+
+void ComponentDecorationsModel::clearDecorationSelectionAndNotify()
+{
+    auto selectedIndexes = m_selectionModel->selectedIndexes();
+    m_selectionModel->clearSelection();
+
+    for (const auto &selectedIndex : selectedIndexes)
+        emit dataChanged(selectedIndex, selectedIndex, {static_cast<int>(SelectedRole)});
+}
+
+void ComponentDecorationsModel::setDecorationSelection(int indexRow)
+{
+    auto modelIndex = index(indexRow);
+    if (m_selectionModel->isSelected(modelIndex))
+        return;
+
+    clearDecorationSelectionAndNotify();
+
+    m_selectionModel->select(modelIndex, QItemSelectionModel::Select);
+    emit dataChanged(modelIndex, modelIndex, {static_cast<int>(SelectedRole)});
+}
+
+void ComponentDecorationsModel::clearDecorationSelection()
+{
+    if(m_selectionModel->hasSelection())
+        clearDecorationSelectionAndNotify();
 }
 
 int ComponentDecorationsModel::rowCount(const QModelIndex &parent) const
@@ -52,7 +82,7 @@ QVariant ComponentDecorationsModel::data(const QModelIndex &index, int role) con
     case DecorationStoreRole:
         return getTypedDecorationStore(decoration);
     case SelectedRole:
-        return decoration->isSelected();
+        return m_selectionModel->isSelected(index);
     case ZOrderRole:
         return indexRow;
     default:

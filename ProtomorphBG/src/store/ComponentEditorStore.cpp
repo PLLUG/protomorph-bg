@@ -21,10 +21,10 @@ ComponentEditorStore::ComponentEditorStore(QObject *parent)
 
 ComponentEditorStore::~ComponentEditorStore() = default;
 
-ComponentEditorStore *ComponentEditorStore::instance()
+ComponentEditorStore &ComponentEditorStore::instance()
 {
     static ComponentEditorStore instance;
-    return &instance;
+    return instance;
 }
 
 void ComponentEditorStore::setComponent(std::shared_ptr<EditorComponent> &component)
@@ -47,9 +47,9 @@ Enums::ComponentType ComponentEditorStore::componentType() const
     return m_component->type;
 }
 
-QVariant ComponentEditorStore::componentDecorationsModel() const
+ComponentDecorationsModel &ComponentEditorStore::componentDecorationsModel() const
 {
-    return QVariant::fromValue(m_componentDecorationModel.get());
+    return *m_componentDecorationModel;
 }
 
 Enums::BackgroundType ComponentEditorStore::backgroundType() const

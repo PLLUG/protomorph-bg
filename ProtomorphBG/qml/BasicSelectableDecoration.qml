@@ -4,9 +4,10 @@ import QtQuick.Controls.Material 2.4
 import protomorph.uisizeadapter 1.0
 import protomorph.qmlhelper 1.0
 
-Item {
+MouseArea {
     id: root
     property alias contentItem: itemLoader.sourceComponent
+    property bool selected: false
 
     Loader {
         anchors.fill: parent
@@ -15,6 +16,7 @@ Item {
 
     Rectangle {
         id: borderRect
+        visible: selected
 
         color: "transparent"
 
@@ -33,6 +35,7 @@ Item {
                 margins: internal.borderWidth
                 fill: parent
             }
+
             drag.target: root
             onEntered: cursorShape = Qt.SizeAllCursor
         }
@@ -43,6 +46,7 @@ Item {
 
         Rectangle {
             id: spotRect
+            visible: selected
 
             anchors {
                 top: modelData.anchors.top
@@ -58,7 +62,6 @@ Item {
 
             color: internal.borderColor
             width: internal.spotSideSize; height: internal.spotSideSize
-            radius: internal.spotRadius
 
             Rectangle {
                 anchors{
@@ -103,8 +106,7 @@ Item {
         id: internal
         readonly property color borderColor: Qt.darker(Material.background)
         readonly property real borderWidth: UISizeAdapter.calculateSize(3)
-        readonly property real spotSideSize: borderWidth * 1.5
-        readonly property real spotRadius: spotSideSize / 4.0
+        readonly property real spotSideSize: borderWidth * 3
 
         readonly property real minDecorationSideize: UISizeAdapter.calculateSize(15)
 
