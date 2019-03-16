@@ -8,6 +8,7 @@
 #include <qfstore.h>
 
 #include "src/constants/Enums.hpp"
+#include "src/dataobjects/DecorationMetaData.hpp"
 
 class DecorationStore : public QFStore
 {
@@ -17,7 +18,7 @@ class DecorationStore : public QFStore
     Q_PROPERTY(QSizeF decorationSize READ decorationSize NOTIFY decorationSizeChanged)
     Q_PROPERTY(QColor backgroundColor READ backgroundColor NOTIFY backgroundColorChanged)
     Q_PROPERTY(QColor foregroundColor READ foregroundColor NOTIFY foregroundColorChanged)
-    Q_PROPERTY(bool isSelected READ isSelected  WRITE setSelected NOTIFY selectionChanged)
+
 
 public:
     explicit DecorationStore(QObject *parent = nullptr);
@@ -30,20 +31,22 @@ public:
     virtual QPointF decorationPosition() const = 0;
     virtual QSizeF decorationSize() const = 0;
 
-    bool isSelected() const;
+    //Decoration METADATA
+    virtual QString decorationName() { return m_metadata.name; }
+    virtual void setDecorationName(const QString &newName) { if(newName != m_metadata.name) m_metadata.name = newName; }
 
-public slots:
-    void setSelected(bool isSelected);
+    bool isDecorationVisible() { return m_metadata.isVisible; }
+    void setDecorationVisible(bool isVisble) { m_metadata.isVisible = isVisble; }
+    //METADATA End
 
 signals:
     void backgroundColorChanged(const QColor &backgroundColor);
     void foregroundColorChanged(const QColor &foregroundColor);
     void decorationPositionChanged(const QPointF &decorationPosition);
     void decorationSizeChanged(const QSizeF &decorationSize);
-    void selectionChanged(bool isSelected);
 
 private:
-    bool m_isSelected;
+    DecorationMetaData m_metadata;
 };
 
 #endif // DECORATIONSTORE_HPP

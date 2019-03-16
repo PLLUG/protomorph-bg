@@ -17,7 +17,9 @@ class ComponentDecorationsModel : public QAbstractListModel
         TypeRole = Qt::UserRole + 1,
         DecorationStoreRole,
         SelectedRole,
-        ZOrderRole
+        ZOrderRole,
+        VisibleRole,
+        NameRole
     };
 
     using DecorationStorePtr = std::unique_ptr<DecorationStore>;
@@ -29,21 +31,23 @@ public:
     void addDecorationStore(DecorationStorePtr &&newDecorationStore);
 
 public slots:
-    void removeDecorationStore(int indexRow);
-
-    void setDecorationSelection(int indexRow);
+    void removeDecoration(int indexRow);
     void clearDecorationSelection();
 
 private:
+    /*! From  QAbstractListModel */
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    virtual bool setData(const QModelIndex &modelIndex, const QVariant &value, int role) override;
     virtual QHash<int, QByteArray> roleNames() const override;
 
+    /*! Own Methods */
     QVariant getTypedDecorationStore(const DecorationStorePtr &decorationStore) const;
+    void setDecorationSelection(const QModelIndex &selectionModelIndex, bool shouldBeSelected);
+    void moveDecoration(const QModelIndex &sourceIndex, const QModelIndex &destinationIndex);
 
     std::unique_ptr<QItemSelectionModel> m_selectionModel;
     std::vector<DecorationStorePtr> m_componentDecorations;
-    void clearDecorationSelectionAndNotify();
 };
 
 #endif // COMPONENTDECORATIONSLISTMODEL_HPP

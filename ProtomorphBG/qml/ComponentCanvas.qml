@@ -125,12 +125,14 @@ Item {
             y:decorationStore.decorationPosition.y
             width: decorationStore.decorationSize.width
             height: decorationStore.decorationSize.height
+
             z: zOrderRole
             selected: selectedRole
+            visible: visibleRole
 
             onPressed: {
                 if (decorationManipulator.containsPress && !decorationManipulator.selected)
-                    ComponentDecorationsModel.setDecorationSelection(index)
+                    selectedRole = true
             }
 
             contentItem:{
@@ -148,6 +150,8 @@ Item {
                     imageColor: decorationStore.foregroundColor
                 }
             }
+
+            Component.onCompleted: decorationManipulator.focus = true
         }
     }
 

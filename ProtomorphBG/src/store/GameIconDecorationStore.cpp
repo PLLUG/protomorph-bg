@@ -6,6 +6,7 @@ GameIconDecorationStore::GameIconDecorationStore(GameIconDecoration &gameIconDec
     : DecorationStore{parent}
     , m_gameIconDecoration{gameIconDecoration}
 {
+    setDecorationName(m_gameIconDecoration.iconName);
 }
 
 GameIconDecorationStore::~GameIconDecorationStore() = default;

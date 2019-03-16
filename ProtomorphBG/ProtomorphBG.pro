@@ -42,7 +42,8 @@ HEADERS += \
     src/dataobjects/DecorationComponent.hpp \
     src/dataobjects/BasicComponent.hpp \
     src/dataobjects/IVariantSerializable.hpp \
-    src/models/ComponentDecorationsModel.hpp
+    src/models/ComponentDecorationsModel.hpp \
+    src/dataobjects/DecorationMetaData.hpp
 
 SOURCES += \
         src/main.cpp \
