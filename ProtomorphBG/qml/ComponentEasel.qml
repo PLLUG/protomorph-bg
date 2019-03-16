@@ -18,7 +18,10 @@ Page {
     contentItem: ZoomArea {
         id: easel
 
+        onPressed: componentCanvas.clearDecorationSelection()
+
         ComponentCanvas {
+            id: componentCanvas
             anchors.centerIn: parent
             height: mainStore.componentEditorStore.height
             width: mainStore.componentEditorStore.width

@@ -113,6 +113,7 @@ Item {
     }
 
     Repeater {
+        id: decorationsRepeater
         model: ComponentDecorationsModel
 
         BasicSelectableDecoration  {
@@ -148,5 +149,9 @@ Item {
                 }
             }
         }
+    }
+
+    function clearDecorationSelection() {
+        ComponentDecorationsModel.clearDecorationSelection()
     }
 }
