@@ -29,65 +29,45 @@ ColumnLayout {
             height: internal.delegateDefaultHeight
             width: parent.width
 
-            background: Item {
-                anchors.fill: parent
-            }
-
-            contentItem:RowLayout {
-                RowLayout {
-                    Layout.fillHeight: true
-                    spacing: 0
-                    Label {
-                        Layout.fillHeight: true
-                        Layout.alignment: Qt.AlignVCenter
-                        text: "%1.".arg(zOrderRole + 1)
-                        verticalAlignment: Label.AlignVCenter
-                        horizontalAlignment: Label.AlignLeft
-                    }
-
-                    ToolButton {
-                        id: decorationVisibilityBtn
-                        Layout.fillHeight: true
-                        Layout.alignment: Qt.AlignVCenter
-                        text: visibleRole ? FontAwesome.icon.eye_slash : FontAwesome.icon.eye
-                        font{
-                            family: FontAwesome.fontAwesomeFreeSolid
-                            styleName: FontAwesome.fontAwesomeStyleNameSolid
-                        }
-
-                        onPressed: visibleRole = !visibleRole
-                    }
-
-                    Label {
-                        Layout.fillHeight: true
-                        Layout.alignment: Qt.AlignVCenter
-                        text: nameRole
-                        elide: Label.ElideRight
-                        verticalAlignment: Label.AlignVCenter
-                        horizontalAlignment: Label.AlignLeft
-                    }
-                    Item {
-                        Layout.fillWidth: true
-                    }
-                }
-
-
-                ToolButton {
-                    id: removeDecorationBtn
+            contentItem: RowLayout {
+                spacing: 0
+                Label {
                     Layout.fillHeight: true
                     Layout.alignment: Qt.AlignVCenter
-                    text: FontAwesome.icon.trash
+                    text: "%1. ".arg(zOrderRole + 1)
+                    verticalAlignment: Label.AlignVCenter
+                    horizontalAlignment: Label.AlignLeft
+                }
+
+                Label {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignVCenter
+                    text: nameRole
+                    elide: Label.ElideRight
+                    verticalAlignment: Label.AlignVCenter
+                    horizontalAlignment: Label.AlignLeft
+                    wrapMode: Label.WordWrap
+                }
+
+                ToolButton {
+                    id: decorationVisibilityBtn
+                    Layout.preferredHeight: internal.buttonDefaultSideSize
+                    Layout.preferredWidth: internal.buttonDefaultSideSize
+                    Layout.alignment: Qt.AlignVCenter
+                    text: visibleRole ? FontAwesome.icon.eye_slash : FontAwesome.icon.eye
                     font{
                         family: FontAwesome.fontAwesomeFreeSolid
                         styleName: FontAwesome.fontAwesomeStyleNameSolid
                     }
 
-                    onPressed: ComponentDecorationsModel.removeDecoration(index)
+                    onPressed: visibleRole = !visibleRole
                 }
 
                 ToolButton {
                     id: moveDecorationUpBtn
-                    Layout.fillHeight: true
+                    Layout.preferredHeight: internal.buttonDefaultSideSize
+                    Layout.preferredWidth: internal.buttonDefaultSideSize
                     Layout.alignment: Qt.AlignVCenter
                     text: FontAwesome.icon.angle_double_up
                     enabled: index !== 0
@@ -101,7 +81,8 @@ ColumnLayout {
 
                 ToolButton {
                     id: moveDecorationDownBtn
-                    Layout.fillHeight: true
+                    Layout.preferredHeight: internal.buttonDefaultSideSize
+                    Layout.preferredWidth: internal.buttonDefaultSideSize
                     Layout.alignment: Qt.AlignVCenter
                     text: FontAwesome.icon.angle_double_down
                     enabled: index !== decorationListView.count - 1
@@ -113,10 +94,21 @@ ColumnLayout {
                     onPressed: zOrderRole = zOrderRole + 1
                 }
 
-                Item {
-                    Layout.fillWidth: true
+                ToolButton {
+                    id: removeDecorationBtn
+                    Layout.preferredHeight: internal.buttonDefaultSideSize
+                    Layout.preferredWidth: internal.buttonDefaultSideSize
+                    Layout.alignment: Qt.AlignVCenter
+                    text: FontAwesome.icon.trash
+                    font{
+                        family: FontAwesome.fontAwesomeFreeSolid
+                        styleName: FontAwesome.fontAwesomeStyleNameSolid
+                    }
+
+                    onPressed: ComponentDecorationsModel.removeDecoration(index)
                 }
             }
+
 
             onPressed: selectedRole = !selectedRole
         }
@@ -128,5 +120,6 @@ ColumnLayout {
     QtObject {
         id: internal
         readonly property int delegateDefaultHeight: UISizeAdapter.calculateSize(30)
+        readonly property int buttonDefaultSideSize: UISizeAdapter.calculateSize(20)
     }
 }

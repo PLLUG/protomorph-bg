@@ -124,8 +124,12 @@ void ComponentDecorationsModel::moveDecoration(const QModelIndex &sourceIndex, c
 {
     auto sourceRow = sourceIndex.row();
     auto destinationRow = destinationIndex.row();
+    auto modelDestinationRow = destinationRow;
+    //In case we move to next index, we shouldcreate special Qt index, as this is model move specific
+    if(destinationRow == sourceRow + 1)
+        ++modelDestinationRow;
 
-    beginMoveRows(sourceIndex.parent(), sourceRow, sourceRow, destinationIndex.parent(), destinationRow);
+    beginMoveRows(sourceIndex.parent(), sourceRow, sourceRow, destinationIndex.parent(), modelDestinationRow);
     std::swap(m_componentDecorations.at(static_cast<size_t>(sourceRow)),
               m_componentDecorations.at(static_cast<size_t>(destinationRow)));
     endMoveRows();
