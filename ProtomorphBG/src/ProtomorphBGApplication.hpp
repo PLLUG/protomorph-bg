@@ -14,7 +14,7 @@ class QSplashScreen;
 class ProtomorphBGApplication final: public QApplication
 {
 public:
-    ProtomorphBGApplication(int argc, char *argv[]);
+    ProtomorphBGApplication(int &argc, char *argv[]);
     ~ProtomorphBGApplication();
 
     bool runQmlEngine();

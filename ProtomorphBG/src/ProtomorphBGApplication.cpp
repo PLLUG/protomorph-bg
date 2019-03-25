@@ -21,7 +21,7 @@
 #include <QDesktopWidget>
 #include <QQmlContext>
 
-ProtomorphBGApplication::ProtomorphBGApplication(int argc, char *argv[])
+ProtomorphBGApplication::ProtomorphBGApplication(int &argc, char *argv[])
     : QApplication{argc, argv}
     , m_engine{new QQmlApplicationEngine{this}}
     , m_appDispatcher{QFAppDispatcher::instance(m_engine)}
