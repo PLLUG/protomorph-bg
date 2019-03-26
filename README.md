@@ -8,9 +8,9 @@
 
 ## Status
 
-[![Build Status](https://travis-ci.com/Guitarheroua/protomorph-bg.svg?branch=development)](https://travis-ci.com/Guitarheroua/protomorph-bg)
+Travis-CI: [![Build Status](https://travis-ci.com/Guitarheroua/protomorph-bg.svg?branch=development)](https://travis-ci.com/Guitarheroua/protomorph-bg)
 
-<a href="https://scan.coverity.com/projects/guitarheroua-protomorph-bg">
+Coverity Scan Build Status: <a href="https://scan.coverity.com/projects/guitarheroua-protomorph-bg">
   <img alt="Coverity Scan Build Status"
        src="https://scan.coverity.com/projects/17969/badge.svg"/>
 </a>
