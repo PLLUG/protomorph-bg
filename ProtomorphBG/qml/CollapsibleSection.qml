@@ -1,4 +1,4 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.4
@@ -8,48 +8,40 @@ import FontAwesome 1.0
 Page {
     id: root
 
-    property bool expanded: true
-    property Component contentComponent: null
+    readonly property int paddingValue: 16
 
     clip: true
-    padding: 16
-    topPadding: 0
-
-    background: Rectangle {
-        color: Material.primary
-    }
+    horizontalPadding: paddingValue
+    topPadding: 0; bottomPadding: root.contentItem.implicitHeight > 0 ? paddingValue : 0
+    implicitHeight: expandButton.checked  ? root.header.implicitHeight + root.contentItem.implicitHeight + root.bottomPadding
+                                          : root.header.implicitHeight
 
     header: RowLayout {
         spacing: 0
 
         Label {
-            text: root.title
+            Layout.leftMargin: paddingValue
             font.bold: true
-            Layout.leftMargin: root.padding
+            text: root.title
         }
 
-        Item {
-            Layout.fillWidth: true
-        }
+        Item { Layout.fillWidth: true }
 
         ToolButton {
-            text: expanded ? FontAwesome.icon.angle_up : FontAwesome.icon.angle_down
+            id: expandButton
+            Layout.leftMargin: -(paddingValue / 2)
+            Layout.preferredWidth: implicitHeight
+            checkable: true
+            checked: true
+
+            focusPolicy: Qt.NoFocus
             font {
                 family: FontAwesome.fontAwesomeFreeSolid
                 styleName: FontAwesome.fontAwesomeStyleNameSolid
             }
-            focusPolicy: Qt.NoFocus
-
-            Layout.leftMargin: -8
-            Layout.preferredWidth: implicitHeight
-
-            onClicked: expanded = !expanded
+            text: expandButton.checked ? FontAwesome.icon.angle_up : FontAwesome.icon.angle_down
         }
     }
 
-    contentItem: Loader {
-        active: contentComponent !== null
-        width: root.width; height: root.height - root.header.height;
-        sourceComponent: contentComponent
-    }
+    background: Rectangle { color: Material.primary }
 }

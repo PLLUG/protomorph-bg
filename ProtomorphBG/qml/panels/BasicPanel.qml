@@ -33,10 +33,9 @@ Flickable {
                 title: sectionTitle
 
                 Layout.fillWidth: true
-                Layout.minimumHeight: section.expanded ? section.header.implicitHeight + section.contentComponent.implicitHeight : -1
-                Layout.maximumHeight: section.expanded ? section.implicitHeight : section.header.implicitHeight
+                Layout.preferredHeight: section.implicitHeight
 
-                contentComponent: Loader {
+                contentItem: Loader {
                     source: sectionSourceUrl
                 }
             }

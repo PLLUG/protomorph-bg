@@ -119,12 +119,10 @@ Item {
         BasicSelectableDecoration  {
             id: decorationManipulator
 
-            property var decorationStore: decorationStoreRole
-
-            x: decorationStore.decorationPosition.x
-            y:decorationStore.decorationPosition.y
-            width: decorationStore.decorationSize.width
-            height: decorationStore.decorationSize.height
+            x: decorationStoreRole.decorationPosition.x
+            y:decorationStoreRole.decorationPosition.y
+            width: decorationStoreRole.decorationSize.width
+            height: decorationStoreRole.decorationSize.height
 
             z: zOrderRole
             selected: selectedRole
@@ -146,8 +144,8 @@ Item {
                 id: gameIconComponent
 
                 SvgPainter {
-                    content: decorationStore.iconData
-                    imageColor: decorationStore.foregroundColor
+                    content: decorationStoreRole.iconData
+                    imageColor: decorationStoreRole.foregroundColor
                 }
             }
 
