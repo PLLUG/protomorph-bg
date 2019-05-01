@@ -8,6 +8,8 @@
 
 ## Status
 
+AppVeyor-CI: [![Build status](https://ci.appveyor.com/api/projects/status/a0qea0hrbx2evnwa/branch/development?svg=true)](https://ci.appveyor.com/project/Guitarheroua/protomorph-bg/branch/development)
+
 Travis-CI: [![Build Status](https://travis-ci.com/Guitarheroua/protomorph-bg.svg?branch=development)](https://travis-ci.com/Guitarheroua/protomorph-bg)
 
 Coverity Scan Build Status: <a href="https://scan.coverity.com/projects/guitarheroua-protomorph-bg">
