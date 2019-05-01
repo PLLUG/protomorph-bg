@@ -1,4 +1,4 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.4
 import QtQuick.Layouts 1.12
@@ -25,9 +25,9 @@ Dialog {
 
     onAccepted: {
         ApplicationActions.addDecoration({type: Enums.DECORATION_GAME_ICON,
-                                          decorationData:{ iconData: internal.currentIconData,
-                                                           iconName: internal.currentIconName,
-                                                           foregroundColor: Qt.lighter(Material.accent)}})
+                                             decorationData:{ iconData: internal.currentIconData,
+                                                 iconName: internal.currentIconName,
+                                                 foregroundColor: Qt.lighter(Material.accent)}})
         root.closeAndDestroy()
     }
 
@@ -102,6 +102,14 @@ Dialog {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
+                    internal.currentIconData = iconDataRole
+                    internal.currentIconName = iconNameRole
+                    gridView.currentIndex = index
+                }
+            }
+
+            Component.onCompleted: {
+                if (index === 0) {
                     internal.currentIconData = iconDataRole
                     internal.currentIconName = iconNameRole
                     gridView.currentIndex = index
