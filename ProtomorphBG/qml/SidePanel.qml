@@ -9,44 +9,33 @@ import "qrc:/actions"
 
 Page {
     id: root
+
     padding: 0
 
-    function addPanelContentItem(contentItemUrl, descriptionText, fontAwesomeSymbol, fontAwesomeFamily, fontAwesomeStyleName) {
-        panelsModel.append({
-                               "contentItemUrl" : contentItemUrl,
-                               "fontAwesome": {
-                                   "symbol": fontAwesomeSymbol,
-                                   "family": fontAwesomeFamily,
-                                   "styleName": fontAwesomeStyleName },
-                               "descriptionText": descriptionText })
-    }
+    property alias panelsModel: tabsRepeater.model
 
     header: TabBar {
         id: tabBar
 
         Repeater {
-            model: ListModel{
-                id: panelsModel
-                dynamicRoles: true
-            }
+            id: tabsRepeater
 
             TabButton {
-                text: fontAwesome.symbol
+                enabled: modelData === undefined ? tabEnabled : modelData.tabEnabled
+                text: modelData === undefined ? fontAwesome.symbol : modelData.fontAwesome.symbol
                 font{
-                    family: fontAwesome.family
-                    styleName: fontAwesome.styleName
+                    family: modelData === undefined ? fontAwesome.family : modelData.fontAwesome.family
+                    styleName: modelData === undefined ? fontAwesome.styleName : modelData.fontAwesome.styleName
                 }
 
                 ToolTip {
-                    text: descriptionText
+                    text: modelData === undefined ? descriptionText : modelData.descriptionText
                     visible: text.length > 0 && hovered
 
                     background: Pane {
                         Material.elevation: 3
 
-                        Rectangle {
-                            color: Material.background
-                        }
+                        Rectangle { color: Material.background }
                     }
                 }
             }
@@ -61,9 +50,20 @@ Page {
             model: panelsModel
 
             Loader {
-                source: contentItemUrl
-                anchors.fill: parent
+                source: modelData === undefined ? contentItemUrl : modelData.contentItemUrl
             }
+        }
+    }
+
+    function createTabJsonObject(contentItemUrl, descriptionText, fontAwesomeSymbol, fontAwesomeFamily, fontAwesomeStyleName, tabEnabled) {
+        return {
+            "contentItemUrl" : contentItemUrl,
+            "fontAwesome": {
+                "symbol": fontAwesomeSymbol,
+                "family": fontAwesomeFamily,
+                "styleName": fontAwesomeStyleName },
+            "descriptionText": descriptionText,
+            "tabEnabled": tabEnabled
         }
     }
 }

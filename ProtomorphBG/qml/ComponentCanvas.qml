@@ -33,9 +33,8 @@ Control {
             visible: visibleRole
 
             onPressed: {
-                if (decorationManipulator.containsPress && !decorationManipulator.selected) {
+                if (decorationManipulator.containsPress && !decorationManipulator.selected)
                     selectedRole = true
-                }
             }
 
             contentItem:{

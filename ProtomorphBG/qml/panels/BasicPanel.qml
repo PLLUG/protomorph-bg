@@ -25,7 +25,6 @@ Flickable {
         Repeater {
             model: ListModel {
                 id: sectionModel
-                dynamicRoles: true
             }
 
             delegate: CollapsibleSection {

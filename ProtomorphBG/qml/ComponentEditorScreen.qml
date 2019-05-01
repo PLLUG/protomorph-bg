@@ -8,6 +8,7 @@ import QtQuick.Window 2.12
 import QtQml.Models 2.12
 
 import protomorph.uisizeadapter 1.0
+import protomorph.enums 1.0
 import FontAwesome 1.0
 
 import "qrc:/actions"
@@ -38,12 +39,10 @@ Pane {
             Layout.minimumWidth: internal.sidePanelInitialWidth
             Layout.maximumWidth: internal.sidePanelInitialWidth
             Layout.alignment: Qt.AlignTop
-
-            Component.onCompleted: templatesPanel.addPanelContentItem("qrc:/panels/ComponentBasicPropertiesPanel.qml"
-                                                                      , qsTr("Component properties")
-                                                                      , FontAwesome.icon.cogs
-                                                                      , FontAwesome.fontAwesomeFreeSolid
-                                                                      , FontAwesome.fontAwesomeStyleNameSolid)
+            panelsModel: [
+                createTabJsonObject("qrc:/panels/ComponentBasicPropertiesPanel.qml", qsTr("Component properties"), FontAwesome.icon.cogs, FontAwesome.fontAwesomeFreeSolid, FontAwesome.fontAwesomeStyleNameSolid, true),
+                createTabJsonObject("qrc:/panels/DecorationPropertiesPanel.qml", qsTr("Decoration properties"), FontAwesome.icon.palette, FontAwesome.fontAwesomeFreeSolid, FontAwesome.fontAwesomeStyleNameSolid, false)
+            ]
         }
     }
 
