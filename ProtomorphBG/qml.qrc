@@ -23,6 +23,7 @@
         <file alias="CollapsibleSection.qml">qml/CollapsibleSection.qml</file>
         <file alias="ComponentCanvas.qml">qml/ComponentCanvas.qml</file>
         <file alias="GameIconsView.qml">qml/GameIconsView.qml</file>
+        <file alias="ComponentBackground.qml">qml/ComponentBackground.qml</file>
     </qresource>
     <qresource prefix="/actions">
         <file alias="ActionTypes.qml">qml/actions/ActionTypes.qml</file>

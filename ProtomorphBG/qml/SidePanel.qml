@@ -12,14 +12,13 @@ Page {
     padding: 0
 
     function addPanelContentItem(contentItemUrl, descriptionText, fontAwesomeSymbol, fontAwesomeFamily, fontAwesomeStyleName) {
-        panelsModel.append({"contentItemUrl" : contentItemUrl
-                               , "fontAwesome": {
+        panelsModel.append({
+                               "contentItemUrl" : contentItemUrl,
+                               "fontAwesome": {
                                    "symbol": fontAwesomeSymbol,
                                    "family": fontAwesomeFamily,
-                                   "styleName": fontAwesomeStyleName
-                               }
-                               , "descriptionText": descriptionText
-                           })
+                                   "styleName": fontAwesomeStyleName },
+                               "descriptionText": descriptionText })
     }
 
     header: TabBar {

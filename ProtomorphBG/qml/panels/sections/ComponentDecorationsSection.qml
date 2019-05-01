@@ -17,7 +17,6 @@ ListView {
     spacing: UISizeAdapter.calculateSize(2)
     implicitHeight: (internal.delegateDefaultHeight + root.spacing) * (count < internal.maxVisibleItems ? count : internal.maxVisibleItems)
 
-
     delegate: ItemDelegate {
         height: internal.delegateDefaultHeight
         width: parent.width
@@ -94,7 +93,6 @@ ListView {
                 onPressed: ComponentDecorationsModel.removeDecoration(index)
             }
         }
-
 
         onPressed: selectedRole = !selectedRole
     }
