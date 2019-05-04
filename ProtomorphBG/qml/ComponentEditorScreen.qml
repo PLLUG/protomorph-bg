@@ -47,8 +47,18 @@ Pane {
             }
 
             Component.onCompleted: {
-                sidePanelModel.append(createTabJsonObject("qrc:/panels/ComponentBasicPropertiesPanel.qml", qsTr("Component properties"), FontAwesome.icon.cogs, FontAwesome.fontAwesomeFreeSolid, FontAwesome.fontAwesomeStyleNameSolid, true))
-                sidePanelModel.append(createTabJsonObject("qrc:/panels/DecorationPropertiesPanel.qml", qsTr("Decoration properties"), FontAwesome.icon.palette, FontAwesome.fontAwesomeFreeSolid, FontAwesome.fontAwesomeStyleNameSolid, false))
+                sidePanelModel.append(createTabJsonObject("qrc:/panels/ComponentBasicPropertiesPanel.qml"
+                                                          , qsTr("Component properties")
+                                                          , FontAwesome.icon.cogs
+                                                          , FontAwesome.fontAwesomeFreeSolid
+                                                          , FontAwesome.fontAwesomeStyleNameSolid
+                                                          , true))
+                sidePanelModel.append(createTabJsonObject("qrc:/panels/DecorationPropertiesPanel.qml"
+                                                          , qsTr("Decoration properties")
+                                                          , FontAwesome.icon.palette
+                                                          , FontAwesome.fontAwesomeFreeSolid
+                                                          , FontAwesome.fontAwesomeStyleNameSolid
+                                                          , false))
             }
         }
     }

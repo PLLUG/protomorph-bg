@@ -37,6 +37,7 @@ signals:
 public slots:
     void removeDecoration(int indexRow);
     void clearDecorationSelection();
+    QVariant getDecorationStoreByIndex(int indexRow) const;
 
 private slots:
     void onDecorationSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);

@@ -7,10 +7,6 @@ import "qrc:/components"
 Flickable {
     id: root
 
-    function addCollapsibleSection(sectionTitle, sectionSourceUrl) {
-        sectionModel.append({"sectionTitle" : sectionTitle, "sectionSourceUrl": sectionSourceUrl})
-    }
-
     contentHeight: sectionsLayout.implicitHeight
     boundsMovement: Flickable.StopAtBounds
 
@@ -23,9 +19,7 @@ Flickable {
         }
 
         Repeater {
-            model: ListModel {
-                id: sectionModel
-            }
+            model: ListModel { id: sectionModel }
 
             delegate: CollapsibleSection {
                 id: section
@@ -34,18 +28,16 @@ Flickable {
                 Layout.fillWidth: true
                 Layout.preferredHeight: section.implicitHeight
 
-                contentItem: Loader {
-                    source: sectionSourceUrl
-                }
+                contentItem: Loader { source: sectionSourceUrl }
             }
         }
 
-        Item {
-            Layout.fillHeight: true
-        }
+        Item { Layout.fillHeight: true }
     }
 
-    ScrollBar.vertical: ScrollBar {
-        policy: ScrollBar.AsNeeded
+    ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
+
+    function addCollapsibleSection(sectionTitle, sectionSourceUrl) {
+        sectionModel.append({"sectionTitle" : sectionTitle, "sectionSourceUrl": sectionSourceUrl})
     }
 }

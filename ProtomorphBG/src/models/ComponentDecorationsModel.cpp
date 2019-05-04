@@ -73,6 +73,15 @@ void ComponentDecorationsModel::clearDecorationSelection()
         emit dataChanged(selectedIndex, selectedIndex, {static_cast<int>(SelectedRole)});
 }
 
+QVariant ComponentDecorationsModel::getDecorationStoreByIndex(int indexRow) const
+{
+    if (!index(indexRow).isValid())
+        return QVariant::fromValue(nullptr);
+
+    const auto &decoration = m_componentDecorations.at(static_cast<size_t>(indexRow));
+    return getTypedDecorationStore(decoration);
+}
+
 void ComponentDecorationsModel::onDecorationSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
 {
     bool isDecorationSelected = !selected.indexes().empty() && deselected.indexes().empty();
