@@ -39,10 +39,17 @@ Pane {
             Layout.minimumWidth: internal.sidePanelInitialWidth
             Layout.maximumWidth: internal.sidePanelInitialWidth
             Layout.alignment: Qt.AlignTop
-            panelsModel: [
-                createTabJsonObject("qrc:/panels/ComponentBasicPropertiesPanel.qml", qsTr("Component properties"), FontAwesome.icon.cogs, FontAwesome.fontAwesomeFreeSolid, FontAwesome.fontAwesomeStyleNameSolid, true),
-                createTabJsonObject("qrc:/panels/DecorationPropertiesPanel.qml", qsTr("Decoration properties"), FontAwesome.icon.palette, FontAwesome.fontAwesomeFreeSolid, FontAwesome.fontAwesomeStyleNameSolid, false)
-            ]
+            panelsModel: ListModel { id: sidePanelModel }
+
+            Connections {
+                target: ComponentDecorationsModel
+                onDecorationSelectionChanged: sidePanelModel.get(1).tabEnabled = indexRow > -1
+            }
+
+            Component.onCompleted: {
+                sidePanelModel.append(createTabJsonObject("qrc:/panels/ComponentBasicPropertiesPanel.qml", qsTr("Component properties"), FontAwesome.icon.cogs, FontAwesome.fontAwesomeFreeSolid, FontAwesome.fontAwesomeStyleNameSolid, true))
+                sidePanelModel.append(createTabJsonObject("qrc:/panels/DecorationPropertiesPanel.qml", qsTr("Decoration properties"), FontAwesome.icon.palette, FontAwesome.fontAwesomeFreeSolid, FontAwesome.fontAwesomeStyleNameSolid, false))
+            }
         }
     }
 

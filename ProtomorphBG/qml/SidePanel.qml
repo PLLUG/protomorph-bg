@@ -21,15 +21,15 @@ Page {
             id: tabsRepeater
 
             TabButton {
-                enabled: modelData === undefined ? tabEnabled : modelData.tabEnabled
-                text: modelData === undefined ? fontAwesome.symbol : modelData.fontAwesome.symbol
+                enabled: tabEnabled
+                text: fontAwesome.symbol
                 font{
-                    family: modelData === undefined ? fontAwesome.family : modelData.fontAwesome.family
-                    styleName: modelData === undefined ? fontAwesome.styleName : modelData.fontAwesome.styleName
+                    family: fontAwesome.family
+                    styleName: fontAwesome.styleName
                 }
 
                 ToolTip {
-                    text: modelData === undefined ? descriptionText : modelData.descriptionText
+                    text: descriptionText
                     visible: text.length > 0 && hovered
 
                     background: Pane {
@@ -50,7 +50,7 @@ Page {
             model: panelsModel
 
             Loader {
-                source: modelData === undefined ? contentItemUrl : modelData.contentItemUrl
+                source: contentItemUrl
             }
         }
     }

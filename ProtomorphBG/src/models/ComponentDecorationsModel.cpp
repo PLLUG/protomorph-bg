@@ -10,6 +10,8 @@ ComponentDecorationsModel::ComponentDecorationsModel(QObject *parent)
     : QAbstractListModel{parent}
       , m_selectionModel{std::make_unique<QItemSelectionModel>(this)}
 {
+    connect(m_selectionModel.get(), &QItemSelectionModel::selectionChanged,
+            this, &ComponentDecorationsModel::onDecorationSelectionChanged, Qt::UniqueConnection);
 }
 
 ComponentDecorationsModel::~ComponentDecorationsModel() = default;
@@ -69,6 +71,12 @@ void ComponentDecorationsModel::clearDecorationSelection()
 
     for (const auto &selectedIndex : selectedIndexes)
         emit dataChanged(selectedIndex, selectedIndex, {static_cast<int>(SelectedRole)});
+}
+
+void ComponentDecorationsModel::onDecorationSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
+{
+    bool isDecorationSelected = !selected.indexes().empty() && deselected.indexes().empty();
+    emit decorationSelectionChanged(isDecorationSelected ? selected.indexes().at(0).row() : -1);
 }
 
 int ComponentDecorationsModel::rowCount(const QModelIndex &parent) const

@@ -7,6 +7,7 @@
 #include <vector>
 
 class DecorationStore;
+class QItemSelection;
 class QItemSelectionModel;
 
 class ComponentDecorationsModel : public QAbstractListModel
@@ -30,9 +31,15 @@ public:
 
     void addDecorationStore(DecorationStorePtr &&newDecorationStore);
 
+signals:
+    void decorationSelectionChanged(int indexRow);
+
 public slots:
     void removeDecoration(int indexRow);
     void clearDecorationSelection();
+
+private slots:
+    void onDecorationSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
 
 private:
     /*! From  QAbstractListModel */

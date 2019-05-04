@@ -17,10 +17,6 @@ ApplicationWindow {
     width: Screen.width
     height: Screen.height
 
-    menuBar: MainMenuBar {
-        id: mainMenuBar
-    }
-
     StackView {
         anchors.fill: parent
         initialItem: ComponentEditorScreen {
