@@ -1,3 +1,4 @@
+[![Board Status](https://dev.azure.com/andriyslisarchuk0235/df4a1b1f-8ba9-4fdb-9348-b5f4b5115793/1e0fb131-41d9-4c70-a660-d2bd8c38c372/_apis/work/boardbadge/96e4da8f-f4e3-492f-945e-620d5a511b4b)](https://dev.azure.com/andriyslisarchuk0235/df4a1b1f-8ba9-4fdb-9348-b5f4b5115793/_boards/board/t/1e0fb131-41d9-4c70-a660-d2bd8c38c372/Microsoft.RequirementCategory)
 # Protomorph BG
 
 <p align="center">
