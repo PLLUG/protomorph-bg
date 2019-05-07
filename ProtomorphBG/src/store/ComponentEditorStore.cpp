@@ -9,9 +9,9 @@ const auto PROPERTY_OBJECT_NAME = QStringLiteral("propertiesObj");
 ComponentEditorStore::ComponentEditorStore(QObject *parent)
     : QFStore{parent}
     , m_supportedActionsMap{{QStringLiteral("addDecoration"), SupportedAction::ADD_DECORATION},
-                            {QStringLiteral("changeComponentBackground"), SupportedAction::CHANGE_COMPONENT_BACKGROUND},
-                            {QStringLiteral("changeComponentBorders"), SupportedAction::CHANGE_COMPONENT_BORDERS},
-                            {QStringLiteral("changeComponentSize"), SupportedAction::CHANGE_COMPONENT_SIZE}}
+{QStringLiteral("changeComponentBackground"), SupportedAction::CHANGE_COMPONENT_BACKGROUND},
+{QStringLiteral("changeComponentBorders"), SupportedAction::CHANGE_COMPONENT_BORDERS},
+{QStringLiteral("changeComponentSize"), SupportedAction::CHANGE_COMPONENT_SIZE}}
     , m_componentDecorationModel{std::make_unique<ComponentDecorationsModel>()}
     , m_decorationProducer{std::make_unique<DecorationProducer>()}
 
@@ -151,8 +151,11 @@ void ComponentEditorStore::onDispatched(const QString &type, const QJSValue &mes
             auto decorationTypeEnum = decorationType.value<Enums::DecorationType>();
             auto decoration = m_decorationProducer->createDecoration(decorationTypeEnum, decorationData);
 
-            decoration->boundingRect = QRectF{QPointF{m_component->size.width() / 2.0, m_component->size.height() / 2.0},
-                                              m_component->size / 4.0};
+            auto componentSize = m_component->size;
+            auto decorationSideSize = componentSize.width() / 4.0;
+            auto decorationTopLeft = QPointF{(componentSize.width() - decorationSideSize) / 2.0,
+                    (componentSize.height() - decorationSideSize) / 2.0};
+            decoration->boundingRect = QRectF{decorationTopLeft, QSizeF{decorationSideSize, decorationSideSize}};
 
             m_component->componentDecorations.emplace_back(std::move(decoration));
             auto &lastDecoration = *m_component->componentDecorations.back();

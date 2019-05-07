@@ -50,6 +50,7 @@ Control {
                 SvgPainter {
                     content: decorationStoreRole.iconData
                     imageColor: decorationStoreRole.foregroundColor
+                    antialiasing: true
                 }
             }
 
