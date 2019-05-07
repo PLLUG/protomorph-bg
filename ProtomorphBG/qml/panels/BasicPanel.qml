@@ -28,7 +28,13 @@ Flickable {
                 Layout.fillWidth: true
                 Layout.preferredHeight: section.implicitHeight
 
-                contentItem: Loader { source: sectionSourceUrl }
+                contentItem: Loader {
+                    source: sectionSourceUrl
+                    onLoaded: {
+                        if (item.payload !== undefined)
+                            item.payload = sectionPayload
+                    }
+                }
             }
         }
 
@@ -37,7 +43,10 @@ Flickable {
 
     ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
 
-    function addCollapsibleSection(sectionTitle, sectionSourceUrl) {
-        sectionModel.append({"sectionTitle" : sectionTitle, "sectionSourceUrl": sectionSourceUrl})
+    function addCollapsibleSection(sectionTitle, sectionSourceUrl, sectionPayload) {
+        if (sectionPayload === undefined)
+            sectionPayload = {}
+
+        sectionModel.append({"sectionTitle" : sectionTitle, "sectionSourceUrl": sectionSourceUrl, "sectionPayload": sectionPayload})
     }
 }

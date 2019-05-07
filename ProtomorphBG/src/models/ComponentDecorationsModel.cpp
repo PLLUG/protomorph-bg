@@ -73,13 +73,14 @@ void ComponentDecorationsModel::clearDecorationSelection()
         emit dataChanged(selectedIndex, selectedIndex, {static_cast<int>(SelectedRole)});
 }
 
-QVariant ComponentDecorationsModel::getDecorationStoreByIndex(int indexRow) const
+QVariant ComponentDecorationsModel::getByIndexAndRole(int indexRow, const QString &role) const
 {
-    if (!index(indexRow).isValid())
-        return QVariant::fromValue(nullptr);
+    return data(index(indexRow), roleNames().key(role.toUtf8(), DecorationStoreRole));
+}
 
-    const auto &decoration = m_componentDecorations.at(static_cast<size_t>(indexRow));
-    return getTypedDecorationStore(decoration);
+void ComponentDecorationsModel::setByIndexAndRole(int indexRow, const QVariant &value, const QString &role)
+{
+    setData(index(indexRow), value, roleNames().key(role.toUtf8(), DecorationStoreRole));
 }
 
 void ComponentDecorationsModel::onDecorationSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)

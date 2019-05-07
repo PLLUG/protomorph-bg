@@ -50,5 +50,6 @@
         <file alias="ComponentSizeSection.qml">qml/panels/sections/ComponentSizeSection.qml</file>
         <file alias="ComponentBorderSection.qml">qml/panels/sections/ComponentBorderSection.qml</file>
         <file alias="ComponentDecorationsSection.qml">qml/panels/sections/ComponentDecorationsSection.qml</file>
+        <file alias="DecorationSizeAndPositionSection.qml">qml/panels/sections/DecorationSizeAndPositionSection.qml</file>
     </qresource>
 </RCC>
