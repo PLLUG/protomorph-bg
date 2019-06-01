@@ -14,11 +14,18 @@ class DecorationStore : public QFStore
 {
     Q_OBJECT
     Q_PROPERTY(Enums::DecorationType decorationType READ decorationType)
-    Q_PROPERTY(QPointF decorationPosition READ decorationPosition NOTIFY decorationPositionChanged)
-    Q_PROPERTY(QSizeF decorationSize READ decorationSize NOTIFY decorationSizeChanged)
-    Q_PROPERTY(QColor backgroundColor READ backgroundColor NOTIFY backgroundColorChanged)
-    Q_PROPERTY(QColor foregroundColor READ foregroundColor NOTIFY foregroundColorChanged)
+    Q_PROPERTY(QPointF decorationPosition READ decorationPosition WRITE setDecorationPosition NOTIFY decorationPositionChanged)
+    Q_PROPERTY(QSizeF decorationSize READ decorationSize WRITE setDecorationSize NOTIFY decorationSizeChanged)
+    Q_PROPERTY(QColor backgroundColor READ backgroundColor WRITE setBackgroundColor NOTIFY backgroundColorChanged)
+    Q_PROPERTY(QColor foregroundColor READ foregroundColor WRITE setForegroundColor NOTIFY foregroundColorChanged)
 
+    enum class DecorationAction
+    {
+        CHANGE_DECORATION_BACKGROUND,
+        CHANGE_DECORATION_FOREGROUND,
+        CHANGE_DECORATION_POSITION,
+        CHANGE_DECORATION_SIZE
+    };
 
 public:
     explicit DecorationStore(QObject *parent = nullptr);
@@ -39,6 +46,15 @@ public:
     void setDecorationVisible(bool isVisble) { m_metadata.isVisible = isVisble; }
     //METADATA End
 
+public slots:
+    virtual void setDecorationPosition(QPointF decorationPosition) = 0;
+    virtual void setDecorationSize(QSizeF decorationSize) = 0;
+    virtual void setBackgroundColor(QColor backgroundColor) = 0;
+    virtual void setForegroundColor(QColor foregroundColor) = 0;
+
+private slots:
+    virtual void onDispatched(const QString &type, const QJSValue &message);
+
 signals:
     void backgroundColorChanged(const QColor &backgroundColor);
     void foregroundColorChanged(const QColor &foregroundColor);
@@ -47,6 +63,7 @@ signals:
 
 private:
     DecorationMetaData m_metadata;
+    const QMap<QString, DecorationStore::DecorationAction> m_actionsMap;
 };
 
 #endif // DECORATIONSTORE_HPP

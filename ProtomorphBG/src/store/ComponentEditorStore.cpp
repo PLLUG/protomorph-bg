@@ -160,6 +160,7 @@ void ComponentEditorStore::onDispatched(const QString &type, const QJSValue &mes
             m_component->componentDecorations.emplace_back(std::move(decoration));
             auto &lastDecoration = *m_component->componentDecorations.back();
             auto decorationStore = m_decorationProducer->createDecorationStore(decorationTypeEnum, lastDecoration);
+            decorationStore->setBindSource(bindSource());
             m_componentDecorationModel->addDecorationStore(std::move(decorationStore));
         }
         break;

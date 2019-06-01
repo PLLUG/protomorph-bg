@@ -45,3 +45,39 @@ QString GameIconDecorationStore::iconName() const
 {
     return  m_gameIconDecoration.iconName;
 }
+
+void GameIconDecorationStore::setDecorationPosition(QPointF decorationPosition)
+{
+    if (decorationPosition == m_gameIconDecoration.boundingRect.topLeft())
+        return;
+
+    m_gameIconDecoration.boundingRect.moveTopLeft(decorationPosition);
+    emit decorationPositionChanged(m_gameIconDecoration.boundingRect.topLeft());
+}
+
+void GameIconDecorationStore::setDecorationSize(QSizeF decorationSize)
+{
+    if (decorationSize == m_gameIconDecoration.boundingRect.size())
+        return;
+
+    m_gameIconDecoration.boundingRect.setSize(decorationSize);
+    emit decorationSizeChanged(m_gameIconDecoration.boundingRect.size());
+}
+
+void GameIconDecorationStore::setBackgroundColor(QColor backgroundColor)
+{
+    if (backgroundColor == m_gameIconDecoration.backgroundColor)
+        return;
+
+    m_gameIconDecoration.backgroundColor = backgroundColor;
+    emit backgroundColorChanged(m_gameIconDecoration.backgroundColor);
+}
+
+void GameIconDecorationStore::setForegroundColor(QColor foregroundColor)
+{
+    if (foregroundColor == m_gameIconDecoration.foregroundColor)
+        return;
+
+    m_gameIconDecoration.foregroundColor = foregroundColor;
+    emit foregroundColorChanged(m_gameIconDecoration.foregroundColor);
+}

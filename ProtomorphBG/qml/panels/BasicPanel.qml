@@ -49,4 +49,8 @@ Flickable {
 
         sectionModel.append({"sectionTitle" : sectionTitle, "sectionSourceUrl": sectionSourceUrl, "sectionPayload": sectionPayload})
     }
+
+    function clearPanel() {
+        sectionModel.clear()
+    }
 }

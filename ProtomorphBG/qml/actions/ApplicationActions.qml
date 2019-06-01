@@ -7,8 +7,13 @@ ActionCreator {
     signal startApp
     signal quitApp
 
-    signal changeComponentSize(size size);
+    signal changeComponentSize(size size)
     signal changeComponentBackground(var propertiesObj)
     signal changeComponentBorders(var propertiesObj)
     signal addDecoration(var propertiesObj)
+
+    signal changeDecorationBackground(var propertiesObj)
+    signal changeDecorationForeground(var propertiesObj)
+    signal changeDecorationPosition(point position)
+    signal changeDecorationSize(size size);
 }

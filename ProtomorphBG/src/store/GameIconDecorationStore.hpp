@@ -30,6 +30,13 @@ signals:
 
 private:
     GameIconDecoration &m_gameIconDecoration;
+
+    // DecorationStore interface
+public slots:
+    void setDecorationPosition(QPointF decorationPosition) override;
+    void setDecorationSize(QSizeF decorationSize) override;
+    void setBackgroundColor(QColor backgroundColor) override;
+    void setForegroundColor(QColor foregroundColor) override;
 };
 
 #endif // GAMEICONDECORATIONSTORE_HPP

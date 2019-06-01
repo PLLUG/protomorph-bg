@@ -24,8 +24,7 @@ ColumnLayout {
         to: Screen.width
         value: decorationStore ? decorationStore.decorationPosition.x : 0
         onValueChanged: {
-            if(decorationStore) {
-            }
+            /*emit*/ ApplicationActions.changeDecorationPosition(Qt.point(value, decorationStore.decorationPosition.y))
         }
     }
 
@@ -36,8 +35,7 @@ ColumnLayout {
         to: Screen.width
         value: decorationStore ? decorationStore.decorationPosition.y : 0
         onValueChanged: {
-            if(decorationStore)
-                decorationStore.decorationPosition.y = value
+            /*emit*/ ApplicationActions.changeDecorationPosition(Qt.point(decorationStore.decorationPosition.x, value))
         }
     }
 
@@ -48,8 +46,7 @@ ColumnLayout {
         to: Screen.width
         value: decorationStore ? decorationStore.decorationSize.width : 0
         onValueChanged: {
-            if(decorationStore)
-                decorationStore.decorationPosition.width = value
+            /*emit*/ ApplicationActions.changeDecorationSize(Qt.size(value, decorationStore.decorationSize.height))
         }
     }
 
@@ -60,8 +57,7 @@ ColumnLayout {
         to: Screen.width
         value: decorationStore ? decorationStore.decorationSize.height : 0
         onValueChanged: {
-            if(decorationStore)
-                decorationStore.decorationPosition.height = value
+            /*emit*/ ApplicationActions.changeDecorationSize(Qt.size(decorationStore.decorationSize.width, value))
         }
     }
 
