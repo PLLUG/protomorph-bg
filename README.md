@@ -33,6 +33,10 @@ Next sources are used in the project:
 
 5. [**mitchcurtis/slate**](https://github.com/mitchcurtis/slate) - Pixel Art Editor(Collapsible panels and color scheme used from this project)
 
+## Our support
+
+UI/UX Designer - **Anthony Hobday**
+
 ## Progress so far
 
 <p align="center">
