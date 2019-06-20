@@ -6,8 +6,6 @@
 
 **"Protomorph BG"** is a tool, that will help board game designers to prototype games components(cards, tiles, boards etc.) and save them as a project. It will also have layouts mechanisms, to layout components for printing on standard paper formats and export entire project to PDF or other formats. Will be available for Windows/Linux/OSX (I hope :))
 
-[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/protomorph-bg/community)
-
 ## Status
 
 AppVeyor-CI: [![Build status](https://ci.appveyor.com/api/projects/status/a0qea0hrbx2evnwa/branch/development?svg=true)](https://ci.appveyor.com/project/Guitarheroua/protomorph-bg/branch/development)
