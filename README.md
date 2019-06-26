@@ -1,7 +1,7 @@
 # Protomorph BG
 
 <p align="center">
-  <img src="https://github.com/Guitarheroua/protomorph-bg/blob/development/ProtomorphBG/resources/icons/protomorph-bg.ico" />
+  <img src="https://github.com/Guitarheroua/protomorph-bg/blob/development/ProtomorphBG/old-src/resources/icons/protomorph-bg.ico" />
 </p>
 
 **"Protomorph BG"** is a tool, that will help board game designers to prototype games components(cards, tiles, boards etc.) and save them as a project. It will also have layouts mechanisms, to layout components for printing on standard paper formats and export entire project to PDF or other formats. Will be available for Windows/Linux/OSX (I hope :))
