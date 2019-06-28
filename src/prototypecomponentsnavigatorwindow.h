@@ -3,6 +3,7 @@
 
 #include <QDialog>
 class QStringListModel;
+class QItemSelectionModel;
 
 namespace Ui {
 class PrototypeComponentsNavigatorWindow;
@@ -19,6 +20,7 @@ public:
 private:
     Ui::PrototypeComponentsNavigatorWindow *ui;
     QStringListModel *componentPreview;
+    QItemSelectionModel *mSelectionModel;
 
 private slots:
     void setButtonEnabled();

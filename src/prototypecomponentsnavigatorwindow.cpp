@@ -1,6 +1,7 @@
 #include "prototypecomponentsnavigatorwindow.h"
 #include "ui_prototypecomponentsnavigatorwindow.h"
 #include <QStringListModel>
+#include <QItemSelectionModel>
 
 PrototypeComponentsNavigatorWindow::PrototypeComponentsNavigatorWindow(QWidget *parent) :
     QDialog(parent),
@@ -9,15 +10,15 @@ PrototypeComponentsNavigatorWindow::PrototypeComponentsNavigatorWindow(QWidget *
     ui->setupUi(this);
 
     componentPreview = new QStringListModel(this);
+    mSelectionModel = new QItemSelectionModel;
 
     QStringList list;
     list << "Clair de Lune" << "Reverie" << "Prelude";
     componentPreview->setStringList(list);
     ui->listView->setModel(componentPreview);
-//    ui->listView->setEditTriggers(QAbstractItemView::AnyKeyPressed |
-//                                  QAbstractItemView::DoubleClicked);
 
-    connect( componentPreview, SIGNAL(clicked), this, SLOT(setButtonEnabled));
+    mSelectionModel = ui->listView->selectionModel();
+    connect(mSelectionModel,&QItemSelectionModel::selectionChanged,this,&PrototypeComponentsNavigatorWindow::setButtonEnabled);
 }
 
 PrototypeComponentsNavigatorWindow::~PrototypeComponentsNavigatorWindow()
