@@ -13,7 +13,6 @@ class QAbstractItemModel;
 class QItemSelectionModel;
 class QItemSelection;
 
-
 class ProjectViewerWindow : public QWidget
 {
     Q_OBJECT

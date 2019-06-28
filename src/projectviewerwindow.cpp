@@ -17,7 +17,7 @@ ProjectViewerWindow::ProjectViewerWindow(QWidget *parent) :
     ui->setupUi(this);
 
     ui->projectsListView->setViewMode(QListView::ViewMode::IconMode);
-
+    ui->projectsListView->setSelectionMode(QAbstractItemView::MultiSelection);
     connect(ui->newProjectButton,&QPushButton::clicked,this,&ProjectViewerWindow::onNewProjectButtonClicked);
     connect(ui->openProjectButton,&QPushButton::clicked,this,&ProjectViewerWindow::onOpenProjectButtonClicked);
     connect(ui->deleteProjectButton,&QPushButton::clicked,this,&ProjectViewerWindow::onRemoveProjectButtonClicked);
@@ -64,13 +64,20 @@ void ProjectViewerWindow::makeRemoveActive()
 
 void ProjectViewerWindow::getSelection(const QItemSelection &selected, const QItemSelection &deselected)
 {
-    for(auto temp : selected)
+    qDebug()<<mSelectionModel->selectedIndexes().size();
+    if(mSelectionModel->selectedIndexes().size()== 1)
     {
-        qDebug()<<temp;
+        ui->openProjectButton->setEnabled(true);
+        ui->deleteProjectButton->setEnabled(true);
     }
-
-    for(auto temp : deselected)
+    else if(mSelectionModel->selectedIndexes().size() > 1)
     {
-        qDebug()<<temp;
+        ui->openProjectButton->setEnabled(false);
+        ui->deleteProjectButton->setEnabled(true);
+    }
+    else
+    {
+        ui->openProjectButton->setEnabled(false);
+        ui->deleteProjectButton->setEnabled(false);
     }
 }
