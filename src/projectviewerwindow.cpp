@@ -21,6 +21,7 @@ ProjectViewerWindow::ProjectViewerWindow(QWidget *parent) :
     ui->projectsListView->setIconSize(QSize(100,100));
     ui->projectsListView->setUniformItemSizes(true);
     ui->projectsListView->setSelectionMode(QAbstractItemView::MultiSelection);
+
     connect(ui->newProjectButton,&QPushButton::clicked,this,&ProjectViewerWindow::onNewProjectButtonClicked);
     connect(ui->openProjectButton,&QPushButton::clicked,this,&ProjectViewerWindow::onOpenProjectButtonClicked);
     connect(ui->deleteProjectButton,&QPushButton::clicked,this,&ProjectViewerWindow::onRemoveProjectButtonClicked);
@@ -38,7 +39,7 @@ void ProjectViewerWindow::setModel(QAbstractItemModel *model)
         mProjectsViewModel = model;
         ui->projectsListView->setModel(mProjectsViewModel);
         mSelectionModel = ui->projectsListView->selectionModel();
-        connect(mSelectionModel,&QItemSelectionModel::selectionChanged,this,&ProjectViewerWindow::getSelection);
+        connect(mSelectionModel,&QItemSelectionModel::selectionChanged,this,&ProjectViewerWindow::makeButtonsEnabled);
     }
 }
 
@@ -58,12 +59,7 @@ void ProjectViewerWindow::onRemoveProjectButtonClicked()
     emit projectRemoved("");
 }
 
-void ProjectViewerWindow::makeRemoveActive()
-{
-    qDebug()<<mSelectionModel->currentIndex();
-}
-
-void ProjectViewerWindow::getSelection(const QItemSelection &selected, const QItemSelection &deselected)
+void ProjectViewerWindow::makeButtonsEnabled()
 {
     qDebug()<<mSelectionModel->selectedIndexes().size();
     if(mSelectionModel->selectedIndexes().size()== 1)

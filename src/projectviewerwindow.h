@@ -22,7 +22,6 @@ public:
     ~ProjectViewerWindow();
 
     void setModel(QAbstractItemModel*);
-
 signals:
     void newProjectRequested();
     void projectOpened(QString fullProjectPath);
@@ -32,9 +31,8 @@ private slots:
     void onNewProjectButtonClicked();
     void onOpenProjectButtonClicked();
     void onRemoveProjectButtonClicked();
-    void makeRemoveActive();
-    void getSelection(const QItemSelection &selected, const QItemSelection &deselected);
 
+    void makeButtonsEnabled();
 
 private:
     Ui::ProjectViewerWindow *ui;
