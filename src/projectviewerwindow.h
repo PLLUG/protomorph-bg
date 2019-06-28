@@ -8,6 +8,11 @@ class ProjectViewerWindow;
 }
 
 class QString;
+class QStringListModel;
+class QAbstractItemModel;
+class QItemSelectionModel;
+class QItemSelection;
+
 
 class ProjectViewerWindow : public QWidget
 {
@@ -17,13 +22,25 @@ public:
     explicit ProjectViewerWindow(QWidget *parent = nullptr);
     ~ProjectViewerWindow();
 
+    void setModel(QAbstractItemModel*);
+
 signals:
     void newProjectRequested();
     void projectOpened(QString fullProjectPath);
     void projectRemoved(QString fullProjectPath);
 
+private slots:
+    void onNewProjectButtonClicked();
+    void onOpenProjectButtonClicked();
+    void onRemoveProjectButtonClicked();
+    void makeRemoveActive();
+    void getSelection(const QItemSelection &selected, const QItemSelection &deselected);
+
+
 private:
     Ui::ProjectViewerWindow *ui;
+    QAbstractItemModel *mProjectsViewModel;
+    QItemSelectionModel *mSelectionModel;
 };
 
 #endif // PROJECTVIEWERWINDOW_H
