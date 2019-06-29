@@ -1,4 +1,4 @@
-version: pmbg-{build}-{branch}
+version: 0.0.{build}
 
 install:  
   - cmd: cd  %APPVEYOR_BUILD_FOLDER%\protomorph-bg
