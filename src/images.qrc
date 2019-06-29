@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/projectviewer">
-        <file>images/icon</file>
+        <file>images/projecticon</file>
     </qresource>
 </RCC>

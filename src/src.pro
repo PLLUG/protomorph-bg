@@ -38,3 +38,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 FORMS += \
     projectviewerwindow.ui
+
+RESOURCES += \
+    images.qrc
