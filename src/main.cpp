@@ -7,13 +7,19 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QStandardItemModel *model = new QStandardItemModel;
-    model->appendRow(new QStandardItem(QIcon("/home/igor/icon"), "path1"));
-    model->appendRow(new QStandardItem(QIcon("/home/igor/icon"), "path2"));
-    model->appendRow(new QStandardItem(QIcon("/home/igor/icon"), "path3"));
+    QStandardItemModel model;
+    QList<QStandardItem> items;
+
+    QStandardItem it1(QIcon(":/projectviewer/images/projecticon"), "path1");
+    QStandardItem it2(QIcon(":/projectviewer/images/projecticon"), "looooooooong path");
+    QStandardItem it3(QIcon(":/projectviewer/images/projecticon"), "path3");
+
+    model.appendRow(&it1);
+    model.appendRow(&it2);
+    model.appendRow(&it3);
 
     ProjectViewerWindow *pvw = new ProjectViewerWindow;
-    pvw->setModel(model);
+    pvw->setModel(&model);
     pvw->show();
     return a.exec();
 }
