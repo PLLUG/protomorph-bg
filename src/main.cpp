@@ -8,7 +8,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     QStandardItemModel model;
-    QList<QStandardItem> items;
 
     QStandardItem it1(QIcon(":/projectviewer/images/projecticon"), "path1");
     QStandardItem it2(QIcon(":/projectviewer/images/projecticon"), "looooooooong path");
