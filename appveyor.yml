@@ -1,0 +1,27 @@
+version: pmbg-{build}-{branch}
+
+install:  
+  - cmd: cd  %APPVEYOR_BUILD_FOLDER%\protomorph-bg
+
+pull_requests:
+do_not_increment_build_number: true
+
+environment:
+  QT_INSTALL_ROOT: C:\Qt\5.12.2\msvc2017_64
+  
+  version: 0.0.1-{build}-{branch}
+
+build_script:
+- cmd: >-
+
+    %QT_INSTALL_ROOT%\bin\qtenv2.bat
+
+    "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x64
+    
+    cd %APPVEYOR_BUILD_FOLDER%\protomorph-bg
+    
+    qpm install
+    
+    qmake CONFIG+=release
+    
+    nmake
