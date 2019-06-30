@@ -1,7 +1,7 @@
 #ifndef PROTOTYPECOMPONENTSNAVIGATORWINDOW_H
 #define PROTOTYPECOMPONENTSNAVIGATORWINDOW_H
 
-#include <QDialog>
+#include <QWidget>
 class QStandardItemModel;
 class QItemSelectionModel;
 
@@ -9,7 +9,7 @@ namespace Ui {
 class PrototypeComponentsNavigatorWindow;
 }
 
-class PrototypeComponentsNavigatorWindow : public QDialog
+class PrototypeComponentsNavigatorWindow : public QWidget
 {
     Q_OBJECT
 

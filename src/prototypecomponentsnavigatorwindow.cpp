@@ -4,7 +4,7 @@
 #include <QItemSelectionModel>
 
 PrototypeComponentsNavigatorWindow::PrototypeComponentsNavigatorWindow(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::PrototypeComponentsNavigatorWindow)
 {
     ui->setupUi(this);
