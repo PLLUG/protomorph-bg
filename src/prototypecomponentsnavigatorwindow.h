@@ -2,7 +2,7 @@
 #define PROTOTYPECOMPONENTSNAVIGATORWINDOW_H
 
 #include <QDialog>
-class QStringListModel;
+class QStandardItemModel;
 class QItemSelectionModel;
 
 namespace Ui {
@@ -19,7 +19,7 @@ public:
 
 private:
     Ui::PrototypeComponentsNavigatorWindow *ui;
-    QStringListModel *componentPreview;
+    QStandardItemModel *componentPreview;
     QItemSelectionModel *mSelectionModel;
 
 private slots:

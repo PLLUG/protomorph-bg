@@ -38,3 +38,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 FORMS += \
     prototypecomponentsnavigatorwindow.ui
+
+RESOURCES += \
+    resources/images.qrc
