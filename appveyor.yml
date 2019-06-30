@@ -12,9 +12,7 @@ environment:
 build_script:
 - cmd: >-
     
-    cd %QT_INSTALL_ROOT%\bin\
-    
-    dir
+    echo %QT_INSTALL_ROOT%
     
     #%QT_INSTALL_ROOT%\bin\qtenv2.bat
 
