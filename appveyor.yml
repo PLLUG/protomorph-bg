@@ -14,6 +14,8 @@ build_script:
     
     C:
     
+    cd C:\Qt\
+    
     dir
     
     #%QT_INSTALL_ROOT%\bin\qtenv2.bat
