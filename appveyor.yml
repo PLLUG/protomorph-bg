@@ -4,7 +4,7 @@ install:
   - cmd: cd  %APPVEYOR_BUILD_FOLDER%\src
 
 pull_requests:
-do_not_increment_build_number: true
+  do_not_increment_build_number: true
 
 environment:
   QT_INSTALL_ROOT: C:\Qt\5.12.2\msvc2017_64
