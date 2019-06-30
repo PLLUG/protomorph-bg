@@ -17,6 +17,10 @@ PrototypeComponentsNavigatorWindow::PrototypeComponentsNavigatorWindow(QWidget *
     ui->listView->setUniformItemSizes(true);
     ui->listView->setSelectionMode(QAbstractItemView::MultiSelection);
 
+    connect(ui->pushButtonAddComponentsToPrototipe, &QPushButton::clicked, this, &PrototypeComponentsNavigatorWindow::newComponentButtonClicked);
+    connect (ui->pushButtonLoadSelectedComponents, &QPushButton::clicked, this, &PrototypeComponentsNavigatorWindow::componentOpenButtonClicked);
+    connect(ui->pushButtonDeleteSelectedComponent, &QPushButton::clicked, this, &PrototypeComponentsNavigatorWindow::componentRemovButtonClicked);
+
 }
 
 PrototypeComponentsNavigatorWindow::~PrototypeComponentsNavigatorWindow()
@@ -35,6 +39,22 @@ void PrototypeComponentsNavigatorWindow::setModel(QAbstractItemModel *model)
         connect(ui->listView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(handleSelectionChanged(QItemSelection, QItemSelection)));
     }
 }
+
+void PrototypeComponentsNavigatorWindow::newComponentButtonClicked()
+{
+    emit newComponentRequested();
+}
+
+void PrototypeComponentsNavigatorWindow::componentOpenButtonClicked()
+{
+    emit componentOpened("");
+}
+
+void PrototypeComponentsNavigatorWindow::componentRemovButtonClicked()
+{
+    emit componentRemoved("");
+}
+
 
 void PrototypeComponentsNavigatorWindow::handleCheckedChanged(QStandardItem *item)
 {
