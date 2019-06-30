@@ -14,7 +14,7 @@ build_script:
     
     C:
     
-    cd C:\Qt\
+    cd C:\Qt\5.12.2\
     
     dir
     
