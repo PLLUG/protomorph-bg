@@ -5,6 +5,8 @@
 
 class QItemSelectionModel;
 class QAbstractItemModel;
+class QStandardItem;
+class QItemSelection;
 
 namespace Ui {
 class PrototypeComponentsNavigatorWindow;
@@ -26,8 +28,10 @@ private:
     QItemSelectionModel *mSelectionModel;
     QAbstractItemModel *mPreviewItemModel;
 
+
 private slots:
-    void setButtonEnabled();
+    void handleCheckedChanged(QStandardItem *);
+    void handleSelectionChanged(const QItemSelection &, const QItemSelection &);
 
 };
 

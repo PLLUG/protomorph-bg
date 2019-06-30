@@ -2,6 +2,7 @@
 #include "ui_prototypecomponentsnavigatorwindow.h"
 #include <QItemSelectionModel>
 #include <QAbstractItemModel>
+#include <QStandardItem>
 
 PrototypeComponentsNavigatorWindow::PrototypeComponentsNavigatorWindow(QWidget *parent) :
     QWidget(parent),
@@ -30,14 +31,29 @@ void PrototypeComponentsNavigatorWindow::setModel(QAbstractItemModel *model)
         mPreviewItemModel = model;
         ui->listView->setModel(mPreviewItemModel);
         mSelectionModel = ui->listView->selectionModel();
-        connect(mSelectionModel,&QItemSelectionModel::selectionChanged,this,&PrototypeComponentsNavigatorWindow::setButtonEnabled);
+        connect(model, SIGNAL(itemChanged(QStandardItem *)), this, SLOT(handleCheckedChanged(QStandardItem *)));
+        connect(ui->listView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(handleSelectionChanged(QItemSelection, QItemSelection)));
     }
 }
 
-void PrototypeComponentsNavigatorWindow::setButtonEnabled()
+void PrototypeComponentsNavigatorWindow::handleCheckedChanged(QStandardItem *item)
 {
-    ui->pushButtonLoadSelectedComponents->setEnabled(true);
-    ui->pushButtonDeleteSelectedComponent->setEnabled(true);
+    const QModelIndex index = item->model()->indexFromItem(item);
+    mSelectionModel = ui->listView->selectionModel();
+    mSelectionModel->select(QItemSelection(index, index), item->checkState() == Qt::Checked ? QItemSelectionModel::Select : QItemSelectionModel::Deselect);
 }
 
+void PrototypeComponentsNavigatorWindow::handleSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
+{
+    foreach (const QModelIndex &index, selected.indexes())
+    {
+        ui->pushButtonLoadSelectedComponents->setEnabled(true);
+        ui->pushButtonDeleteSelectedComponent->setEnabled(true);
+    }
+    foreach (const QModelIndex &index, deselected.indexes())
+    {
+        ui->pushButtonLoadSelectedComponents->setEnabled(false);
+        ui->pushButtonDeleteSelectedComponent->setEnabled(false);
+    }
+}
 
