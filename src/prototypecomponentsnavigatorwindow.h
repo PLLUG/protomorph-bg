@@ -2,8 +2,9 @@
 #define PROTOTYPECOMPONENTSNAVIGATORWINDOW_H
 
 #include <QWidget>
-class QStandardItemModel;
+
 class QItemSelectionModel;
+class QAbstractItemModel;
 
 namespace Ui {
 class PrototypeComponentsNavigatorWindow;
@@ -17,10 +18,13 @@ public:
     explicit PrototypeComponentsNavigatorWindow(QWidget *parent = nullptr);
     ~PrototypeComponentsNavigatorWindow();
 
+public:
+    void setModel(QAbstractItemModel*);
+
 private:
     Ui::PrototypeComponentsNavigatorWindow *ui;
-    QStandardItemModel *componentPreview;
     QItemSelectionModel *mSelectionModel;
+    QAbstractItemModel *mPreviewItemModel;
 
 private slots:
     void setButtonEnabled();

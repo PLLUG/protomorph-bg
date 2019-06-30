@@ -1,7 +1,7 @@
 #include "prototypecomponentsnavigatorwindow.h"
 #include "ui_prototypecomponentsnavigatorwindow.h"
-#include <QStandardItemModel>
 #include <QItemSelectionModel>
+#include <QAbstractItemModel>
 
 PrototypeComponentsNavigatorWindow::PrototypeComponentsNavigatorWindow(QWidget *parent) :
     QWidget(parent),
@@ -9,25 +9,29 @@ PrototypeComponentsNavigatorWindow::PrototypeComponentsNavigatorWindow(QWidget *
 {
     ui->setupUi(this);
 
-    componentPreview = new QStandardItemModel(this);
+
     mSelectionModel = new QItemSelectionModel;
 
-    componentPreview->appendRow(new QStandardItem(QIcon(":/new/preview/images/project"), "item1"));
-    componentPreview->appendRow(new QStandardItem(QIcon(":/new/preview/images/project"), "item2"));
-    componentPreview->appendRow(new QStandardItem(QIcon(":/new/preview/images/project"), "item3"));
-
-    ui->listView->setModel(componentPreview);
     ui->listView->setIconSize(QSize(100,100));
     ui->listView->setUniformItemSizes(true);
     ui->listView->setSelectionMode(QAbstractItemView::MultiSelection);
 
     mSelectionModel = ui->listView->selectionModel();
-    connect(mSelectionModel,&QItemSelectionModel::selectionChanged,this,&PrototypeComponentsNavigatorWindow::setButtonEnabled);
 }
 
 PrototypeComponentsNavigatorWindow::~PrototypeComponentsNavigatorWindow()
 {
     delete ui;
+}
+
+void PrototypeComponentsNavigatorWindow::setModel(QAbstractItemModel *model)
+{
+    if(model)
+    {
+        mPreviewItemModel = model;
+        ui->listView->setModel(mPreviewItemModel);
+        connect(mSelectionModel,&QItemSelectionModel::selectionChanged,this,&PrototypeComponentsNavigatorWindow::setButtonEnabled);
+    }
 }
 
 void PrototypeComponentsNavigatorWindow::setButtonEnabled()
