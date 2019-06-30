@@ -59,13 +59,9 @@ void ProjectViewerWindow::onRemoveProjectButtonClicked()
 
 void ProjectViewerWindow::makeButtonsEnabled()
 {
-    if(ui->projectsListView->selectionModel()->selectedIndexes().size() > 0)
-    {
-        ui->deleteProjectButton->setEnabled(true);
-    }
-    if(ui->projectsListView->selectionModel()->selectedIndexes().size()== 1)
-    {
-        ui->openProjectButton->setEnabled(true);
-    }
+    bool isEqualToOne = ui->projectsListView->selectionModel()->selectedIndexes().size() == 1;
+    bool isMoreThanZero = ui->projectsListView->selectionModel()->selectedIndexes().size() > 0;
 
+    ui->deleteProjectButton->setEnabled(isMoreThanZero);
+    ui->openProjectButton->setEnabled(isEqualToOne);
 }
