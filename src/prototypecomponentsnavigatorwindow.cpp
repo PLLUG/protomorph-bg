@@ -16,7 +16,6 @@ PrototypeComponentsNavigatorWindow::PrototypeComponentsNavigatorWindow(QWidget *
     ui->listView->setUniformItemSizes(true);
     ui->listView->setSelectionMode(QAbstractItemView::MultiSelection);
 
-    mSelectionModel = ui->listView->selectionModel();
 }
 
 PrototypeComponentsNavigatorWindow::~PrototypeComponentsNavigatorWindow()
@@ -30,6 +29,7 @@ void PrototypeComponentsNavigatorWindow::setModel(QAbstractItemModel *model)
     {
         mPreviewItemModel = model;
         ui->listView->setModel(mPreviewItemModel);
+        mSelectionModel = ui->listView->selectionModel();
         connect(mSelectionModel,&QItemSelectionModel::selectionChanged,this,&PrototypeComponentsNavigatorWindow::setButtonEnabled);
     }
 }
