@@ -7,25 +7,17 @@ pull_requests:
   do_not_increment_build_number: true
 
 environment:
-  QT_INSTALL_ROOT: C:\Qt\5.12.2\msvc2017_64
+  QT_INSTALL_ROOT: C:\Qt\5.12.2\msvc2015_64
 
 build_script:
 - cmd: >-
     
-    C:
-    
-    cd C:\Qt\latest\
-    
-    dir
-    
-    #%QT_INSTALL_ROOT%\bin\qtenv2.bat
+    %QT_INSTALL_ROOT%\bin\qtenv2.bat
 
-    #"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x64
+    "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
     
     #cd %APPVEYOR_BUILD_FOLDER%\src
     
-    #qpm install
-    
-    #qmake CONFIG+=release
+    qmake CONFIG+=release
     
     #nmake
