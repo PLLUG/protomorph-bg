@@ -38,15 +38,13 @@ void ProjectViewerWindow::setModel(QAbstractItemModel *model)
     {
         mProjectsViewModel = model;
         ui->projectsListView->setModel(mProjectsViewModel);
-        mSelectionModel = ui->projectsListView->selectionModel();
-        connect(mSelectionModel,&QItemSelectionModel::selectionChanged,this,&ProjectViewerWindow::makeButtonsEnabled);
+        connect(ui->projectsListView->selectionModel(),&QItemSelectionModel::selectionChanged,this,&ProjectViewerWindow::makeButtonsEnabled);
     }
 }
 
 void ProjectViewerWindow::onNewProjectButtonClicked()
 {
     emit newProjectRequested();
-    qDebug()<<"new project button clicked";
 }
 
 void ProjectViewerWindow::onOpenProjectButtonClicked()
@@ -61,20 +59,13 @@ void ProjectViewerWindow::onRemoveProjectButtonClicked()
 
 void ProjectViewerWindow::makeButtonsEnabled()
 {
-    qDebug()<<mSelectionModel->selectedIndexes().size();
-    if(mSelectionModel->selectedIndexes().size()== 1)
+    if(ui->projectsListView->selectionModel()->selectedIndexes().size() > 0)
+    {
+        ui->deleteProjectButton->setEnabled(true);
+    }
+    if(ui->projectsListView->selectionModel()->selectedIndexes().size()== 1)
     {
         ui->openProjectButton->setEnabled(true);
-        ui->deleteProjectButton->setEnabled(true);
     }
-    else if(mSelectionModel->selectedIndexes().size() > 1)
-    {
-        ui->openProjectButton->setEnabled(false);
-        ui->deleteProjectButton->setEnabled(true);
-    }
-    else
-    {
-        ui->openProjectButton->setEnabled(false);
-        ui->deleteProjectButton->setEnabled(false);
-    }
+
 }

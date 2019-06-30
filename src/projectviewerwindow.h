@@ -7,11 +7,7 @@ namespace Ui {
 class ProjectViewerWindow;
 }
 
-class QString;
-class QStringListModel;
 class QAbstractItemModel;
-class QItemSelectionModel;
-class QItemSelection;
 
 class ProjectViewerWindow : public QWidget
 {
@@ -37,7 +33,6 @@ private slots:
 private:
     Ui::ProjectViewerWindow *ui;
     QAbstractItemModel *mProjectsViewModel;
-    QItemSelectionModel *mSelectionModel;
 };
 
 #endif // PROJECTVIEWERWINDOW_H
