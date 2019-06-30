@@ -1,15 +1,13 @@
-version: 0.0.{build}
+version: 0.0.{build}-{branch}
 
 install:  
-  - cmd: cd  %APPVEYOR_BUILD_FOLDER%\protomorph-bg
+  - cmd: cd  %APPVEYOR_BUILD_FOLDER%\src
 
 pull_requests:
 do_not_increment_build_number: true
 
 environment:
   QT_INSTALL_ROOT: C:\Qt\5.12.2\msvc2017_64
-  
-  version: 0.0.1-{build}-{branch}
 
 build_script:
 - cmd: >-
@@ -18,7 +16,7 @@ build_script:
 
     "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x64
     
-    cd %APPVEYOR_BUILD_FOLDER%\protomorph-bg
+    cd %APPVEYOR_BUILD_FOLDER%\src
     
     qpm install
     
