@@ -28,4 +28,6 @@ build_script:
 
     nmake
 
+    dir
+
     tests.exe
