@@ -24,7 +24,7 @@ build_script:
 
     cd %APPVEYOR_BUILD_FOLDER%\src\tests\projectviewerwindow
     
-    qmake tests.pro
+    qmake tests.pro DESTDIR=.
 
     nmake
 
