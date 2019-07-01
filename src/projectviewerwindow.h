@@ -32,7 +32,6 @@ private slots:
 
 private:
     Ui::ProjectViewerWindow *ui;
-    QAbstractItemModel *mProjectsViewModel;
 };
 
 #endif // PROJECTVIEWERWINDOW_H

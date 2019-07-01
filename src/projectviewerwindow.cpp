@@ -1,15 +1,6 @@
 #include "projectviewerwindow.h"
 #include "ui_projectviewerwindow.h"
 
-#include <QDebug>
-#include <QPushButton>
-#include <QStringList>
-#include <QStringListModel>
-#include <QItemSelection>
-#include <QItemSelectionModel>
-#include <QStandardItemModel>
-
-
 
 ProjectViewerWindow::ProjectViewerWindow(QWidget *parent) :
     QWidget(parent),
@@ -26,6 +17,7 @@ ProjectViewerWindow::ProjectViewerWindow(QWidget *parent) :
     connect(ui->deleteProjectButton,&QPushButton::clicked,this,&ProjectViewerWindow::onRemoveProjectButtonClicked);
 
 }
+
 ProjectViewerWindow::~ProjectViewerWindow()
 {
     delete ui;
@@ -35,8 +27,7 @@ void ProjectViewerWindow::setModel(QAbstractItemModel *model)
 {
     if(model)
     {
-        mProjectsViewModel = model;
-        ui->projectsListView->setModel(mProjectsViewModel);
+        ui->projectsListView->setModel(model);
         connect(ui->projectsListView->selectionModel(),&QItemSelectionModel::selectionChanged,this,&ProjectViewerWindow::makeButtonsEnabled);
     }
 }
