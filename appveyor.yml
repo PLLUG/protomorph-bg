@@ -29,5 +29,14 @@ build_script:
     nmake
 
     dir
+    
+    cd %APPVEYOR_BUILD_FOLDER%\src\tests\projectviewerwindow\debug
+      
+    dir      
 
+    cd %APPVEYOR_BUILD_FOLDER%\src\tests\projectviewerwindw\release
+    
+    dir
+    
     tests.exe
+     
