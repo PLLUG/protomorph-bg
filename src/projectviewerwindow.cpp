@@ -20,7 +20,6 @@ ProjectViewerWindow::ProjectViewerWindow(QWidget *parent) :
     ui->projectsListView->setViewMode(QListView::ViewMode::IconMode);
     ui->projectsListView->setIconSize(QSize(100,100));
     ui->projectsListView->setUniformItemSizes(true);
-    ui->projectsListView->setSelectionMode(QAbstractItemView::MultiSelection);
 
     connect(ui->newProjectButton,&QPushButton::clicked,this,&ProjectViewerWindow::onNewProjectButtonClicked);
     connect(ui->openProjectButton,&QPushButton::clicked,this,&ProjectViewerWindow::onOpenProjectButtonClicked);
