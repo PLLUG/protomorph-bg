@@ -25,19 +25,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp \
-        projectviewerwindow.cpp
-
-HEADERS += \
-    projectviewerwindow.h
+        main.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-FORMS += \
-    projectviewerwindow.ui
+include($$PWD/projectviewer/projectviewer.pri)
 
-RESOURCES += \
-    images.qrc
+DISTFILES += \
+    projectviewer/projectviewer.pri
+
