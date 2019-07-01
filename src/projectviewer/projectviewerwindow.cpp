@@ -12,9 +12,9 @@ ProjectViewerWindow::ProjectViewerWindow(QWidget *parent) :
     ui->projectsListView->setIconSize(QSize(100,100));
     ui->projectsListView->setUniformItemSizes(true);
 
-    connect(ui->newProjectButton,&QPushButton::clicked,this,&ProjectViewerWindow::onNewProjectButtonClicked);
-    connect(ui->openProjectButton,&QPushButton::clicked,this,&ProjectViewerWindow::onOpenProjectButtonClicked);
-    connect(ui->deleteProjectButton,&QPushButton::clicked,this,&ProjectViewerWindow::onRemoveProjectButtonClicked);
+    connect(ui->newProjectButton, &QPushButton::clicked, this, &ProjectViewerWindow::onNewProjectButtonClicked);
+    connect(ui->openProjectButton, &QPushButton::clicked, this, &ProjectViewerWindow::onOpenProjectButtonClicked);
+    connect(ui->deleteProjectButton, &QPushButton::clicked, this, &ProjectViewerWindow::onRemoveProjectButtonClicked);
 
 }
 
@@ -49,9 +49,9 @@ void ProjectViewerWindow::onRemoveProjectButtonClicked()
 
 void ProjectViewerWindow::makeButtonsEnabled()
 {
-    bool isEqualToOne = ui->projectsListView->selectionModel()->selectedIndexes().size() == 1;
-    bool isMoreThanZero = ui->projectsListView->selectionModel()->selectedIndexes().size() > 0;
+    bool isOnlyOneProjectSelected = ui->projectsListView->selectionModel()->selectedIndexes().size() == 1;
+    bool isAnyProjectsSelected = ui->projectsListView->selectionModel()->selectedIndexes().size() > 0;
 
-    ui->deleteProjectButton->setEnabled(isMoreThanZero);
-    ui->openProjectButton->setEnabled(isEqualToOne);
+    ui->deleteProjectButton->setEnabled(isAnyProjectsSelected);
+    ui->openProjectButton->setEnabled(isOnlyOneProjectSelected);
 }
