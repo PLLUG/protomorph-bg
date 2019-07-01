@@ -21,3 +21,11 @@ build_script:
     qmake CONFIG+=release
     
     nmake
+
+    cd %APPVEYOR_BUILD_FOLDER%\src\tests\projectviewerwindow
+    
+    qmake tests.pro
+
+    nmake
+
+    tests.exe
