@@ -22,7 +22,7 @@ build_script:
     
     nmake
 
-    cd \src\tests\projectviewerwindow
+    cd %APPVEYOR_BUILD_FOLDER%\src\tests\projectviewerwindow
     
     qmake tests.pro
 
