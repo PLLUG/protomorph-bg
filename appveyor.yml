@@ -34,7 +34,7 @@ build_script:
       
     dir      
 
-    cd %APPVEYOR_BUILD_FOLDER%\src\tests\projectviewerwindw\release
+    cd %APPVEYOR_BUILD_FOLDER%\src\tests\projectviewerwindow\release
     
     dir
     
