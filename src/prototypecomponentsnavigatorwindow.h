@@ -29,12 +29,12 @@ private:
 
 
 signals:
+    void newComponentRequested();
     void componentOpened(QString id);
     void componentRemoved(QString id);
 
 
 private slots:
-    void newComponentButtonClicked();
     void componentOpenButtonClicked();
     void componentRemovButtonClicked();
     void handleSelectionChanged(const QItemSelection &, const QItemSelection &);
