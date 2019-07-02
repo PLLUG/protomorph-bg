@@ -26,6 +26,7 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
+        programsettings.cpp \
         recentproject.cpp
 
 # Default rules for deployment.
@@ -39,5 +40,6 @@ DISTFILES += \
     projectviewer/projectviewer.pri
 
 HEADERS += \
+    programsettings.h \
     recentproject.h
 
