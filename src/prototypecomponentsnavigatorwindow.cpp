@@ -4,6 +4,7 @@
 #include <QAbstractItemModel>
 #include <QStandardItem>
 
+
 PrototypeComponentsNavigatorWindow::PrototypeComponentsNavigatorWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::PrototypeComponentsNavigatorWindow)
@@ -11,13 +12,11 @@ PrototypeComponentsNavigatorWindow::PrototypeComponentsNavigatorWindow(QWidget *
     ui->setupUi(this);
 
 
-    mSelectionModel = new QItemSelectionModel;
-
     ui->listView->setIconSize(QSize(100,100));
     ui->listView->setUniformItemSizes(true);
     ui->listView->setSelectionMode(QAbstractItemView::MultiSelection);
 
-    connect(ui->pushButtonAddComponentsToPrototipe, &QPushButton::clicked, this, &PrototypeComponentsNavigatorWindow::newComponentButtonClicked);
+    connect(ui->pushButtonAddComponentsToPrototipe, &QPushButton::clicked, this, &PrototypeComponentsNavigatorWindow::newComponentRequested);
     connect(ui->pushButtonLoadSelectedComponents, &QPushButton::clicked, this, &PrototypeComponentsNavigatorWindow::componentOpenButtonClicked);
     connect(ui->pushButtonDeleteSelectedComponent, &QPushButton::clicked, this, &PrototypeComponentsNavigatorWindow::componentRemovButtonClicked);
 
@@ -35,11 +34,6 @@ void PrototypeComponentsNavigatorWindow::setModel(QAbstractItemModel *model)
         ui->listView->setModel(model);
         connect(ui->listView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(handleSelectionChanged(QItemSelection, QItemSelection)));
     }
-}
-
-void PrototypeComponentsNavigatorWindow::newComponentButtonClicked()
-{
-    emit newComponentRequested();
 }
 
 void PrototypeComponentsNavigatorWindow::componentOpenButtonClicked()
