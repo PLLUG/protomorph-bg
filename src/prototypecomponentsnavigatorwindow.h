@@ -26,7 +26,7 @@ public:
 
 private:
     Ui::PrototypeComponentsNavigatorWindow *ui;
-    QItemSelectionModel *mSelectionModel;
+
 
 signals:
     void newComponentRequested();
@@ -38,7 +38,6 @@ private slots:
     void newComponentButtonClicked();
     void componentOpenButtonClicked();
     void componentRemovButtonClicked();
-    void handleCheckedChanged(QStandardItem *);
     void handleSelectionChanged(const QItemSelection &, const QItemSelection &);
 
 };

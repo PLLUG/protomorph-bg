@@ -33,8 +33,6 @@ void PrototypeComponentsNavigatorWindow::setModel(QAbstractItemModel *model)
     if(model)
     {
         ui->listView->setModel(model);
-        mSelectionModel = ui->listView->selectionModel();
-        connect(model, SIGNAL(itemChanged(QStandardItem *)), this, SLOT(handleCheckedChanged(QStandardItem *)));
         connect(ui->listView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(handleSelectionChanged(QItemSelection, QItemSelection)));
     }
 }
@@ -54,21 +52,14 @@ void PrototypeComponentsNavigatorWindow::componentRemovButtonClicked()
     emit componentRemoved("");
 }
 
-
-void PrototypeComponentsNavigatorWindow::handleCheckedChanged(QStandardItem *item)
-{
-    mSelectionModel = ui->listView->selectionModel();
-    mSelectionModel->select(QItemSelection(item->model()->indexFromItem(item), item->model()->indexFromItem(item)), item->checkState() == Qt::Checked ? QItemSelectionModel::Select : QItemSelectionModel::Deselect);
-}
-
 void PrototypeComponentsNavigatorWindow::handleSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
 {
-    foreach (const QModelIndex &index, selected.indexes())
+    for (const QModelIndex &index : selected.indexes())
     {
         ui->pushButtonLoadSelectedComponents->setEnabled(true);
         ui->pushButtonDeleteSelectedComponent->setEnabled(true);
     }
-    foreach (const QModelIndex &index, deselected.indexes())
+    for (const QModelIndex &index : deselected.indexes())
     {
         ui->pushButtonLoadSelectedComponents->setEnabled(false);
         ui->pushButtonDeleteSelectedComponent->setEnabled(false);
