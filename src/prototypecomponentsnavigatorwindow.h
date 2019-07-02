@@ -27,7 +27,6 @@ public:
 private:
     Ui::PrototypeComponentsNavigatorWindow *ui;
     QItemSelectionModel *mSelectionModel;
-    QAbstractItemModel *mPreviewItemModel;
 
 signals:
     void newComponentRequested();

@@ -18,7 +18,7 @@ PrototypeComponentsNavigatorWindow::PrototypeComponentsNavigatorWindow(QWidget *
     ui->listView->setSelectionMode(QAbstractItemView::MultiSelection);
 
     connect(ui->pushButtonAddComponentsToPrototipe, &QPushButton::clicked, this, &PrototypeComponentsNavigatorWindow::newComponentButtonClicked);
-    connect (ui->pushButtonLoadSelectedComponents, &QPushButton::clicked, this, &PrototypeComponentsNavigatorWindow::componentOpenButtonClicked);
+    connect(ui->pushButtonLoadSelectedComponents, &QPushButton::clicked, this, &PrototypeComponentsNavigatorWindow::componentOpenButtonClicked);
     connect(ui->pushButtonDeleteSelectedComponent, &QPushButton::clicked, this, &PrototypeComponentsNavigatorWindow::componentRemovButtonClicked);
 
 }
@@ -32,8 +32,7 @@ void PrototypeComponentsNavigatorWindow::setModel(QAbstractItemModel *model)
 {
     if(model)
     {
-        mPreviewItemModel = model;
-        ui->listView->setModel(mPreviewItemModel);
+        ui->listView->setModel(model);
         mSelectionModel = ui->listView->selectionModel();
         connect(model, SIGNAL(itemChanged(QStandardItem *)), this, SLOT(handleCheckedChanged(QStandardItem *)));
         connect(ui->listView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(handleSelectionChanged(QItemSelection, QItemSelection)));
@@ -58,9 +57,8 @@ void PrototypeComponentsNavigatorWindow::componentRemovButtonClicked()
 
 void PrototypeComponentsNavigatorWindow::handleCheckedChanged(QStandardItem *item)
 {
-    const QModelIndex index = item->model()->indexFromItem(item);
     mSelectionModel = ui->listView->selectionModel();
-    mSelectionModel->select(QItemSelection(index, index), item->checkState() == Qt::Checked ? QItemSelectionModel::Select : QItemSelectionModel::Deselect);
+    mSelectionModel->select(QItemSelection(item->model()->indexFromItem(item), item->model()->indexFromItem(item)), item->checkState() == Qt::Checked ? QItemSelectionModel::Select : QItemSelectionModel::Deselect);
 }
 
 void PrototypeComponentsNavigatorWindow::handleSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
