@@ -6,6 +6,7 @@
 #include "recentproject.h"
 #include "programsettings.h"
 #include "projectviewerwindow.h"
+#include "recentprojectsmodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,28 +16,20 @@ int main(int argc, char *argv[])
     RecentProject pr2("/home/igor/bla/blabla/game2");
     RecentProject pr3("/home/igor/Documents/game3");
 
-    qDebug()<<pr1.name();
-    qDebug()<<pr2.name();
-    qDebug()<<pr3.name();
-
-    QVector<RecentProject> projects{pr1,pr2};
+    QVector<RecentProject> projects{pr1,pr2,pr3};
 
     ProgramSettings settings{projects};
 
-    foreach(const auto &project, settings.recentProjects())
-    {
-        qDebug()<<project.name();
-    }
+    RecentProjectsModel model(settings);
+//    QStandardItemModel model;
 
-    QStandardItemModel model;
+//    QStandardItem it1(QIcon(":/projectviewer/images/projecticon"), "path1");
+//    QStandardItem it2(QIcon(":/projectviewer/images/projecticon"), "looooooooong path");
+//    QStandardItem it3(QIcon(":/projectviewer/images/projecticon"), "path3");
 
-    QStandardItem it1(QIcon(":/projectviewer/images/projecticon"), "path1");
-    QStandardItem it2(QIcon(":/projectviewer/images/projecticon"), "looooooooong path");
-    QStandardItem it3(QIcon(":/projectviewer/images/projecticon"), "path3");
-
-    model.appendRow(&it1);
-    model.appendRow(&it2);
-    model.appendRow(&it3);
+//    model.appendRow(&it1);
+//    model.appendRow(&it2);
+//    model.appendRow(&it3);
 
     ProjectViewerWindow *pvw = new ProjectViewerWindow;
     pvw->setModel(&model);

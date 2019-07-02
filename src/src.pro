@@ -27,7 +27,8 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         programsettings.cpp \
-        recentproject.cpp
+        recentproject.cpp \
+        recentprojectsmodel.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -41,5 +42,6 @@ DISTFILES += \
 
 HEADERS += \
     programsettings.h \
-    recentproject.h
+    recentproject.h \
+    recentprojectsmodel.h
 
