@@ -2,11 +2,13 @@
 #include <QApplication>
 #include <QStringListModel>
 #include <QStandardItemModel>
+#include <QAbstractItemModelTester>
 
 #include "recentproject.h"
 #include "programsettings.h"
 #include "projectviewerwindow.h"
 #include "recentprojectsmodel.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -21,6 +23,7 @@ int main(int argc, char *argv[])
     ProgramSettings settings{projects};
 
     RecentProjectsModel model(settings);
+
 //    QStandardItemModel model;
 
 //    QStandardItem it1(QIcon(":/projectviewer/images/projecticon"), "path1");

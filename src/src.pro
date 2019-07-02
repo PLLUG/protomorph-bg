@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui testlib
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,10 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp \
-        programsettings.cpp \
-        recentproject.cpp \
-        recentprojectsmodel.cpp
+        main.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -36,12 +33,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 include($$PWD/projectviewer/projectviewer.pri)
+include($$PWD/projectviewer/projectviewermodel/projectviewermodel.pri)
 
 DISTFILES += \
     projectviewer/projectviewer.pri
 
-HEADERS += \
-    programsettings.h \
-    recentproject.h \
-    recentprojectsmodel.h
 
