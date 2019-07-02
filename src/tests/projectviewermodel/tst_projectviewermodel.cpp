@@ -20,9 +20,9 @@ void TestViewerModel::test()
 
     ProgramSettings settings{projects};
 
-    auto model = new RecentProjectsModel(settings);
+    RecentProjectsModel model(settings);
 
-    auto tester = new QAbstractItemModelTester(model,QAbstractItemModelTester::FailureReportingMode::QtTest,this);
+    QAbstractItemModelTester tester(&model,QAbstractItemModelTester::FailureReportingMode::QtTest,this);
 
 }
 
