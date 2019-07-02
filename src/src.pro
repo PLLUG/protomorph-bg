@@ -25,7 +25,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+        recentproject.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -36,4 +37,7 @@ include($$PWD/projectviewer/projectviewer.pri)
 
 DISTFILES += \
     projectviewer/projectviewer.pri
+
+HEADERS += \
+    recentproject.h
 
