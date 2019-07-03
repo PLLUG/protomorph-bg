@@ -2,14 +2,14 @@
 #include <QAbstractItemModelTester>
 #include "recentprojectsmodel.h"
 
-class TestViewerModel: public QObject
+class ViewerModelTests: public QObject
 {
     Q_OBJECT
 private slots:
     void test();
 };
 
-void TestViewerModel::test()
+void ViewerModelTests::test()
 {
 
     RecentProject pr1("/home/game1");
@@ -27,5 +27,5 @@ void TestViewerModel::test()
 }
 
 
-QTEST_MAIN(TestViewerModel)
+QTEST_MAIN(ViewerModelTests)
 #include "tst_projectviewermodel.moc"
