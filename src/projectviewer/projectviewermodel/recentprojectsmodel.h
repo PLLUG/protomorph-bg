@@ -10,7 +10,7 @@ class RecentProjectsModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    RecentProjectsModel(const ProgramSettings &settings,QObject *parent = nullptr);
+    RecentProjectsModel(const ProgramSettings &settings, QObject *parent = nullptr);
 
     // QAbstractItemModel interface
 public:

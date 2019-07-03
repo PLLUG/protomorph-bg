@@ -2,7 +2,7 @@
 #include "recentproject.h"
 
 ProgramSettings::ProgramSettings(const QVector<RecentProject> &recentProjects)
-    :mRecentProjects{recentProjects}
+    : mRecentProjects{recentProjects}
 {
 
 }

@@ -4,6 +4,7 @@
 #include <QVector>
 
 class RecentProject;
+
 class ProgramSettings
 {
 public:
