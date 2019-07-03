@@ -3,7 +3,8 @@
 #include <QIcon>
 
 RecentProjectsModel::RecentProjectsModel(const ProgramSettings &settings, QObject *parent)
-    :QAbstractListModel{parent},mSettings{settings}
+    : QAbstractListModel{parent}
+    , mSettings{settings}
 {
 
 }
