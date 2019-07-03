@@ -1,6 +1,7 @@
 #include "projectviewerwindow.h"
 #include "ui_projectviewerwindow.h"
 
+#include <QAbstractItemModelTester>
 
 ProjectViewerWindow::ProjectViewerWindow(QWidget *parent) :
     QWidget(parent),
