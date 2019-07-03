@@ -11,7 +11,6 @@ private slots:
 
 void ViewerModelTests::test()
 {
-
     RecentProject pr1("/home/game1");
     RecentProject pr2("/home/igor/bla/blabla/game2");
     RecentProject pr3("/home/igor/Documents/game3");
@@ -23,7 +22,6 @@ void ViewerModelTests::test()
     RecentProjectsModel model(settings);
 
     QAbstractItemModelTester tester(&model,QAbstractItemModelTester::FailureReportingMode::QtTest,this);
-
 }
 
 
