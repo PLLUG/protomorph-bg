@@ -1,10 +1,9 @@
 #include "recentprojectsmodel.h"
 
-#include <QDebug>
 #include <QIcon>
 
 RecentProjectsModel::RecentProjectsModel(const ProgramSettings &settings, QObject *parent)
-    :mSettings{settings}
+    :QAbstractListModel{parent},mSettings{settings}
 {
 
 }
@@ -17,16 +16,23 @@ int RecentProjectsModel::rowCount(const QModelIndex &parent) const
 
 QVariant RecentProjectsModel::data(const QModelIndex &index, int role) const
 {
-    int row = index.row();
 
-    switch (role)
+    if(!index.isValid())
     {
-        case Qt::DisplayRole:
-            return mSettings.recentProjects().at(row).name();
-        case Qt::DecorationRole:
-            QIcon icon(":/projectviewer/images/projecticon");
-            return icon;
+        return QVariant();
     }
+    else
+    {
+        int row = index.row();
 
+        switch (role)
+        {
+            case Qt::DisplayRole:
+                return mSettings.recentProjects().at(row).name();
+            case Qt::DecorationRole:
+                QIcon icon(":/projectviewer/images/projecticon");
+                return icon;
+        }
+    }
     return QVariant();
 }

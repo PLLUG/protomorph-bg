@@ -1,8 +1,4 @@
-#include <QtDebug>
 #include <QApplication>
-#include <QStringListModel>
-#include <QStandardItemModel>
-#include <QAbstractItemModelTester>
 
 #include "recentproject.h"
 #include "programsettings.h"
@@ -23,16 +19,6 @@ int main(int argc, char *argv[])
     ProgramSettings settings{projects};
 
     RecentProjectsModel model(settings);
-
-//    QStandardItemModel model;
-
-//    QStandardItem it1(QIcon(":/projectviewer/images/projecticon"), "path1");
-//    QStandardItem it2(QIcon(":/projectviewer/images/projecticon"), "looooooooong path");
-//    QStandardItem it3(QIcon(":/projectviewer/images/projecticon"), "path3");
-
-//    model.appendRow(&it1);
-//    model.appendRow(&it2);
-//    model.appendRow(&it3);
 
     ProjectViewerWindow *pvw = new ProjectViewerWindow;
     pvw->setModel(&model);
