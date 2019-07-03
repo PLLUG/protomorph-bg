@@ -21,18 +21,15 @@ QVariant RecentProjectsModel::data(const QModelIndex &index, int role) const
     {
         return QVariant();
     }
-    else
-    {
-        int row = index.row();
+    int row = index.row();
 
-        switch (role)
-        {
-            case Qt::DisplayRole:
-                return mSettings.recentProjects().at(row).name();
-            case Qt::DecorationRole:
-                QIcon icon(":/projectviewer/images/projecticon");
-                return icon;
-        }
+    switch (role)
+    {
+        case Qt::DisplayRole:
+            return mSettings.recentProjects().at(row).name();
+        case Qt::DecorationRole:
+            QIcon icon(":/projectviewer/images/projecticon");
+            return icon;
     }
     return QVariant();
 }

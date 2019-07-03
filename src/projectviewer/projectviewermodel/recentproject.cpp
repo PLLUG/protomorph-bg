@@ -1,5 +1,5 @@
 #include "recentproject.h"
-
+#include <QFileInfo>
 
 RecentProject::RecentProject(const QString &path)
     : mPath{path}
@@ -8,7 +8,8 @@ RecentProject::RecentProject(const QString &path)
 
 QString RecentProject::name() const
 {
-    return mPath.mid(mPath.lastIndexOf('/') + 1);
+    QFileInfo fi(mPath);
+    return fi.completeBaseName();
 }
 
 QString RecentProject::path() const
