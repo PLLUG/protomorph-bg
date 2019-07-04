@@ -6,20 +6,17 @@
 
 
 PrototypeComponentsNavigatorWindow::PrototypeComponentsNavigatorWindow(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::PrototypeComponentsNavigatorWindow)
+    QWidget(parent)
+  ,ui(new Ui::PrototypeComponentsNavigatorWindow)
 {
     ui->setupUi(this);
 
-
     ui->listView->setIconSize(QSize(100,100));
     ui->listView->setUniformItemSizes(true);
-    ui->listView->setSelectionMode(QAbstractItemView::MultiSelection);
 
     connect(ui->pushButtonAddComponentsToPrototipe, &QPushButton::clicked, this, &PrototypeComponentsNavigatorWindow::newComponentRequested);
     connect(ui->pushButtonLoadSelectedComponents, &QPushButton::clicked, this, &PrototypeComponentsNavigatorWindow::componentOpenButtonClicked);
     connect(ui->pushButtonDeleteSelectedComponent, &QPushButton::clicked, this, &PrototypeComponentsNavigatorWindow::componentRemovButtonClicked);
-
 }
 
 PrototypeComponentsNavigatorWindow::~PrototypeComponentsNavigatorWindow()
@@ -32,7 +29,7 @@ void PrototypeComponentsNavigatorWindow::setModel(QAbstractItemModel *model)
     if(model)
     {
         ui->listView->setModel(model);
-        connect(ui->listView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(handleSelectionChanged(QItemSelection, QItemSelection)));
+        connect(ui->listView->selectionModel(), &QItemSelectionModel::selectionChanged,this,&PrototypeComponentsNavigatorWindow::handleSelectionChanged);
     }
 }
 
@@ -46,17 +43,12 @@ void PrototypeComponentsNavigatorWindow::componentRemovButtonClicked()
     emit componentRemoved("");
 }
 
-void PrototypeComponentsNavigatorWindow::handleSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
+void PrototypeComponentsNavigatorWindow::handleSelectionChanged()
 {
-    for (const QModelIndex &index : selected.indexes())
-    {
-        ui->pushButtonLoadSelectedComponents->setEnabled(true);
-        ui->pushButtonDeleteSelectedComponent->setEnabled(true);
-    }
-    for (const QModelIndex &index : deselected.indexes())
-    {
-        ui->pushButtonLoadSelectedComponents->setEnabled(false);
-        ui->pushButtonDeleteSelectedComponent->setEnabled(false);
-    }
+    bool isOnlyOneProjectSelected = ui->listView->selectionModel()->selectedIndexes().size() == 1;
+    bool isAnyProjectsSelected = ui->listView->selectionModel()->selectedIndexes().size() > 0;
+
+    ui->pushButtonDeleteSelectedComponent->setEnabled(isAnyProjectsSelected);
+    ui->pushButtonLoadSelectedComponents->setEnabled(isOnlyOneProjectSelected);
 }
 

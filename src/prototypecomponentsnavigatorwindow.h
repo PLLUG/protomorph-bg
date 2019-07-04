@@ -3,11 +3,9 @@
 
 #include <QWidget>
 
-class QItemSelectionModel;
-class QAbstractItemModel;
 class QStandardItem;
 class QItemSelection;
-
+class QAbstractItemModel;
 
 namespace Ui {
 class PrototypeComponentsNavigatorWindow;
@@ -33,11 +31,10 @@ signals:
     void componentOpened(QString id);
     void componentRemoved(QString id);
 
-
 private slots:
     void componentOpenButtonClicked();
     void componentRemovButtonClicked();
-    void handleSelectionChanged(const QItemSelection &, const QItemSelection &);
+    void handleSelectionChanged();
 
 };
 
