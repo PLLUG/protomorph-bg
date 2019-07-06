@@ -25,19 +25,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp \
-        prototypecomponentsnavigatorwindow/prototypecomponentsnavigatorwindow.cpp
-
-HEADERS += \
-    prototypecomponentsnavigatorwindow/prototypecomponentsnavigatorwindow.h
+        main.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-FORMS += \
-    prototypecomponentsnavigatorwindow/prototypecomponentsnavigatorwindow.ui
-
-RESOURCES += \
-    prototypecomponentsnavigatorwindow/resources/images.qrc
+include(prototypecomponentsnavigatorwindow/prototypecomponentsnavigatorwindow.pri)
