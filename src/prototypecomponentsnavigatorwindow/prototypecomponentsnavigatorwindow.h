@@ -3,8 +3,6 @@
 
 #include <QWidget>
 
-class QStandardItem;
-class QItemSelection;
 class QAbstractItemModel;
 
 namespace Ui {
@@ -24,7 +22,6 @@ public:
 
 private:
     Ui::PrototypeComponentsNavigatorWindow *ui;
-
 
 signals:
     void newComponentRequested();

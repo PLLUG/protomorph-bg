@@ -1,9 +1,5 @@
 #include "prototypecomponentsnavigatorwindow.h"
 #include "ui_prototypecomponentsnavigatorwindow.h"
-#include <QItemSelectionModel>
-#include <QAbstractItemModel>
-#include <QStandardItem>
-
 
 PrototypeComponentsNavigatorWindow::PrototypeComponentsNavigatorWindow(QWidget *parent) :
     QWidget(parent)
