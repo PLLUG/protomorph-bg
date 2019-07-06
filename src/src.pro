@@ -33,6 +33,3 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 include(prototypecomponentsnavigatorwindow/prototypecomponentsnavigatorwindow.pri)
-
-DISTFILES += \
-    prototypecomponentsnavigatorwindow/prototypecomponentsnavigatorwindow.pri
