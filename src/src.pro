@@ -26,18 +26,13 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        prototypecomponentsnavigatorwindow/prototypecomponentsnavigatorwindow.cpp
-
-HEADERS += \
-    prototypecomponentsnavigatorwindow/prototypecomponentsnavigatorwindow.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-FORMS += \
-    prototypecomponentsnavigatorwindow/prototypecomponentsnavigatorwindow.ui
+include(prototypecomponentsnavigatorwindow/prototypecomponentsnavigatorwindow.pri)
 
-RESOURCES += \
-    prototypecomponentsnavigatorwindow/resources/images.qrc
+DISTFILES += \
+    prototypecomponentsnavigatorwindow/prototypecomponentsnavigatorwindow.pri
