@@ -2,8 +2,8 @@
 #include "ui_prototypecomponentsnavigatorwindow.h"
 
 PrototypeComponentsNavigatorWindow::PrototypeComponentsNavigatorWindow(QWidget *parent) :
-    QWidget(parent)
-  ,ui(new Ui::PrototypeComponentsNavigatorWindow)
+    QWidget(parent),
+    ui(new Ui::PrototypeComponentsNavigatorWindow)
 {
     ui->setupUi(this);
 
