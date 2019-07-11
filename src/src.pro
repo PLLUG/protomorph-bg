@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui testlib
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -32,4 +32,11 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-include(prototypecomponentsnavigatorwindow/prototypecomponentsnavigatorwindow.pri)
+include($$PWD/projectviewer/projectviewer.pri)
+include($$PWD/projectviewer/projectviewermodel/projectviewermodel.pri)
+include($$PWD/prototypecomponentsnavigatorwindow/prototypecomponentsnavigatorwindow.pri)
+
+DISTFILES += \
+    projectviewer/projectviewer.pri
+
+
