@@ -11,4 +11,4 @@ FORMS += \
     $$PWD/projectviewerwindow.ui
 
 RESOURCES += \
-    $$PWD/images.qrc
+    $$PWD/imagesProjectViewer.qrc

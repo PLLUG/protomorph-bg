@@ -12,4 +12,4 @@ FORMS += \
     $$PWD/prototypecomponentsnavigatorwindow.ui
 
 RESOURCES += \
-    $$PWD/resources/images.qrc
+    $$PWD/resources/imagesPrototipe.qrc
