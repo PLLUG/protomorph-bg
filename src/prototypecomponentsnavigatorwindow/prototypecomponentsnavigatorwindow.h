@@ -17,11 +17,7 @@ public:
     explicit PrototypeComponentsNavigatorWindow(QWidget *parent = nullptr);
     ~PrototypeComponentsNavigatorWindow();
 
-public:
     void setModel(QAbstractItemModel*);
-
-private:
-    Ui::PrototypeComponentsNavigatorWindow *ui;
 
 signals:
     void newComponentRequested();
@@ -32,6 +28,10 @@ private slots:
     void componentOpenButtonClicked();
     void componentRemovButtonClicked();
     void handleSelectionChanged();
+
+private:
+    Ui::PrototypeComponentsNavigatorWindow *ui;
+
 
 };
 
