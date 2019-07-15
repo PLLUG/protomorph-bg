@@ -34,6 +34,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 include($$PWD/projectviewer/projectviewer.pri)
 include($$PWD/projectviewer/projectviewermodel/projectviewermodel.pri)
+include($$PWD/prototypecomponentsnavigatorwindow/prototypecomponentsnavigatorwindow.pri)
 
 DISTFILES += \
     projectviewer/projectviewer.pri
