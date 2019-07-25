@@ -4,7 +4,7 @@
 #ifndef FLATBUFFERS_GENERATED_BGAME_H_
 #define FLATBUFFERS_GENERATED_BGAME_H_
 
-#include "flatbuffers/flatbuffers.h"
+#include "flatbuffers.h"
 
 struct BoardGame;
 
