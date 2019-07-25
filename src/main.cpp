@@ -31,8 +31,7 @@ int main(int argc, char *argv[])
 
      // Shortcut for creating BoardGame with all fields set:
 
-    auto game = CreateBoardGame(builder,
-                                boardGame);
+    auto game = CreateBoardGame(builder, boardGame);
 
     builder.Finish(game); // Serialize the root of the object.
     builder.GetBufferPointer();
