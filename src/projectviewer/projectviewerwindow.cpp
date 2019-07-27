@@ -1,5 +1,6 @@
 #include "projectviewerwindow.h"
 #include "ui_projectviewerwindow.h"
+#include "boardgameprojectfile.h"
 
 #include <QAbstractItemModelTester>
 
@@ -36,6 +37,7 @@ void ProjectViewerWindow::setModel(QAbstractItemModel *model)
 void ProjectViewerWindow::onNewProjectButtonClicked()
 {
     emit newProjectRequested();
+    BoardGameProjectFile::save("");
 }
 
 void ProjectViewerWindow::onOpenProjectButtonClicked()
