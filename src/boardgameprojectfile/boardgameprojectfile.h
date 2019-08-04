@@ -1,9 +1,10 @@
 #ifndef BOARDGAMEPROJECTFILE_H
 #define BOARDGAMEPROJECTFILE_H
 
-#include "flatbuffers/bgame_generated.h"
+#include <memory>
 
 class QString;
+class BoardGame;
 
 class BoardGameProjectFile
 {

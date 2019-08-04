@@ -4,6 +4,9 @@
 #include <QString>
 #include <QDebug>
 
+#include "flatbuffers/bgame_generated.h"
+
+
 std::unique_ptr<BoardGame> BoardGameProjectFile::load(const QString &path)
 {
     //this method is intentionally empty and will be implemented later on
