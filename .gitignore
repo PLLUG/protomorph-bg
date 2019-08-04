@@ -14,3 +14,5 @@
 *.obj
 
 *.qm
+
+src/boardgameprojectfile/flatbuffers/*.*

@@ -2,7 +2,6 @@
 #include <QFile>
 #include <QDataStream>
 #include <QString>
-#include <QDebug>
 
 BoardGameProjectFile::BoardGameProjectFile()
 {
