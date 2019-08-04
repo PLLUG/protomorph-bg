@@ -2,11 +2,7 @@
 #include <QFile>
 #include <QDataStream>
 #include <QString>
-
-BoardGameProjectFile::BoardGameProjectFile()
-{
-
-}
+#include <QDebug>
 
 std::unique_ptr<BoardGame> BoardGameProjectFile::load(const QString &path)
 {
