@@ -1,6 +1,0 @@
-
-table BoardGame {
-   description:string;
-}
-
-root_type BoardGame;
