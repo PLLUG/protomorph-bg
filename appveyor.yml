@@ -7,7 +7,7 @@ pull_requests:
   do_not_increment_build_number: true
 
 environment:
-  QT_INSTALL_ROOT: C:\Qt\5.12.2\msvc2015_64
+  QT_INSTALL_ROOT: C:\Qt\5.12.4\msvc2015_64
 
 build_script:
 - cmd: >-
