@@ -1,10 +1,13 @@
-DEPENDPATH += $$PWD
+
+FLATC_SCHEME_FILES += \
+    $$PWD/bgame.fbs
+
+include($$PWD/flatbuffers.pri)
+
 INCLUDEPATH += $$PWD
 
 HEADERS += \
-    $$PWD/boardgameprojectfile.h \
-    $$PWD/flatbuffers/bgame_generated.h \
-    $$PWD/flatbuffers/flatbuffers.h \
+    $$PWD/boardgameprojectfile.h
 
 SOURCES += \
     $$PWD/boardgameprojectfile.cpp
