@@ -1,6 +1,7 @@
 #include "projectviewerwindow.h"
 #include "ui_projectviewerwindow.h"
 #include "boardgameprojectfile.h"
+#include <QFileDialog>
 
 #include <QAbstractItemModelTester>
 
@@ -37,7 +38,14 @@ void ProjectViewerWindow::setModel(QAbstractItemModel *model)
 void ProjectViewerWindow::onNewProjectButtonClicked()
 {
     emit newProjectRequested();
-    BoardGameProjectFile::save("");
+    QString lFileName = QFileDialog::getSaveFileName(this, tr("Save file..."),
+                                                     QDir::homePath(),
+                                                     tr("Projeck files (*.bgame);;All files (*.*)"));
+        if (lFileName.isEmpty())
+    {
+        return;
+    }
+    BoardGameProjectFile::save(lFileName);
 }
 
 void ProjectViewerWindow::onOpenProjectButtonClicked()

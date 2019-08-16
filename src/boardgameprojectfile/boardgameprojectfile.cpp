@@ -24,7 +24,7 @@ void BoardGameProjectFile::save(const QString &path)
 
     builder.Finish(orest); // Serialize the root of the object.
 
-    QFile file("file.bgame");
+    QFile file(path);
     if(file.open(QIODevice::WriteOnly))
     {
         QDataStream stream(&file);
