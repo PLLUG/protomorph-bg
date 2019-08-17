@@ -12,11 +12,6 @@ BoardGameProjectFile::BoardGameProjectFile(QWidget *parent)
 
 }
 
-std::unique_ptr<BoardGame> BoardGameProjectFile::load(const QString &path)
-{
-    //this method is intentionally empty and will be implemented later on
-}
-
 void BoardGameProjectFile::save(const QString &path)
 {
     // Build up a serialized buffer algorithmically:
