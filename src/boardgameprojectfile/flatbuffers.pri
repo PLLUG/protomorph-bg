@@ -5,8 +5,8 @@
 
 # Example: FLATBUFFERS_INCLUDE_DIR=D:/MSYS2_Commander/msys64/mingw64/include FLATBUFFERS_LIB_DIR=D:/MSYS2_Commander/msys64/mingw64/lib
 #
-# FLATC_SCHEME_FILES += \
-#    $$PWD/bgame.fbs
+ FLATC_SCHEME_FILES += \
+    $$PWD/bgame.fbs
 
 INCLUDEPATH += $$FLATBUFFERS_INCLUDE_DIR
 LIBS += -L$$FLATBUFFERS_LIB_DIR
