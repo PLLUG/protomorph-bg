@@ -26,9 +26,9 @@ void BoardGameProjectFile::save(const QString &path)
     auto description = builder.CreateString("Orest");
 
     // Use the `CreateBoardGame` shortcut to create BoardGame with all fields set.
-    auto orest = CreateBoardGame(builder, description);
+    auto boardGame = CreateBoardGame(builder, description);
 
-    builder.Finish(orest); // Serialize the root of the object.
+    builder.Finish(boardGame); // Serialize the root of the object.
 
     QFile lFile(path);
     if(lFile.open(QIODevice::WriteOnly))
