@@ -31,7 +31,7 @@ void BoardGameProjectFile::save(const QString &path)
         // Створюємо тимчасовий QByteArray для запису даних
         QByteArray lData;
         auto data = reinterpret_cast<const char*>(builder.GetBufferPointer());
-        auto size = static_cast<int>(builder.GetSize());
+        auto size = reinterpret_cast<const char*>(builder.GetSize());
         lData.append(data);
         lData.append(size);
         lFile.write(lData);
