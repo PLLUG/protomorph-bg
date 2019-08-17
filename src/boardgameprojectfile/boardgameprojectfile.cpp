@@ -44,6 +44,6 @@ void BoardGameProjectFile::save(const QString &path)
     }
     else
     {
-        //       QMessageBox::warning(this, tr("Error"), QString(tr("Could not open file %1 for writing")).arg(lFile.fileName()), QMessageBox::Ok);
+        QMessageBox::warning(NULL, tr("Error"), QString(tr("Could not open file %1 for writing")).arg(lFile.fileName()), QMessageBox::Ok);
     }
 }
