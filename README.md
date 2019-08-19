@@ -4,18 +4,6 @@
   <img src="https://github.com/Guitarheroua/protomorph-bg/blob/development/old-src/ProtomorphBG/resources/icons/protomorph-bg.ico" />
 </p>
 
-To compile a program,  you need connect Flatbuffer library.
-You can do this by editing flatbuffers.pri file or add arguments to qmake
-
-<pre><code>FLATBUFFERS_INCLUDE_DIR - directory where flatbuffers include files are located
-FLATBUFFERS_LIB_DIR - directory where flatbuffers libs are located
-FLATC_SCHEME_FILES - list of flatbuffers schema files used to generate headers
-</pre></code>
-
-Example: 
-<pre><code>FLATBUFFERS_INCLUDE_DIR=D:/MSYS2_Commander/msys64/mingw64/include
-FLATBUFFERS_LIB_DIR=D:/MSYS2_Commander/msys64/mingw64/lib</pre></code>
-
 **"Protomorph BG"** is a tool, that will help board game designers to prototype games components(cards, tiles, boards etc.) and save them as a project. It will also have layouts mechanisms, to layout components for printing on standard paper formats and export entire project to PDF or other formats. Will be available for Windows/Linux/OSX (I hope :))
 
 ## Status
@@ -38,6 +26,20 @@ Next sources are used in the project:
 2. [**google/roboto**](https://github.com/google/roboto) - The Roboto family of fonts
 
 3. [**mitchcurtis/slate**](https://github.com/mitchcurtis/slate) - Pixel Art Editor(Collapsible panels and color scheme used from this project)
+
+## FlatBuffers
+
+To compile a program,  you need connect Flatbuffer library.
+You can do this by editing flatbuffers.pri file or add arguments to qmake
+
+<pre><code>FLATBUFFERS_INCLUDE_DIR - directory where flatbuffers include files are located
+FLATBUFFERS_LIB_DIR - directory where flatbuffers libs are located
+FLATC_SCHEME_FILES - list of flatbuffers schema files used to generate headers
+</pre></code>
+
+Example: 
+<pre><code>FLATBUFFERS_INCLUDE_DIR=D:/MSYS2_Commander/msys64/mingw64/include
+FLATBUFFERS_LIB_DIR=D:/MSYS2_Commander/msys64/mingw64/lib</pre></code>
 
 ## Our support
 
