@@ -3,10 +3,7 @@
 
 #include <QWidget>
 
-#include <memory>
-
 class QString;
-class BoardGame;
 
 class BoardGameProjectFile : public QWidget
 {
