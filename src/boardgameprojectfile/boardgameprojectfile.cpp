@@ -1,6 +1,5 @@
 #include "boardgameprojectfile.h"
 #include <QFile>
-#include <QDataStream>
 #include <QString>
 #include <QMessageBox>
 
@@ -28,7 +27,7 @@ void BoardGameProjectFile::save(const QString &path)
     QFile lFile(path);
     if(lFile.open(QIODevice::WriteOnly))
     {
-        // Створюємо тимчасовий QByteArray для запису даних
+        // Createing temporary QByteArray for saving data
         QByteArray lData;
         auto data = reinterpret_cast<const char*>(builder.GetBufferPointer());
         auto size = reinterpret_cast<const char*>(builder.GetSize());

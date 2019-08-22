@@ -40,7 +40,7 @@ void ProjectViewerWindow::onNewProjectButtonClicked()
     emit newProjectRequested();
     QString lFileName = QFileDialog::getSaveFileName(this, tr("Save file..."),
                                                      QDir::homePath(),
-                                                     tr("Projeck files (*.bgame);;All files (*.*)"));
+                                                     tr("Projeck files... (*.bgame);;All files (*.*)"));
         if (lFileName.isEmpty())
     {
         return;
