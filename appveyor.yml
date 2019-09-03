@@ -25,6 +25,8 @@ install:
       
       cmake .
       
+      msbuild FlatBuffers.sln
+      
       dir
       
       set PATH=%FLATBUFFERS_PATH%;%PATH%
