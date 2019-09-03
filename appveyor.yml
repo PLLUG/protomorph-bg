@@ -5,19 +5,31 @@ branches:
     - development
     - master
     - features/flat-buffers-CI-configuration
+  
+environment:
+  QT_INSTALL_ROOT: C:\Qt\5.12.4\msvc2015_64
+  FLATBUFFERS_PATH: C:\flatbuffers
 
-
-install:  
+install: 
   - cmd: >-
-      cd %APPVEYOR_BUILD_FOLDER%\src
+      "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x64
       
-      flatc -version
+      cd C:\
+      
+      git clone https://github.com/google/flatbuffers.git
+      
+      cd %FLATBUFFERS_PATH%
+      
+      git checkout 9e7e8cb
+      
+      cmake .
+      
+      dir
+      
+      cd %APPVEYOR_BUILD_FOLDER%\src
 
 pull_requests:
   do_not_increment_build_number: true
-
-environment:
-  QT_INSTALL_ROOT: C:\Qt\5.12.4\msvc2015_64
 
 build_script:
 - cmd: >-
