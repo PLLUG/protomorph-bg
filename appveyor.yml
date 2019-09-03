@@ -25,7 +25,7 @@ install:
       
       dir
       
-      7z %FLATC_ZIP_NAME%
+      "7z e %FLATC_ZIP_NAME%"
       
       dir
       
