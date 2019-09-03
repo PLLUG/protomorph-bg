@@ -12,13 +12,14 @@ environment:
   FLATC_ZIP_NAME: flatc_windows_exe.zip
 
 install:
-  - ps: Start-FileDownload 'https://github.com/google/flatbuffers/releases/download/v1.11.0/%FLATC_ZIP_NAME%' -OutFile %FLATBUFFERS_PATH%/%FLATC_ZIP_NAME%
   - cmd: >-      
       git clone https://github.com/google/flatbuffers.git
       
       cd %FLATBUFFERS_PATH%
       
       git checkout 9e7e8cb
+      
+      curl -fsS -o %FLATC_ZIP_NAME% 'https://github.com/google/flatbuffers/releases/download/v1.11.0/%FLATC_ZIP_NAME%'
       
       7z e %FLATBUFFERS_PATH%/%FLATC_ZIP_NAME% -o .
       
