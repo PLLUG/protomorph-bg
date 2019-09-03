@@ -10,6 +10,7 @@ branches:
 install:  
   - cmd: >-
       cd %APPVEYOR_BUILD_FOLDER%\src
+      
       cmake --version
 
 pull_requests:
