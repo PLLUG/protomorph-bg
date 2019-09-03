@@ -23,7 +23,7 @@ install:
       
       curl -fsS -o %FLATC_ZIP_NAME% "https://github.com/google/flatbuffers/releases/download/v1.11.0/%FLATC_ZIP_NAME%"
       
-      7z e %FLATBUFFERS_PATH%/%FLATC_ZIP_NAME% -o .
+      7z e %FLATBUFFERS_PATH%/%FLATC_ZIP_NAME%
       
       dir
       
