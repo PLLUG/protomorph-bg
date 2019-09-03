@@ -25,7 +25,7 @@ install:
       
       cmake .
       
-      msbuild FlatBuffers.sln
+      msbuild FlatBuffers.sln /p:Configuration=RElease /p:Platform="x64"
       
       dir
       
