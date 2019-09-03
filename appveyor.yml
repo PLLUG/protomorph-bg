@@ -9,22 +9,22 @@ branches:
 environment:
   QT_INSTALL_ROOT: C:\Qt\5.12.4\msvc2015_64
   FLATBUFFERS_PATH: C:\flatbuffers
+  FLATC_ZIP_NAME: flatc_windows_exe.zip
 
-install: 
-  - cmd: >-
-      "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
-      
-      cd C:\
-      
+install:
+  - ps: Start-FileDownload 'https://github.com/google/flatbuffers/releases/download/v1.11.0/%FLATC_ZIP_NAME%' -OutFile %FLATBUFFERS_PATH%/%FLATC_ZIP_NAME%
+  - cmd: >-      
       git clone https://github.com/google/flatbuffers.git
       
       cd %FLATBUFFERS_PATH%
       
       git checkout 9e7e8cb
       
-      cmake .
+      7z e %FLATBUFFERS_PATH%/%FLATC_ZIP_NAME% -o .
       
       dir
+      
+      flatc -v
       
       cd %APPVEYOR_BUILD_FOLDER%\src
 
