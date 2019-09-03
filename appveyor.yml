@@ -11,7 +11,7 @@ install:
   - cmd: >-
       cd %APPVEYOR_BUILD_FOLDER%\src
       
-      cmake --version
+      flatc -version
 
 pull_requests:
   do_not_increment_build_number: true
