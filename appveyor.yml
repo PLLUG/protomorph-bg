@@ -21,15 +21,13 @@ install:
       
       git checkout 9e7e8cb
       
-      curl -LJO "https://github.com/google/flatbuffers/releases/download/v1.11.0/%FLATC_ZIP_NAME%"
+      "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
+      
+      cmake .
+      
+      nmake
       
       dir
-      
-      7z x %FLATC_ZIP_NAME%
-      
-      dir
-      
-      flatc -v
       
       set PATH=%FLATBUFFERS_PATH%;%PATH%
       
