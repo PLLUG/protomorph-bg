@@ -12,7 +12,7 @@ branches:
 environment:
   QT_INSTALL_ROOT: C:\Qt\5.12.4\msvc2015_64
   FLATBUFFERS_PATH: C:\flatbuffers
-  FLATBUFFERS_INSTALL_PATH: "C:\Program Files\FlatBuffers"
+  FLATBUFFERS_INSTALL_PATH: "C:\\Program Files\\FlatBuffers"
   FLATC_ZIP_NAME: flatc_windows_exe.zip
 
 install:
@@ -72,4 +72,3 @@ build_script:
     cd %APPVEYOR_BUILD_FOLDER%\src\tests\projectviewerwindow\release
 
     tests.exe
-     
