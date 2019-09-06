@@ -14,7 +14,10 @@ environment:
   FLATBUFFERS_PATH: C:\flatbuffers
   FLATBUFFERS_INSTALL_PATH: "C:\\Program Files\\FlatBuffers"
   FLATC_ZIP_NAME: flatc_windows_exe.zip
-
+  PATH: %FLATBUFFERS_INSTALL_PATH%\bin;%PATH%
+  FLATBUFFERS_INCLUDE_DIR: %FLATBUFFERS_INSTALL_PATH%\include
+  FLATBUFFERS_LIB_DIR: %FLATBUFFERS_INSTALL_PATH%\lib
+  
 install:
   - cmd: >-
       cd C:\
@@ -43,19 +46,16 @@ build_script:
     
     %QT_INSTALL_ROOT%\bin\qtenv2.bat
 
-    "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
-    
-    set FLATBUFFERS_INCLUDE_DIR = %FLATBUFFERS_INSTALL_PATH%\include
+    "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64 
+    echo on
     
     echo %FLATBUFFERS_INCLUDE_DIR%
     
-    set FLATBUFFERS_LIB_DIR = %FLATBUFFERS_INSTALL_PATH%\lib
-    
     echo %FLATBUFFERS_LIB_DIR%
     
-    set PATH = %FLATBUFFERS_INSTALL_PATH%\bin;%PATH%
-    
     echo %PATH%
+    
+    echo off
     
     cd %APPVEYOR_BUILD_FOLDER%\src
     
