@@ -46,7 +46,8 @@ build_script:
     
     %QT_INSTALL_ROOT%\bin\qtenv2.bat
 
-    "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64 
+    "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
+    
     echo on
     
     echo %FLATBUFFERS_INCLUDE_DIR%
