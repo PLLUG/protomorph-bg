@@ -26,7 +26,7 @@ install:
       
       "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
       
-      cmake -G "Visual Studio 15" -DCMAKE_BUILD_TYPE=Release
+      cmake -G "Visual Studio 14" -DCMAKE_BUILD_TYPE=Release
       
       dir
       
