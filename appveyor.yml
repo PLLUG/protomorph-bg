@@ -45,17 +45,17 @@ build_script:
 
     "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
     
-    set FLATBUFFERS_INCLUDE_DIR = "%FLATBUFFERS_INSTALL_PATH%\include"
+    set FLATBUFFERS_INCLUDE_DIR = %FLATBUFFERS_INSTALL_PATH%\include
     
-    %FLATBUFFERS_INCLUDE_DIR%
+    FLATBUFFERS_INCLUDE_DIR
     
-    set FLATBUFFERS_LIB_DIR = "%FLATBUFFERS_INSTALL_PATH%\lib"
+    set FLATBUFFERS_LIB_DIR = %FLATBUFFERS_INSTALL_PATH%\lib
     
-    %FLATBUFFERS_LIB_DIR%
+    FLATBUFFERS_LIB_DIR
     
-    set PATH = "%FLATBUFFERS_INSTALL_PATH%\bin;%PATH%"
+    set PATH = %FLATBUFFERS_INSTALL_PATH%\bin;%PATH%
     
-    %PATH%
+    PATH
     
     cd %APPVEYOR_BUILD_FOLDER%\src
     
