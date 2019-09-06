@@ -26,11 +26,7 @@ install:
       
       "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
       
-      cmake .
-      
-      SET Platform=path\to\FAKE.exe
-      
-      msbuild FlatBuffers.sln /p:Configuration=Release /p:Platform="x64" /m
+      cmake -G "Visual Studio 15" -DCMAKE_BUILD_TYPE=Release
       
       dir
       
