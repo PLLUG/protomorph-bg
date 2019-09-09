@@ -14,9 +14,9 @@ environment:
   FLATBUFFERS_PATH: C:\flatbuffers
   FLATBUFFERS_INSTALL_PATH: ""
   FLATC_ZIP_NAME: flatc_windows_exe.zip
-  FLATBUFFERS_INCLUDE_DIR: "C:\\Program Files\\FlatBuffers\\include"
-  FLATBUFFERS_LIB_DIR: "C:\\Program Files\\FlatBuffers\\lib"
-  PATH: "C:\\Program Files\\FlatBuffers\\bin;$(PATH)"
+  FLATBUFFERS_INCLUDE_DIR: "C:/Program Files/FlatBuffers/include"
+  FLATBUFFERS_LIB_DIR: "C:/Program Files/FlatBuffers/lib"
+  PATH: "C:/Program Files/FlatBuffers/bin;$(PATH)"
   
 install:
   - cmd: >-
