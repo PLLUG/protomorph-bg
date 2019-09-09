@@ -12,11 +12,11 @@ branches:
 environment:
   QT_INSTALL_ROOT: C:\Qt\5.12.4\msvc2015_64
   FLATBUFFERS_PATH: C:\flatbuffers
-  FLATBUFFERS_INSTALL_PATH: "C:\\Program Files\\FlatBuffers"
+  FLATBUFFERS_INSTALL_PATH: ""
   FLATC_ZIP_NAME: flatc_windows_exe.zip
-  PATH: %FLATBUFFERS_INSTALL_PATH%\bin;%PATH%
-  FLATBUFFERS_INCLUDE_DIR: %FLATBUFFERS_INSTALL_PATH%\include
-  FLATBUFFERS_LIB_DIR: %FLATBUFFERS_INSTALL_PATH%\lib
+  PATH: "C:\\Program Files\\FlatBuffers\\bin;%PATH%"
+  FLATBUFFERS_INCLUDE_DIR: "C:\\Program Files\\FlatBuffers\\include"
+  FLATBUFFERS_LIB_DIR: "C:\\Program Files\\FlatBuffers\\lib"
   
 install:
   - cmd: >-
