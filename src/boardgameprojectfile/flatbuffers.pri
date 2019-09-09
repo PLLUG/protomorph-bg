@@ -13,7 +13,9 @@ LIBS += -L$$FLATBUFFERS_LIB_DIR
 
 LIBS += -lflatbuffers
 
+message("FLATBUFFERS_INCLUDE_DIR")
 message($$FLATBUFFERS_INCLUDE_DIR)
+message("FLATBUFFERS_LIB_DIR")
 message($$FLATBUFFERS_LIB_DIR)
 
 FLATC_COMMAND = flatc -c
